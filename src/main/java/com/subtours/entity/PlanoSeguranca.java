@@ -1,28 +1,39 @@
-package main.java.com.subtours.entity;
+package com.subtours.entity;
 
 import java.time.LocalTime;
-import javax.annotation.processing.Generated;
 
-@AllArgsConstructor
-@Data
-@Entity
-@Table(name = "planoSeguranca")
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter 
+@Setter 
+@NoArgsConstructor 
+@Entity 
+@Table (name = "planoSeguranca")
 public class PlanoSeguranca {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "codPlanSeg")
+    @Id 
+    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @Column (name = "codPlanSeg")
     private short id;
 
-    @Column(name = "procedsEvac", nullable = false, lenght = 300)
+    @Column(name = "procedsEvac", nullable = false, length = 300)
     private String procedsEvacuacao;
 
-    @Column(name = "pontoEnc", nullable = false, lenght = 50)
+    @Column(name = "pontoEnc", nullable = false, length = 50)
     private String pontoEncontro;
 
     @Column(name = "tempoSemComunic", nullable = false)
     private LocalTime tempoSemComunic;
 
-    @Column(name = "telefoneEmerg", nullable = false, lenght = 11)
+    @Column(name = "telefoneEmerg", nullable = false, length = 11)
     private String telefoneEmerg;
 
     @Column(name = "precisaMedico")
