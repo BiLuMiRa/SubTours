@@ -21,17 +21,17 @@ import lombok.Setter;
 @Setter 
 @NoArgsConstructor 
 @Entity 
-@Table(name = "AutorizacaoAmbiental")
+@Table(name = "autorizacao_ambiental")
 public class AutorizacaoAmbiental {
     @Id 
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
-    @Column(name = "numAutoriz")
+    @Column(name = "num_autoriz")
     private short numAutoriz;
 
-    @Column(name = "orgaoEmissor", nullable = false, length = 30)
+    @Column(name = "orgao_emissor", nullable = false, length = 30)
     private String orgaoEmissor;
 
-    @Column(name = "dataEmissao", nullable = false)
+    @Column(name = "dt_emissao", nullable = false)
     private LocalDate dataEmissao;
 
     @Column(name = "validade", nullable = false)
@@ -44,6 +44,6 @@ public class AutorizacaoAmbiental {
     @Column(name = "obs", length = 300)
     private String observacoes;
 
-    @Column(name = "pdfAssinado", columnDefinition = "bytea", nullable = false)
+    @Column(name = "pdf_ass", columnDefinition = "bytea", nullable = false)
     private byte[] pdfAssinado;
 }

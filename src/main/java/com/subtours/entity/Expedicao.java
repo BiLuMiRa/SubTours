@@ -4,9 +4,6 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import com.subtours.enums.situacaoExpedicaoEnum;
-import com.subtours.entity.Caverna;
-import com.subtours.entity.Relatorio;
-import com.subtours.entity.PlanoSeguranca;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +30,7 @@ import lombok.Setter;
 public class Expedicao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "codExpedicao")
+    @Column(name = "cod_exped")
     private short id;
 
     @Column(name = "titulo", nullable = false, length = 30)
@@ -54,33 +51,33 @@ public class Expedicao {
     @Column(name = "custo", nullable = false)
     private BigInteger custo;
 
-    @Column(name = "qntdParticip", nullable = false)
+    @Column(name = "qntd_particps", nullable = false)
     private short qntdParticip;
 
     @Column(name = "situacao", nullable = false)
     @Enumerated(EnumType.STRING)
     private situacaoExpedicaoEnum situacao;
 
-    @Column(name = "cancelEmerg", nullable = false)
+    @Column(name = "canclmnt_emerg", nullable = false)
     private boolean cancelEmerg;
 
     @ManyToOne 
-    @JoinColumn(name = "codcarvena", foreignKey = @ForeignKey(name = "fk_caverna"))
+    @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
     @Column(name = "caverna", nullable = false)
     private Caverna caverna;
 
     @OneToOne 
-    @JoinColumn(name = "codPlanSeg")
-    @Column(name = "planoSeguranca", nullable = false)
+    @JoinColumn(name = "cod_plan_seg")
+    @Column(name = "plano_seg", nullable = false)
     private PlanoSeguranca planoSeguranca;
 
     @OneToOne 
-    @JoinColumn(name = "codAutoriz")
+    @JoinColumn(name = "cod_autoriz")
     @Column(name = "autorizAmbiental", nullable = false)
     private AutorizacaoAmbiental autorizAmbiental;
 
     @OneToOne 
-    @JoinColumn(name = "codRelatorio")
+    @JoinColumn(name = "cod_rel")
     @Column(name = "relatorio", nullable = false)
     private Relatorio relatorio;
 }
