@@ -1,0 +1,58 @@
+package com.subtours.entity;
+
+import com.subtours.embeddable.Endereco;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter 
+@Setter
+@NoArgsConstructor 
+@Entity 
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "pessoa")
+public class Pessoa {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "cod_pessoa", nullable = false)
+    private short id;
+
+    @Column(name = "cpf", nullable = false, length = 14)
+    private String cpf;
+
+    @Column(name = "nome", nullable = false, length = 30)
+    private String nome;
+
+    @Column(name = "dt_nasc", nullable = false)
+    private LocalDate datanasc;
+    
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "fone", nullable = false, length = 13)
+    private String telefone;
+
+    //não tenho certeza desse tipo
+    @Column(name = "ativo", nullable = false)
+    private boolean ativo;
+
+    @ElementCollection 
+    @CollectionTable(name = "tb_endereco", joinColumns = @JoinColumn(name = "cod_pessoa"))
+    private Endereco endereco;
+
+}
