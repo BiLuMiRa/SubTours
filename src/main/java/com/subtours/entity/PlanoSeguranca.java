@@ -17,26 +17,26 @@ import lombok.Setter;
 @Setter 
 @NoArgsConstructor 
 @Entity 
-@Table (name = "planoSeguranca")
+@Table (name = "plano_seg")
 public class PlanoSeguranca {
     @Id 
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
-    @Column (name = "codPlanSeg")
+    @Column (name = "cod_plan_seg")
     private short id;
 
-    @Column(name = "procedsEvac", nullable = false, length = 300)
+    @Column(name = "proceds_evac", nullable = false, length = 300)
     private String procedsEvacuacao;
 
-    @Column(name = "pontoEnc", nullable = false, length = 50)
+    @Column(name = "ponto_enctr", nullable = false, length = 50)
     private String pontoEncontro;
 
-    @Column(name = "tempoSemComunic", nullable = false)
+    @Column(name = "tempo_sem_comunic", nullable = false)
     private LocalTime tempoSemComunic;
 
-    @Column(name = "telefoneEmerg", nullable = false, length = 11)
+    @Column(name = "fone_emerg", nullable = false, length = 11)
     private String telefoneEmerg;
 
-    @Column(name = "precisaMedico")
+    @Column(name = "precisa_med")
     private boolean precisaMedico;
 
     @Column(name = "mapa", columnDefinition = "bytea")
