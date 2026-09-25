@@ -1,4 +1,5 @@
 package com.subtours;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
@@ -8,40 +9,44 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter 
 @Setter 
 @Entity
+@Table(name = "Equipamento")
 public class Equipamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_equipamento")
     private Integer id;
 
-    @Column(nullable = false, length = 70)
+    @Column(name = "nome", nullable = false, length = 70)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(name = "tipo", nullable = false)
     @Enumerated(EnumType.STRING)
     private String tipo;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "fabricante", nullable = false, length = 50)
     private String fabricante;
 
-    @Column(nullable = false)
-    private Integer valor;
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
 
-    @Column(nullable = false)
+    @Column(name = "dataCompra", nullable = false)
     private LocalDate dataCompra;
 
-    @Column (nullable = false)
+    @Column (name = "situacaoOperacional", nullable = false)
     @Enumerated(EnumType.STRING)
     private String situacaoOperacional;
    
-    @Column(nullable = false)
+    @Column(name = "indicacaoCalibracao", nullable = false)
     private Double indicacaoCalibracao;
     
+    @Column(name = "dataUltimaManuntencao")
     private LocalDate dataUltimaManutencao;
 }
