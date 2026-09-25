@@ -3,6 +3,8 @@ package com.subtours.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.subtours.enums.situacaoValidacaoColetaEnum;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,5 +48,5 @@ public class ColetaCientifica {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao_validacao")
-    private String situacaoValidacao;
+    private situacaoValidacaoColetaEnum situacaoValidacao;
 }
