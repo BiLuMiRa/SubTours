@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -71,17 +72,17 @@ public class Expedicao {
     // private Caverna caverna;
 
     @OneToOne 
-    @JoinColumn(name = "cod_plan_seg")
-    // @Column(name = "plano_seg", nullable = false)
+    @JoinColumn(name = "cod_plan_seg", nullable = false)
+    // @Column(name = "plano_seg", )
     private PlanoSeguranca planoSeguranca;
 
     @OneToOne 
-    @JoinColumn(name = "cod_autoriz")
+    @JoinColumn(name = "cod_autoriz", nullable = false)
     // @Column(name = "autorizAmbiental", nullable = false)
     private AutorizacaoAmbiental autorizAmbiental;
 
-    @OneToOne 
-    @JoinColumn(name = "cod_rel")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_rel", nullable = false)
     // @Column(name = "relatorio", nullable = false)
     private Relatorio relatorio;
 

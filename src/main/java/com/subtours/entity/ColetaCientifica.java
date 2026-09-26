@@ -68,4 +68,13 @@ public class ColetaCientifica {
     @JoinColumn(name = "expedicao_id", 
         foreignKey = @ForeignKey(name = "FK_coleta_expedicao"))
     private Expedicao expedicao;
+
+    public boolean addAmostra(AmostraCientifica a){
+        if(this.amostras != null && a != null){
+            this.amostras.add(a);
+            a.setColeta(this);
+            return true;
+        }
+        return false;
+    }
 }
