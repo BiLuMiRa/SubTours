@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -16,9 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,8 +30,8 @@ import lombok.Setter;
 public class Pessoa {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_pessoa", nullable = false)
-    private short id;
+    @Column(name = "id_pessoa", nullable = false)
+    private Long id;
 
     @Column(name = "cpf", nullable = false, length = 14, unique = true)
     private String cpf;
@@ -54,8 +52,7 @@ public class Pessoa {
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 
-    @ElementCollection 
-    @CollectionTable(name = "tb_endereco", joinColumns = @JoinColumn(name = "cod_pessoa"))
+    @Embedded 
     private Endereco endereco;
 
     @OneToMany(mappedBy = "responsavel")

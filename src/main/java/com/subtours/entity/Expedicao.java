@@ -64,24 +64,25 @@ public class Expedicao {
     @Column(name = "canclmnt_emerg", nullable = false)
     private boolean cancelEmerg;
 
-    @ManyToOne 
-    @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
-    @Column(name = "caverna", nullable = false)
-    private Caverna caverna;
+    // como a classe ainda não está pronta, vou deixar comentado
+    // @ManyToOne 
+    // @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
+    // @Column(name = "caverna", nullable = false)
+    // private Caverna caverna;
 
     @OneToOne 
     @JoinColumn(name = "cod_plan_seg")
-    @Column(name = "plano_seg", nullable = false)
+    // @Column(name = "plano_seg", nullable = false)
     private PlanoSeguranca planoSeguranca;
 
     @OneToOne 
     @JoinColumn(name = "cod_autoriz")
-    @Column(name = "autorizAmbiental", nullable = false)
+    // @Column(name = "autorizAmbiental", nullable = false)
     private AutorizacaoAmbiental autorizAmbiental;
 
     @OneToOne 
     @JoinColumn(name = "cod_rel")
-    @Column(name = "relatorio", nullable = false)
+    // @Column(name = "relatorio", nullable = false)
     private Relatorio relatorio;
 
     @OneToMany(mappedBy = "expedicao")

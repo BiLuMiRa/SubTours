@@ -21,10 +21,13 @@ public class ColetaCientifica {
     @Column(name = "id_coletaCientifica")
     private Integer id;
 
-    @Column(name = "setor_id", nullable = false, length = 30)
-    private Setor setor;
-
-    @Column(name = "pesquisador_id", nullable = false)
+    // como a classe ainda não está pronta, vou deixar comentado
+    // @Column(name = "setor_id", nullable = false, length = 30)
+    // private Setor setor;
+    @ManyToOne 
+    @JoinColumn(name = "pesquisador_id", nullable = false,
+        foreignKey = @ForeignKey(name = "FK_pesquisador")
+    )
     private Pesquisador pesquisador;
 
     @Column(name = "data_hora")
