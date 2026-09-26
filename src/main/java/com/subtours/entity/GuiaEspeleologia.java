@@ -18,14 +18,14 @@ import lombok.Setter;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class GuiaEspeleologia extends Pessoa{
     @Column(name = "numCredenc", nullable = false)
-    private long num_credenc;
+    private Integer num_credenc;
 
     @Column(name = "nivelCertif")
-    private short nivel_certif;
+    private Integer nivel_certif;
 
     @Column(name = "validadeCertif")
     private LocalDate validade_certif;
 
     @Column(name = "qntdExpedicoes")
-    private short qntd_expedicoes;
+    private Integer qntd_expedicoes;
 }

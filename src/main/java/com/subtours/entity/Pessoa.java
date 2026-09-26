@@ -31,7 +31,7 @@ public class Pessoa {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pessoa", nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "cpf", nullable = false, length = 14, unique = true)
     private String cpf;
@@ -48,7 +48,6 @@ public class Pessoa {
     @Column(name = "fone", nullable = false, length = 13)
     private String telefone;
 
-    //não tenho certeza desse tipo
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 

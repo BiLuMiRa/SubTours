@@ -25,7 +25,7 @@ public class PlanoSeguranca {
     @Id 
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     @Column (name = "cod_plan_seg")
-    private short id;
+    private Integer id;
 
     @Column(name = "proceds_evac", nullable = false, length = 300)
     private String procedsEvacuacao;

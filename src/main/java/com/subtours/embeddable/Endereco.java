@@ -9,7 +9,7 @@ public class Endereco {
     private String logradouro;
 
     @Column(name = "numero", nullable = false)
-    private short numero;
+    private Integer numero;
 
     @Column(name = "complemento", length = 30)
     private String complemento;

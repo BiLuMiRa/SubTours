@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Pesquisador extends Pessoa{
     
     @Column(name = "registro_inst", nullable = false)
-    private short registroInst;
+    private Integer registroInst;
 
     @Column(name = "area_pesq", nullable = false, length = 30)
     private String areaPesquisa;

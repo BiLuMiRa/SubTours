@@ -29,7 +29,7 @@ public class AutorizacaoAmbiental {
     @Id 
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     @Column(name = "num_autoriz")
-    private short numAutoriz;
+    private Integer numAutoriz;
 
     @Column(name = "orgao_emissor", nullable = false, length = 30)
     private String orgaoEmissor;

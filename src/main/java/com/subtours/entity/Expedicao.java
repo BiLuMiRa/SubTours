@@ -7,10 +7,12 @@ import java.util.List;
 
 import com.subtours.enums.situacaoExpedicaoEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,8 +35,8 @@ import lombok.Setter;
 public class Expedicao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "cod_exped", unique = true)
-    private short id;
+    @Column(name = "cod_exped")
+    private Integer id;
 
     @Column(name = "titulo", nullable = false, length = 50)
     private String titulo;
@@ -55,7 +57,7 @@ public class Expedicao {
     private BigDecimal custo;
 
     @Column(name = "qntd_particps", nullable = false)
-    private short qntdParticip;
+    private Integer qntdParticip;
 
     @Column(name = "situacao", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -65,29 +67,25 @@ public class Expedicao {
     private boolean cancelEmerg;
 
     // como a classe ainda não está pronta, vou deixar comentado
-    // @ManyToOne 
+    // @ManyToOne(fetch = FetchType.LAZY, cascade = )
     // @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
-    // @Column(name = "caverna", nullable = false)
     // private Caverna caverna;
 
-    @OneToOne 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_plan_seg")
-    // @Column(name = "plano_seg", nullable = false)
     private PlanoSeguranca planoSeguranca;
 
-    @OneToOne 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_autoriz")
-    // @Column(name = "autorizAmbiental", nullable = false)
     private AutorizacaoAmbiental autorizAmbiental;
 
-    @OneToOne 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_rel")
-    // @Column(name = "relatorio", nullable = false)
     private Relatorio relatorio;
 
-    @OneToMany(mappedBy = "expedicao")
+    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ColetaCientifica> coletasCientificas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "expedicao")
+    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 }
