@@ -2,6 +2,8 @@ package com.subtours.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.subtours.enums.situacaoValidacaoColetaEnum;
 
@@ -49,4 +51,12 @@ public class ColetaCientifica {
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao_validacao")
     private situacaoValidacaoColetaEnum situacaoValidacao;
+
+    @OneToMany(mappedBy = "coleta")
+    private List<AmostraCientifica> amostras = new ArrayList<>();
+
+    @ManyToOne 
+    @JoinColumn(name = "expedicao_id", 
+        foreignKey = @ForeignKey(name = "FK_coleta_expedicao"))
+    private Expedicao expedicao;
 }

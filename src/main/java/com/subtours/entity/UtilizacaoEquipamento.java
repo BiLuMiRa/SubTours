@@ -12,21 +12,40 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter 
+@Setter 
 @Entity 
-@Table(name = "utiliza_equipamento")
-public class UtilizaEquipamento {
+@Table(name = "utilizacao_equipamento")
+public class UtilizacaoEquipamento {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_utiliza_equipamento")
     private Integer id;
 
-    @Column(name = "usuario_equipamento_id", nullable = false)
-    private Pessoa usuarioEquipamento;
+    @ManyToOne
+    @JoinColumn(name = "responsavel_id", nullable = false, 
+        foreignKey = @ForeignKey(name = "fk_responsavel"))
+    private Pessoa responsavel;
+
+    @ManyToOne
+    @JoinColumn(name = "equipamento_expedicao_id", nullable = false,
+        foreignKey = @ForeignKey(name = "fk_usa_equipamento_expedicao"))
+    private Equipamento equipamento;
+
+    @ManyToOne 
+    @JoinColumn(name = "expedicao_equipamento_id", nullable = false,
+        foreignKey = @ForeignKey(name = "fk_expedicao_usa_equipamento"))
+    private Expedicao expedicao;
 
     @Column(name = "data_hora_retirada", nullable = false)
     private LocalDateTime dataHoraRetirada;

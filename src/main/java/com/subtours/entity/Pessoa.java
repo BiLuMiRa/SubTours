@@ -9,9 +9,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -28,11 +31,11 @@ import lombok.Setter;
 @Table(name = "pessoa")
 public class Pessoa {
     @Id 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_pessoa", nullable = false)
     private short id;
 
-    @Column(name = "cpf", nullable = false, length = 14)
+    @Column(name = "cpf", nullable = false, length = 14, unique = true)
     private String cpf;
 
     @Column(name = "nome", nullable = false, length = 30)
@@ -54,5 +57,8 @@ public class Pessoa {
     @ElementCollection 
     @CollectionTable(name = "tb_endereco", joinColumns = @JoinColumn(name = "cod_pessoa"))
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "responsavel")
+    private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
 
 }
