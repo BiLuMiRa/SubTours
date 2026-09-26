@@ -1,8 +1,11 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.subtours.enums.datumGeodesicoEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
@@ -12,6 +15,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -63,6 +68,8 @@ public class Caverna {
         @Enumerated(EnumType.STRING)
         @Column(name = "datum_geodesico", nullable = false)
         public datumGeodesicoEnum datum;
-
     }
+
+    @OneToMany(mappedBy = "caverna", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SetorPesquisa> setores = new ArrayList<>();
 }
