@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.subtours.enums.Datum;
+import com.subtours.enums.datumGeodesico;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -62,7 +62,7 @@ public class Caverna {
 
         @Enumerated(EnumType.STRING)
         @Column(name = "datum_geodesico", nullable = false)
-        public Datum datum;
+        public datumGeodesico datum;
 
     }
 }
