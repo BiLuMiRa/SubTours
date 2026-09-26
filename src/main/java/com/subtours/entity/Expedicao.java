@@ -1,6 +1,6 @@
 package com.subtours.entity;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +33,10 @@ import lombok.Setter;
 public class Expedicao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "cod_exped")
+    @Column(name = "cod_exped", unique = true)
     private short id;
 
-    @Column(name = "titulo", nullable = false, length = 30)
+    @Column(name = "titulo", nullable = false, length = 50)
     private String titulo;
 
     @Column(name = "objetivo", nullable = false, length = 50)
@@ -48,11 +48,11 @@ public class Expedicao {
     @Column(name = "termino", nullable = false)
     private LocalDateTime termino;
 
-    @Column(name = "orcamento", nullable = false)
-    private BigInteger orcamento;
+    @Column(name = "orcamento", nullable = false, precision = 15, scale = 2)
+    private BigDecimal orcamento;
 
-    @Column(name = "custo", nullable = false)
-    private BigInteger custo;
+    @Column(name = "custo", nullable = false, precision = 15, scale = 2)
+    private BigDecimal custo;
 
     @Column(name = "qntd_particps", nullable = false)
     private short qntdParticip;

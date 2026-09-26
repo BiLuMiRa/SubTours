@@ -4,13 +4,16 @@ import com.subtours.enums.situacaoAutorizacaoAmbientalEnum;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.EnumType;
 
 import lombok.Getter;
@@ -44,6 +47,8 @@ public class AutorizacaoAmbiental {
     @Column(name = "obs", length = 300)
     private String observacoes;
 
+    @Lob 
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "pdf_ass", columnDefinition = "bytea", nullable = false)
     private byte[] pdfAssinado;
 }

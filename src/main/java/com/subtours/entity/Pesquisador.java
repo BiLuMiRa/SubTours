@@ -1,6 +1,6 @@
 package com.subtours.entity;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +27,6 @@ public class Pesquisador extends Pessoa{
     @Column(name = "titulacao", nullable = false, length = 30)
     private String titulacao;
 
-    @Column(name = "valorDiarioBolsa", nullable = false)
-    //não tenho certeza desse tipo
-    private BigInteger valor_diario_bolsa;
+    @Column(name = "valorDiarioBolsa", nullable = false, precision = 15, scale = 2)
+    private BigDecimal valor_diario_bolsa;
 }
