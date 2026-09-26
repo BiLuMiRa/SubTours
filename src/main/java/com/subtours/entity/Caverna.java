@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.subtours.enums.datumGeodesico;
+import com.subtours.enums.datumGeodesicoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -24,14 +24,14 @@ import lombok.Setter;
 @Table(name = "caverna")
 public class Caverna {
     @Id 
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "num_caverna")
     private short numCaverna;
 
     @Column(name = "nome_caverna", nullable = false)
     private String nomeCaverna;
 
-    @Column(name = "cod_cadAmbiental", nullable = false)
+    @Column(name = "cod_cadAmbiental", nullable = false, unique = true)
     private String codCadAmbiental;
 
     @Column(name = "municipio", nullable = false)
@@ -46,7 +46,7 @@ public class Caverna {
     @Column(name = "ind_acesso", nullable = false)
     private Boolean indAcesso;
 
-    @Column(name = "extensao", nullable = false)
+    @Column(name = "extensao")
     private BigDecimal extensao;
 
     @Embedded 
@@ -62,7 +62,7 @@ public class Caverna {
 
         @Enumerated(EnumType.STRING)
         @Column(name = "datum_geodesico", nullable = false)
-        public datumGeodesico datum;
+        public datumGeodesicoEnum datum;
 
     }
 }
