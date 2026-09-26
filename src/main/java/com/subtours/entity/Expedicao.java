@@ -2,6 +2,8 @@ package com.subtours.entity;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.subtours.enums.situacaoExpedicaoEnum;
 
@@ -15,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -61,23 +64,30 @@ public class Expedicao {
     @Column(name = "canclmnt_emerg", nullable = false)
     private boolean cancelEmerg;
 
-    @ManyToOne 
-    @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
-    @Column(name = "caverna", nullable = false)
-    private Caverna caverna;
+    // como a classe ainda não está pronta, vou deixar comentado
+    // @ManyToOne 
+    // @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
+    // @Column(name = "caverna", nullable = false)
+    // private Caverna caverna;
 
     @OneToOne 
     @JoinColumn(name = "cod_plan_seg")
-    @Column(name = "plano_seg", nullable = false)
+    // @Column(name = "plano_seg", nullable = false)
     private PlanoSeguranca planoSeguranca;
 
     @OneToOne 
     @JoinColumn(name = "cod_autoriz")
-    @Column(name = "autorizAmbiental", nullable = false)
+    // @Column(name = "autorizAmbiental", nullable = false)
     private AutorizacaoAmbiental autorizAmbiental;
 
     @OneToOne 
     @JoinColumn(name = "cod_rel")
-    @Column(name = "relatorio", nullable = false)
+    // @Column(name = "relatorio", nullable = false)
     private Relatorio relatorio;
+
+    @OneToMany(mappedBy = "expedicao")
+    private List<ColetaCientifica> coletasCientificas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "expedicao")
+    private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 }

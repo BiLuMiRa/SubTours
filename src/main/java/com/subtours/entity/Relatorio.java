@@ -37,4 +37,6 @@ public class Relatorio {
     @Convert(converter = TrueFalseConverter.class)
     private Boolean publicacaoAprovada;
 
+    @OneToOne(mappedBy = "relatorio")
+    private Expedicao expedicao;
 }

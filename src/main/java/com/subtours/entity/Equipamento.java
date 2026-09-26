@@ -1,6 +1,8 @@
 package com.subtours.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.type.TrueFalseConverter;
 
@@ -15,6 +17,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,10 +56,13 @@ public class Equipamento {
     @Enumerated(EnumType.STRING)
     private situacaoOperacionalEquipamentoEnum situacaoOperacional;
    
-    @Column(name = "indicacao_calibracao", nullable = false, columnDefinition = "char(1)")
+    @Column(name = "exige_calibracao", nullable = false, columnDefinition = "char(1)")
     @Convert(converter = TrueFalseConverter.class)
     private Boolean exigeCalibracao;
     
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;
+
+    @OneToMany(mappedBy = "equipamento")
+    private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 }
