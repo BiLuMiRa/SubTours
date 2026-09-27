@@ -1,23 +1,23 @@
+package com.subtours.entity;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.subtours.enums.datumGeodesicoEnum;
+import com.subtours.embeddable.Localizacao;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,13 +25,15 @@ import lombok.Setter;
 @Getter 
 @Setter 
 @NoArgsConstructor
+@AllArgsConstructor 
+@Builder
 @Entity 
 @Table(name = "caverna")
 public class Caverna {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "num_caverna")
-    private short numCaverna;
+    private Integer numCaverna;
 
     @Column(name = "nome_caverna", nullable = false)
     private String nomeCaverna;
@@ -56,19 +58,6 @@ public class Caverna {
 
     @Embedded 
     private Localizacao localizacao;
-
-    @Embeddable 
-    public static class Localizacao {
-        @Column(name = "latitude", nullable = false)
-        private BigDecimal latitude;
-
-        @Column(name = "longitude", nullable = false)
-        private BigDecimal longitude;
-
-        @Enumerated(EnumType.STRING)
-        @Column(name = "datum_geodesico", nullable = false)
-        public datumGeodesicoEnum datum;
-    }
 
     @OneToMany(mappedBy = "caverna", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SetorPesquisa> setores = new ArrayList<>();

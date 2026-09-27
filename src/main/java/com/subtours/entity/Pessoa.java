@@ -61,8 +61,26 @@ public class Pessoa {
 
     @OneToMany(mappedBy = "pessoa")
     private List<Participacao> participacoes = new ArrayList<>();
+
+    public boolean addParticipacao(Participacao p){
+        if(this.participacoes != null && p != null){
+            this.participacoes.add(p);
+            p.setPessoa(this);
+            return true;
+        }
+        return false;
+    }
     
     @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
+
+    public boolean addRetirada(UtilizacaoEquipamento ue){
+        if(this.retiradas != null && ue != null){
+            this.retiradas.add(ue);
+            ue.setResponsavel(this);
+            return true;
+        }
+        return false;
+    }
 
 }
