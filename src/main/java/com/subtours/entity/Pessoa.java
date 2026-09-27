@@ -10,20 +10,24 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter 
 @Setter
 @NoArgsConstructor 
+@AllArgsConstructor 
+@SuperBuilder 
 @Entity 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa")
@@ -31,7 +35,7 @@ public class Pessoa {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pessoa", nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "cpf", nullable = false, length = 14, unique = true)
     private String cpf;
@@ -48,7 +52,6 @@ public class Pessoa {
     @Column(name = "fone", nullable = false, length = 13)
     private String telefone;
 
-    //não tenho certeza desse tipo
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
 

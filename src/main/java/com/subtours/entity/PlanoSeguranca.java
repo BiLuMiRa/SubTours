@@ -2,13 +2,17 @@ package com.subtours.entity;
 
 import java.time.LocalTime;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,13 +20,15 @@ import lombok.Setter;
 @Getter 
 @Setter 
 @NoArgsConstructor 
+@AllArgsConstructor 
+@Builder 
 @Entity 
 @Table (name = "plano_seg")
 public class PlanoSeguranca {
     @Id 
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     @Column (name = "cod_plan_seg")
-    private short id;
+    private Integer id;
 
     @Column(name = "proceds_evac", nullable = false, length = 300)
     private String procedsEvacuacao;
@@ -39,6 +45,8 @@ public class PlanoSeguranca {
     @Column(name = "precisa_med")
     private boolean precisaMedico;
 
+    @Lob 
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "mapa", columnDefinition = "bytea")
     private byte[] mapa;
 }

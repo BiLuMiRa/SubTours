@@ -14,6 +14,7 @@ import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -71,4 +72,13 @@ public class Equipamento {
 
     @OneToMany(mappedBy = "equipamento")
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
+
+    public boolean addEquipamento(UtilizacaoEquipamento ue){
+        if( this.utilizacoes != null && ue != null){
+            this.utilizacoes.add(ue);
+            ue.setEquipamento(this);
+            return true;
+        }
+        return false;
+    }
 }
