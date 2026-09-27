@@ -51,7 +51,7 @@ public class Participacao {
     private short quantidadeDias;
 
     @Column(name = "presenca", nullable = false)
-    private Boolean presenca;
+    private Boolean presenca = false;
 
     @Column(name = "observacoes")
     private String observacoes;

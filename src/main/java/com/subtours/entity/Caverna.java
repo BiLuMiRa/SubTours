@@ -49,7 +49,7 @@ public class Caverna {
     private LocalDate ultimaInsp;
 
     @Column(name = "ind_acesso", nullable = false)
-    private Boolean indAcesso;
+    private Boolean indAcesso = true;
 
     @Column(name = "extensao")
     private BigDecimal extensao;
