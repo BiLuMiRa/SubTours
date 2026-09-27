@@ -33,7 +33,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "pessoa")
 public class Pessoa {
     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_pessoa", nullable = false)
     private Integer id;
 

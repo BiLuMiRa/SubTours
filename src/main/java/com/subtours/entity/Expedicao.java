@@ -37,7 +37,7 @@ import lombok.Setter;
 @Table(name = "expedicao")
 public class Expedicao {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_exped")
     private Integer id;
 
