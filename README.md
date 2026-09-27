@@ -11,6 +11,7 @@
 - Expedicao --> AutorizacaoAmbiental : Expedição é o owner, pois cada autorização pertence a apenas uma expedição, portanto faz sentido que Expedição tenha a chave estrangeira.
 - Expedicao --> Caverna : Uma expedição acontece em apenas uma caverna, enquanto uma caverna pode receber várias expedições. Nesse caso, expedição é o lado ManyToOne, portanto é o que recebe a chave estrangeira
 - Expedicao <--> Relatorio : Expedicao é owner da FK física.
+- SetorPesquisa --> Caverna: SetorPesquisa é o owner da relação, pois cada setor possui apenas uma caverna.
 
 ### Cascatas
 - Expedição --> Coletas científicas (cascade = CascadeType.ALL): As coletas científicas têm ciclo de vida totalmente dependente da expedição onde foram efetuadas.
@@ -18,13 +19,15 @@
 - Expedicao --> PlanoSeguranca (cascade = CascadeType.ALL) : Plano de segurança possue composição e ciclo de vida estreitamente atrelados à expedição
 - Expedicao --> AutorizacaoAmbiental (cascade = CascadeType.ALL) : Autorização Ambiental possue composição e ciclo de vida estreitamente atrelados à expedição
 - Expedicao --> Relatorio (cascade = CascadeType.ALL) : Relatório possue composição e ciclo de vida estreitamente atrelados à expedição
+- Caverna --> SetorPesquisa (cascade = CascadeType.ALL) : Um setor não possui significado ou utilidade sem estar atrelado a uma caverna.
 
 ### OrphanRemoval
 - Expedicao --> PlanoSeguranca (orphanRemoval = true): Permite a substituição ou desvinculação do plano na expedição (expedicao.setPlanoSeguranca(null)), garantindo que o registro do plano antigo seja deletado fisicamente do PostgreSQL em vez de permanecer como dado órfão no banco.
 - Expedicao --> AutorizacaoAmbiental (orphanRemoval = true) : Garante que o cancelamento ou substituição da autorização desvincule e remova o documento obsoleto da tabela correspondente.
 - Expedicao --> Relatorio (orphanRemoval = true) : Permite que, ao descartar ou reemitir o relatório final associado a uma expedição em memória Java, o Hibernate execute a exclusão física do relatório no banco de dados.
-- Expedição --> Coletas científicas (orphanRemoval = true): Garante que a remoção de um item de movimentação diretamente da coleção Java dispare a exclusão física da linha na respectiva tabela do banco de dados.
+- Expedição --> Coletas científicas (orphanRemoval = true) : Garante que a remoção de um item de movimentação diretamente da coleção Java dispare a exclusão física da linha na respectiva tabela do banco de dados.
 - Expedição --> Utilizações (orphanRemoval = true) : Garante que a remoção de um item de movimentação diretamente da coleção Java dispare a exclusão física da linha na respectiva tabela do banco de dados.
+- Caverna --> SetorPesquisa (orphanRemoval = true) : Garante que se uma caverna for delatada todos os seus setores são apagados e se um setor for retirado da lista da caverna, ele seja removido fisicamente do banco de dados.
 
 ## Fetch
 - Relacionamentos @OneToOne e @ManyToOne: Todos os relacionamentos de entidade única foram explicitamente definidos como FetchType.LAZY (ex: Caverna, PlanoSeguranca, Relatorio). Essa prática substitui o padrão default EAGER do JPA para esses mapeamentos, evitando o problema de consultas N+1 e carregamentos desnecessários em memória ao listar expedições.
