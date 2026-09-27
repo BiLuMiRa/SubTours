@@ -33,8 +33,8 @@ public class SetorPesquisa<Caverna> {
     @Column(name = "denominacao", nullable = false)
     private String denominacao;
 
-    @Enumerated(EnumType.STRING, nullable = false)
-    @Column(name = "nivel_dificuldade")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "nivel_dificuldade", nullable = false)
     private nivelDificuldadeEnum dificuldade;
 
     @Column(name = "profuncidade_maxima", nullable = false)
@@ -46,8 +46,8 @@ public class SetorPesquisa<Caverna> {
     @Column(name = "descricao")
     private String descricao;
 
-    @Enumerated(EnumType.STRING, nullable = false)
-    @Column(name = "risco_inundacao")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "risco_inundacao", nullable = false)
     private nivelDificuldadeEnum riscoInundacao;
 
     @Column(name = "condicao_corrente", nullable = false)

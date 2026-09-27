@@ -31,7 +31,7 @@ import lombok.Setter;
 @NoArgsConstructor 
 @Entity
 @Table(name = "expedicao")
-public class Expedicao<Caverna> {
+public class Expedicao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "cod_exped")
@@ -66,7 +66,7 @@ public class Expedicao<Caverna> {
     private boolean cancelEmerg;
 
     @ManyToOne 
-    @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
+    @JoinColumn(name = "num_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
     @Column(name = "caverna", nullable = false)
     private Caverna caverna;
 
