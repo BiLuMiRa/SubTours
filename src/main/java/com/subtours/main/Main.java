@@ -1,7 +1,11 @@
 package com.subtours.main;
 
 import jakarta.transaction.UserTransaction;
+
+import java.util.List;
+
 import com.subtours.infra.JpaUtil;
+import com.subtours.model.Equipamento;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -17,8 +21,15 @@ public class Main {
             em = emf.createEntityManager();
 
             CargaInicial.carregar(tx, em);
-            
-            System.out.println("Conexão concluída!");
+
+            em = emf.createEntityManager();
+
+            // System.out.println("Conexão concluída!");
+            List <Equipamento> equipamentos = em.createNamedQuery("Equipamento.todos", Equipamento.class).getResultList();
+
+            for (Equipamento e : equipamentos){
+                System.out.println(e.getNome());
+            }
 
         } catch (Exception e) {
             System.out.println("Erro ao iniciar o JPA:");

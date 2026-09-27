@@ -6,6 +6,7 @@
 
     <persistence-unit name="SubToursPU" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <mapping-file>META-INF/orm.xml</mapping-file>
         <class>com.subtours.model.AmostraCientifica</class>
         <class>com.subtours.model.AutorizacaoAmbiental</class>
         <class>com.subtours.model.ColetaCientifica</class>
