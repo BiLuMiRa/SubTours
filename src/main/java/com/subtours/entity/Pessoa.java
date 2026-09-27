@@ -10,6 +10,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 
@@ -58,7 +59,7 @@ public class Pessoa {
     @Embedded 
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "responsavel")
+    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
 
 }

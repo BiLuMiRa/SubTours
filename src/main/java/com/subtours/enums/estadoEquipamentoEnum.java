@@ -1,6 +1,6 @@
 package com.subtours.enums;
 
-public enum estadoEquipamento {
+public enum estadoEquipamentoEnum {
     novo,
     bom,
     regular,

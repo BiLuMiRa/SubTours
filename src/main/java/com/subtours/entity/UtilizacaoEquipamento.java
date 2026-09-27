@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
-import com.subtours.enums.estadoEquipamento;
+import com.subtours.enums.estadoEquipamentoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -62,12 +62,12 @@ public class UtilizacaoEquipamento {
     private LocalDate dataDevolucao;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_saida", nullable = false)
-    private estadoEquipamento estadoSaida;
+    @Column(name = "estado_saida", nullable = false, length = 10)
+    private estadoEquipamentoEnum estadoSaida;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_retorno")
-    private estadoEquipamento estadoRetorno;
+    @Column(name = "estado_retorno", length = 10)
+    private estadoEquipamentoEnum estadoRetorno;
 
     @Column(name = "custo_avaria")
     private BigDecimal custoAvaria;

@@ -61,7 +61,7 @@ public class ColetaCientifica {
     @Column(name = "situacao_validacao")
     private situacaoValidacaoColetaEnum situacaoValidacao;
 
-    @OneToMany(mappedBy = "coleta")
+    @OneToMany(mappedBy = "coleta", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AmostraCientifica> amostras = new ArrayList<>();
 
     @ManyToOne 

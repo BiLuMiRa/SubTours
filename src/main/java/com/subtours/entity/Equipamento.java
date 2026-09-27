@@ -9,6 +9,7 @@ import org.hibernate.type.TrueFalseConverter;
 import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
 import com.subtours.enums.tipoEquipamentoEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -70,7 +71,7 @@ public class Equipamento {
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;
 
-    @OneToMany(mappedBy = "equipamento")
+    @OneToMany(mappedBy = "equipamento", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 
     public boolean addEquipamento(UtilizacaoEquipamento ue){

@@ -27,7 +27,7 @@ public class Relatorio {
     @Column(name = "titulo", length = 70, nullable = false)
     private String titulo;
 
-    @Column(name = "resumo")
+    @Column(name = "resumo", length = 250)
     private String Resumo;
 
     @Column(name = "data_submissao")
