@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.subtours.enums.datumGeodesicoEnum;
+import com.subtours.embeddable.Localizacao;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -56,19 +56,6 @@ public class Caverna {
 
     @Embedded 
     private Localizacao localizacao;
-
-    @Embeddable 
-    public static class Localizacao {
-        @Column(name = "latitude", nullable = false)
-        private BigDecimal latitude;
-
-        @Column(name = "longitude", nullable = false)
-        private BigDecimal longitude;
-
-        @Enumerated(EnumType.STRING)
-        @Column(name = "datum_geodesico", nullable = false)
-        public datumGeodesicoEnum datum;
-    }
 
     @OneToMany(mappedBy = "caverna", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SetorPesquisa> setores = new ArrayList<>();
