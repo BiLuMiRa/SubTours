@@ -27,9 +27,10 @@ public class ColetaCientifica {
     @Column(name = "id_coletaCientifica")
     private Integer id;
 
-    // como a classe ainda não está pronta, vou deixar comentado
-    // @Column(name = "setor_id", nullable = false, length = 30)
-    // private Setor setor;
+    // FAZER O RELACIONAMENTO COM SETOR 
+    @Column(name = "setor_id", nullable = false)
+    private SetorPesquisa setor;
+
     @ManyToOne 
     @JoinColumn(name = "pesquisador_id", nullable = false,
         foreignKey = @ForeignKey(name = "FK_pesquisador")

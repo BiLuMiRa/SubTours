@@ -37,7 +37,7 @@ import lombok.Setter;
 @Table(name = "expedicao")
 public class Expedicao {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_exped")
     private Integer id;
 
@@ -69,10 +69,10 @@ public class Expedicao {
     @Column(name = "canclmnt_emerg", nullable = false)
     private boolean cancelEmerg;
 
-    // como a classe ainda não está pronta, vou deixar comentado
-    // @ManyToOne(fetch = FetchType.LAZY, cascade = )
-    // @JoinColumn(name = "cod_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
-    // private Caverna caverna;
+    @ManyToOne 
+    @JoinColumn(name = "num_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
+    @Column(name = "caverna", nullable = false)
+    private Caverna caverna;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_plan_seg")
@@ -86,6 +86,9 @@ public class Expedicao {
     @JoinColumn(name = "cod_rel")
     private Relatorio relatorio;
 
+    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Participacao> participacoes = new ArrayList<>();
+    
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ColetaCientifica> coletasCientificas = new ArrayList<>();
 

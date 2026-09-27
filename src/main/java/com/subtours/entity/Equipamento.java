@@ -41,8 +41,8 @@ public class Equipamento {
     @Column(name = "id_equipamento")
     private Integer id;
 
-    @Column(name = "cod_patrimonial", unique = true, nullable = false)
-    private Integer codPatrimonial;
+    @Column(name = "cod_patrimonial", unique = true, nullable = false, length = 6)
+    private String codPatrimonial;
 
     @Column(name = "nome", nullable = false, length = 30)
     private String nome;

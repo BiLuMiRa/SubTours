@@ -36,6 +36,8 @@ public class Relatorio {
     @Column(name = "numero_paginas")
     private Integer numeroPaginas;
 
+    @Lob 
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "arquivo_completo", columnDefinition = "bytea")
     private byte[] arqCompleto;
 
