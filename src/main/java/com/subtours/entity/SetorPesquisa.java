@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter 
 @Entity
 @Table(name = "setor_pesquisa")
-public class SetorPesquisa<Caverna> {
+public class SetorPesquisa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "num_setor")
