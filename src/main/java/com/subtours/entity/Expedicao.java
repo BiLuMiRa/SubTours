@@ -88,6 +88,7 @@ public class Expedicao {
 
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participacao> participacoes = new ArrayList<>();
+    
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ColetaCientifica> coletasCientificas = new ArrayList<>();
 
