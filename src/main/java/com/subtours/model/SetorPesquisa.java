@@ -1,6 +1,8 @@
 package com.subtours.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.subtours.enums.condicaoAmostraEnum;
 import com.subtours.enums.nivelDificuldadeEnum;
@@ -16,6 +18,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,4 +66,16 @@ public class SetorPesquisa {
     @JoinColumn(name = "id_caverna", nullable = false,
         foreignKey = @ForeignKey(name = "fk_caverna"))
     private Caverna caverna;
+
+    @OneToMany(mappedBy = "setor")
+    private List<ColetaCientifica> coletas = new ArrayList<>();
+
+    public boolean addColeta(ColetaCientifica cc){
+        if(this.coletas != null && cc != null){
+            this.coletas.add(cc);
+            cc.setSetor(this);
+            return true;
+        }
+        return false;
+    }
 }

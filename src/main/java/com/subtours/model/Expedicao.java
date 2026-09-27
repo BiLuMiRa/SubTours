@@ -70,8 +70,8 @@ public class Expedicao {
     private boolean cancelEmerg;
 
     @ManyToOne 
-    @JoinColumn(name = "num_carvena", foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
-    @Column(name = "caverna", nullable = false)
+    @JoinColumn(name = "num_carvena", nullable = false,
+        foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
     private Caverna caverna;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

@@ -50,7 +50,7 @@ public class AutorizacaoAmbiental {
     @Column(name = "obs", length = 300)
     private String observacoes;
 
-    @Lob 
+    // @Lob 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "pdf_ass", columnDefinition = "bytea", nullable = false)
     private byte[] pdfAssinado;

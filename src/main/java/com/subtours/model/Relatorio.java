@@ -36,7 +36,7 @@ public class Relatorio {
     @Column(name = "numero_paginas")
     private Integer numeroPaginas;
 
-    @Lob 
+    // @Lob 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "arquivo_completo", columnDefinition = "bytea")
     private byte[] arqCompleto;
@@ -46,8 +46,8 @@ public class Relatorio {
     private Boolean publicacaoAprovada;
 
     @OneToOne(mappedBy = "relatorio")
-    @JoinColumn(name = "expedicao_id", nullable = false, 
-        foreignKey = @ForeignKey(name = "fk_expedicao")
-    )
+    // @JoinColumn(name = "expedicao_id", nullable = false, 
+    //     foreignKey = @ForeignKey(name = "fk_expedicao")
+    // )
     private Expedicao expedicao;
 }

@@ -28,7 +28,10 @@ public class ColetaCientifica {
     private Integer id;
 
     // FAZER O RELACIONAMENTO COM SETOR 
-    @Column(name = "setor_id", nullable = false)
+    @ManyToOne 
+    @JoinColumn(name = "setor_id", nullable = false,
+        foreignKey = @ForeignKey(name = "fk_setor_coleta")
+    )
     private SetorPesquisa setor;
 
     @ManyToOne 

@@ -66,7 +66,7 @@ public class AmostraCientifica {
     @Column(name = "material_perigoso")
     private String materialPerigoso;
 
-    @Lob 
+    // @Lob 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "fotografia", columnDefinition = "bytea")
     private byte[] fotografiaBinaria;
