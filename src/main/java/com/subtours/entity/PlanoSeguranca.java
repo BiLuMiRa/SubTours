@@ -26,7 +26,7 @@ import lombok.Setter;
 @Table (name = "plano_seg")
 public class PlanoSeguranca {
     @Id 
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "cod_plan_seg")
     private Integer id;
 

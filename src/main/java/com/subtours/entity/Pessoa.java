@@ -33,7 +33,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "pessoa")
 public class Pessoa {
     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_pessoa", nullable = false)
     private Integer id;
 
@@ -60,8 +60,26 @@ public class Pessoa {
 
     @OneToMany(mappedBy = "pessoa")
     private List<Participacao> participacoes = new ArrayList<>();
+
+    public boolean addParticipacao(Participacao p){
+        if(this.participacoes != null && p != null){
+            this.participacoes.add(p);
+            p.setPessoa(this);
+            return true;
+        }
+        return false;
+    }
     
     @OneToMany(mappedBy = "responsavel")
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
+
+    public boolean addRetirada(UtilizacaoEquipamento ue){
+        if(this.retiradas != null && ue != null){
+            this.retiradas.add(ue);
+            ue.setResponsavel(this);
+            return true;
+        }
+        return false;
+    }
 
 }

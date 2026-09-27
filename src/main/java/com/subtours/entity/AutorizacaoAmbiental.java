@@ -30,7 +30,7 @@ import lombok.Setter;
 @Table(name = "autorizacao_ambiental")
 public class AutorizacaoAmbiental {
     @Id 
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "num_autoriz")
     private Integer numAutoriz;
 
