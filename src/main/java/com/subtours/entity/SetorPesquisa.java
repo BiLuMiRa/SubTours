@@ -34,7 +34,7 @@ public class SetorPesquisa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "num_setor")
-    private short numSetor;
+    private Integer numSetor;
 
     @Column(name = "denominacao", nullable = false)
     private String denominacao;

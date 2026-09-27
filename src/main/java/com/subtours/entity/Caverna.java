@@ -33,7 +33,7 @@ public class Caverna {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "num_caverna")
-    private short numCaverna;
+    private Integer numCaverna;
 
     @Column(name = "nome_caverna", nullable = false)
     private String nomeCaverna;

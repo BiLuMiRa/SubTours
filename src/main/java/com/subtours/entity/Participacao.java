@@ -41,7 +41,7 @@ public class Participacao {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_participacao")
-    private short codParticipacao;
+    private Integer codParticipacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "papel_expedicap", nullable = false)
