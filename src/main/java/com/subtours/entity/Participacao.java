@@ -64,4 +64,12 @@ public class Participacao {
     )
     private Pessoa pessoa;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_exped", nullable = false,
+        foreignKey = @ForeignKey(
+            name = "fk_participacao_expedicao"
+        )
+    )
+    private Expedicao expedicao;
+
 }
