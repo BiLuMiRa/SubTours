@@ -1,6 +1,6 @@
 package com.subtours.entity;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +22,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,15 +31,17 @@ import lombok.Setter;
 @Getter 
 @Setter 
 @NoArgsConstructor 
+@AllArgsConstructor 
+@Builder 
 @Entity
 @Table(name = "expedicao")
 public class Expedicao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "cod_exped")
-    private short id;
+    private Integer id;
 
-    @Column(name = "titulo", nullable = false, length = 30)
+    @Column(name = "titulo", nullable = false, length = 50)
     private String titulo;
 
     @Column(name = "objetivo", nullable = false, length = 50)
@@ -49,14 +53,14 @@ public class Expedicao {
     @Column(name = "termino", nullable = false)
     private LocalDateTime termino;
 
-    @Column(name = "orcamento", nullable = false)
-    private BigInteger orcamento;
+    @Column(name = "orcamento", nullable = false, precision = 15, scale = 2)
+    private BigDecimal orcamento;
 
-    @Column(name = "custo", nullable = false)
-    private BigInteger custo;
+    @Column(name = "custo", nullable = false, precision = 15, scale = 2)
+    private BigDecimal custo;
 
     @Column(name = "qntd_particps", nullable = false)
-    private short qntdParticip;
+    private Integer qntdParticip;
 
     @Column(name = "situacao", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -70,21 +74,23 @@ public class Expedicao {
     @Column(name = "caverna", nullable = false)
     private Caverna caverna;
 
-    @OneToOne 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_plan_seg")
-    @Column(name = "plano_seg", nullable = false)
     private PlanoSeguranca planoSeguranca;
 
-    @OneToOne 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_autoriz")
-    @Column(name = "autorizAmbiental", nullable = false)
     private AutorizacaoAmbiental autorizAmbiental;
 
-    @OneToOne 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cod_rel")
-    @Column(name = "relatorio", nullable = false)
     private Relatorio relatorio;
 
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participacao> participacoes = new ArrayList<>();
+    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ColetaCientifica> coletasCientificas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 }
