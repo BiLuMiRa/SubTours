@@ -31,7 +31,7 @@ import lombok.Setter;
 @NoArgsConstructor 
 @Entity
 @Table(name = "expedicao")
-public class Expedicao {
+public class Expedicao<Caverna> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "cod_exped")
