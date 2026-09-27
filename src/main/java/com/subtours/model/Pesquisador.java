@@ -1,12 +1,14 @@
-package com.subtours.entity;
+package com.subtours.model;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,16 +17,16 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter 
-@NoArgsConstructor 
+@NoArgsConstructor
 @AllArgsConstructor 
-@SuperBuilder 
+@SuperBuilder  
 @Entity 
 @Table(name = "pessoa_pesquisador")
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class Pesquisador extends Pessoa{
     
     @Column(name = "registro_inst", nullable = false)
-    private Integer registroInst;
+    private short registroInst;
 
     @Column(name = "area_pesq", nullable = false, length = 30)
     private String areaPesquisa;
@@ -32,6 +34,10 @@ public class Pesquisador extends Pessoa{
     @Column(name = "titulacao", nullable = false, length = 30)
     private String titulacao;
 
-    @Column(name = "valorDiarioBolsa", nullable = false, precision = 15, scale = 2)
-    private BigDecimal valor_diario_bolsa;
+    @Column(name = "valorDiarioBolsa", nullable = false)
+    //não tenho certeza desse tipo
+    private BigInteger valor_diario_bolsa;
+
+    @OneToMany(mappedBy = "pesquisador")
+    private List<ColetaCientifica>coletas = new ArrayList<>();
 }

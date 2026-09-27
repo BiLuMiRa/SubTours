@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import com.subtours.embeddable.Endereco;
 
@@ -10,6 +10,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 
@@ -70,7 +71,7 @@ public class Pessoa {
         return false;
     }
     
-    @OneToMany(mappedBy = "responsavel")
+    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
 
     public boolean addRetirada(UtilizacaoEquipamento ue){

@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -70,8 +70,8 @@ public class Expedicao {
     private boolean cancelEmerg;
 
     @ManyToOne 
-    @JoinColumn(name = "num_carvena", foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
-    @Column(name = "caverna", nullable = false)
+    @JoinColumn(name = "num_carvena", nullable = false,
+        foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
     private Caverna caverna;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -89,7 +89,7 @@ public class Expedicao {
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Participacao> participacoes = new ArrayList<>();
 
-     public boolean addParticipacao(Participacao p){
+    public boolean addParticipacao(Participacao p){
         if(this.participacoes != null && p != null){
             this.participacoes.add(p);
             p.setExpedicao(this);

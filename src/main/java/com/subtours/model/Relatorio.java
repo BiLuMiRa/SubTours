@@ -1,15 +1,21 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import java.time.LocalDate;
 
 import org.hibernate.type.TrueFalseConverter;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter 
 @Setter 
+@NoArgsConstructor 
+@AllArgsConstructor
+@Builder
 @Entity 
 @Table(name = "relatorio")
 public class Relatorio {
@@ -21,7 +27,7 @@ public class Relatorio {
     @Column(name = "titulo", length = 70, nullable = false)
     private String titulo;
 
-    @Column(name = "resumo")
+    @Column(name = "resumo", length = 250)
     private String Resumo;
 
     @Column(name = "data_submissao")
@@ -30,6 +36,8 @@ public class Relatorio {
     @Column(name = "numero_paginas")
     private Integer numeroPaginas;
 
+    // @Lob 
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "arquivo_completo", columnDefinition = "bytea")
     private byte[] arqCompleto;
 
@@ -38,5 +46,8 @@ public class Relatorio {
     private Boolean publicacaoAprovada;
 
     @OneToOne(mappedBy = "relatorio")
+    // @JoinColumn(name = "expedicao_id", nullable = false, 
+    //     foreignKey = @ForeignKey(name = "fk_expedicao")
+    // )
     private Expedicao expedicao;
 }

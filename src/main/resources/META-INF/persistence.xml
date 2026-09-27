@@ -6,16 +6,19 @@
 
     <persistence-unit name="SubToursPU" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.subtours.entity.AmostraCientifica</class>
-        <class>com.subtours.entity.AutorizacaoAmbiental</class>
-        <class>com.subtours.entity.ColetaCientifica</class>
-        <class>com.subtours.entity.Equipamento</class>
-        <class>com.subtours.entity.GuiaEspeleologia</class>
-        <class>com.subtours.entity.Pesquisador</class>
-        <class>com.subtours.entity.Pessoa</class>
-        <class>com.subtours.entity.PlanoSeguranca</class>
-        <class>com.subtours.entity.Relatorio</class>
-        <class>com.subtours.entity.UtilizacaoEquipamento</class>
+        <class>com.subtours.model.AmostraCientifica</class>
+        <class>com.subtours.model.AutorizacaoAmbiental</class>
+        <class>com.subtours.model.ColetaCientifica</class>
+        <class>com.subtours.model.Equipamento</class>
+        <class>com.subtours.model.GuiaEspeleologia</class>
+        <class>com.subtours.model.Pesquisador</class>
+        <class>com.subtours.model.Pessoa</class>
+        <class>com.subtours.model.PlanoSeguranca</class>
+        <class>com.subtours.model.Relatorio</class>
+        <class>com.subtours.model.Caverna</class>
+        <class>com.subtours.model.Participacao</class>
+        <class>com.subtours.model.SetorPesquisa</class>
+        <class>com.subtours.model.UtilizacaoEquipamento</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/subtours" />

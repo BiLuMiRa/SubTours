@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import java.time.LocalTime;
 
@@ -45,7 +45,7 @@ public class PlanoSeguranca {
     @Column(name = "precisa_med")
     private boolean precisaMedico;
 
-    @Lob 
+    // @Lob 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "mapa", columnDefinition = "bytea")
     private byte[] mapa;

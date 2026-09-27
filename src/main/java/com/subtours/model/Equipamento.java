@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,21 +9,29 @@ import org.hibernate.type.TrueFalseConverter;
 import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
 import com.subtours.enums.tipoEquipamentoEnum;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter 
 @Setter 
+@NoArgsConstructor 
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "equipamento")
 public class Equipamento {
@@ -33,8 +41,8 @@ public class Equipamento {
     @Column(name = "id_equipamento")
     private Integer id;
 
-    @Column(name = "cod_patrimonial", unique = true, nullable = false)
-    private Integer codPatrimonial;
+    @Column(name = "cod_patrimonial", unique = true, nullable = false, length = 6)
+    private String codPatrimonial;
 
     @Column(name = "nome", nullable = false, length = 30)
     private String nome;
@@ -63,6 +71,15 @@ public class Equipamento {
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;
 
-    @OneToMany(mappedBy = "equipamento")
+    @OneToMany(mappedBy = "equipamento", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
+
+    public boolean addEquipamento(UtilizacaoEquipamento ue){
+        if( this.utilizacoes != null && ue != null){
+            this.utilizacoes.add(ue);
+            ue.setEquipamento(this);
+            return true;
+        }
+        return false;
+    }
 }

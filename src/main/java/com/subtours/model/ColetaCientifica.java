@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,11 +8,17 @@ import java.util.List;
 import com.subtours.enums.situacaoValidacaoColetaEnum;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter 
 @Setter
+@NoArgsConstructor 
+@AllArgsConstructor
+@Builder
 @Entity 
 @Table(name = "coleta_cientifica")
 public class ColetaCientifica {
@@ -21,9 +27,13 @@ public class ColetaCientifica {
     @Column(name = "id_coletaCientifica")
     private Integer id;
 
-    // como a classe ainda não está pronta, vou deixar comentado
-    // @Column(name = "setor_id", nullable = false, length = 30)
-    // private Setor setor;
+    // FAZER O RELACIONAMENTO COM SETOR 
+    @ManyToOne 
+    @JoinColumn(name = "setor_id", nullable = false,
+        foreignKey = @ForeignKey(name = "fk_setor_coleta")
+    )
+    private SetorPesquisa setor;
+
     @ManyToOne 
     @JoinColumn(name = "pesquisador_id", nullable = false,
         foreignKey = @ForeignKey(name = "FK_pesquisador")
@@ -55,11 +65,20 @@ public class ColetaCientifica {
     @Column(name = "situacao_validacao")
     private situacaoValidacaoColetaEnum situacaoValidacao;
 
-    @OneToMany(mappedBy = "coleta")
+    @OneToMany(mappedBy = "coleta", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AmostraCientifica> amostras = new ArrayList<>();
 
     @ManyToOne 
     @JoinColumn(name = "expedicao_id", 
         foreignKey = @ForeignKey(name = "FK_coleta_expedicao"))
     private Expedicao expedicao;
+
+    public boolean addAmostra(AmostraCientifica a){
+        if(this.amostras != null && a != null){
+            this.amostras.add(a);
+            a.setColeta(this);
+            return true;
+        }
+        return false;
+    }
 }
