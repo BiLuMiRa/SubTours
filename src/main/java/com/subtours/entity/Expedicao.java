@@ -70,27 +70,55 @@ public class Expedicao {
     private boolean cancelEmerg;
 
     @ManyToOne 
-    @JoinColumn(name = "num_carvena", foreignKey = @ForeignKey(name = "fk_caverna"))
+    @JoinColumn(name = "num_carvena", foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
     @Column(name = "caverna", nullable = false)
     private Caverna caverna;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cod_plan_seg")
+    @JoinColumn(name = "cod_plan_seg", foreignKey = @ForeignKey(name = "fk_plano_expedicao"))
     private PlanoSeguranca planoSeguranca;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cod_autoriz")
+    @JoinColumn(name = "cod_autoriz", foreignKey = @ForeignKey(name = "fk_autorizacao_expedicao"))
     private AutorizacaoAmbiental autorizAmbiental;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cod_rel")
+    @JoinColumn(name = "cod_rel", foreignKey = @ForeignKey(name = "fk_relatorio_expedicao"))
     private Relatorio relatorio;
 
-    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Participacao> participacoes = new ArrayList<>();
+
+     public boolean addParticipacao(Participacao p){
+        if(this.participacoes != null && p != null){
+            this.participacoes.add(p);
+            p.setExpedicao(this);
+            return true;
+        }
+        return false;
+    }
+
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ColetaCientifica> coletasCientificas = new ArrayList<>();
 
+    public boolean addColeta(ColetaCientifica cc){
+        if(this.coletasCientificas != null && cc != null){
+            this.coletasCientificas.add(cc);
+            cc.setExpedicao(this);
+            return true;
+        }
+        return false;
+    }
+
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
+
+    public boolean addUtilizacao(UtilizacaoEquipamento ue){
+        if(this.utilizacoes != null && ue != null){
+            this.utilizacoes.add(ue);
+            ue.setExpedicao(this);
+            return true;
+        }
+        return false;
+    }
 }
