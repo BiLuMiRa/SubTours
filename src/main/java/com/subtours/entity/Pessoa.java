@@ -58,6 +58,9 @@ public class Pessoa {
     @Embedded 
     private Endereco endereco;
 
+    @OneToMany(mappedBy = "pessoa")
+    private List<Participacao> participacoes = new ArrayList<>();
+    
     @OneToMany(mappedBy = "responsavel")
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
 
