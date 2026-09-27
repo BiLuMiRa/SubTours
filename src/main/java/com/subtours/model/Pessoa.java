@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import com.subtours.embeddable.Endereco;
 

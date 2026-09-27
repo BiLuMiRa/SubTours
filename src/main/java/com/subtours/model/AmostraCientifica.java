@@ -1,8 +1,6 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import java.time.LocalDate;
-
-import org.hibernate.annotations.ManyToAny;
 
 import com.subtours.enums.categoriaAmostraEnum;
 import com.subtours.enums.condicaoAmostraEnum;

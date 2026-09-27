@@ -1,14 +1,14 @@
-package com.subtours;
+package com.subtours.main;
+
+import com.subtours.infra.JpaUtil;
 
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf = null;
-
+        EntityManagerFactory emf = JpaUtil.criarEntityManagerFactory();
+        
         try {
-            emf = Persistence.createEntityManagerFactory("SubToursPU");
 
             System.out.println("Conexão concluída!");
 

@@ -1,4 +1,4 @@
-package com.subtours.entity;
+package com.subtours.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
