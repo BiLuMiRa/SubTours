@@ -11,6 +11,8 @@ import com.subtours.infra.JpaUtil;
 import com.subtours.model.AmostraCientifica;
 import com.subtours.model.ColetaCientifica;
 import com.subtours.model.Equipamento;
+import com.subtours.repository.ColetaCientificaRepository;
+import com.subtours.repository.EquipamentoRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -53,17 +55,45 @@ public class Main {
             //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
             // }
 
-            LocalDate dataInicio = LocalDate.of(2026, 10, 1);
-            LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
-            List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
-                .setParameter("situacao", situacaoOperacionalEquipamentoEnum.disponivel)
-                .setParameter("dataInicio", dataInicio)
-                .setParameter("dataFim", dataFim)
-                .getResultList();
+            // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
+            // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
+            // List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
+            //     .setParameter("situacao", situacaoOperacionalEquipamentoEnum.disponivel)
+            //     .setParameter("dataInicio", dataInicio)
+            //     .setParameter("dataFim", dataFim)
+            //     .getResultList();
             
-            for (Equipamento e : equipamentos){
-                System.out.println(e.getNome());
+            // for (Equipamento e : equipamentos){
+            //     System.out.println(e.getNome());
+            // }
+            
+            //Coleta Científica
+            ColetaCientificaRepository coletaRepo = new ColetaCientificaRepository(em);
+
+            //Lista as coletas de uam expedição com setor e pesquisador reponsável
+            List<ColetaCientifica> ccPorIdExpedicao = coletaRepo.ccPorIdExpedicao(2);
+
+            for(ColetaCientifica c : ccPorIdExpedicao) {
+                System.out.println(c);
             }
+            
+            //Consulta as amostras pelo id da coleta cientifica 
+            List<AmostraCientifica> acPorIdColetaCientifica = coletaRepo.acPorIdColetaCientifica(1);
+
+            for (AmostraCientifica ac : acPorIdColetaCientifica) {
+                System.out.println(ac);
+            }
+
+            //Equipamento
+            EquipamentoRepository equipamentoRep = new EquipamentoRepository(em);
+
+            //Busca equipamentos por situação e um intervalo de data
+            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.disponivel, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
+
+            for(Equipamento e : equipamentosBuscarSituacaoPorData) {
+                System.out.println(e);
+            }
+
 
 
         } catch (Exception e) {
