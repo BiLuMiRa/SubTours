@@ -66,7 +66,7 @@ public class Equipamento {
    
     @Column(name = "exige_calibracao", nullable = false, columnDefinition = "char(1)")
     @Convert(converter = TrueFalseConverter.class)
-    private Boolean exigeCalibracao;
+    private Boolean exigeCalibracao = false;
     
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;
