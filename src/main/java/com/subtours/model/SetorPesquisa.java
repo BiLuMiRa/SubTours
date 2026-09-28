@@ -59,6 +59,7 @@ public class SetorPesquisa {
     @Column(name = "risco_inundacao", nullable = false)
     private nivelDificuldadeEnum riscoInundacao;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "condicao_corrente", nullable = false)
     private condicaoCorrenteEnum condicao;
 
