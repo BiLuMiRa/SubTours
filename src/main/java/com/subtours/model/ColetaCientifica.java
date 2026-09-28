@@ -25,7 +25,7 @@ public class ColetaCientifica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_coletaCientifica")
-    private Integer id;
+    private Long idColeta;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "setor_id", nullable = false,
@@ -57,7 +57,7 @@ public class ColetaCientifica {
     @Column(name = "profundidade", nullable = false)
     private BigDecimal profundidade;
 
-    @Column(name = "observacoes", length = 150)
+    @Column(name = "obs", length = 150)
     private String observacoes;
 
     @Enumerated(EnumType.STRING)

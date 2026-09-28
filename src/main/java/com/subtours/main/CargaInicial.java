@@ -1,7 +1,6 @@
 package com.subtours.main;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -70,7 +69,7 @@ public final class CargaInicial {
                 .registroInst((short) 1234)
                 .areaPesquisa("Biologia")
                 .titulacao("Mestrado")
-                .valor_diario_bolsa(BigInteger.valueOf(250))
+                .valor_diario_bolsa(new BigDecimal(250))
                 .coletas(new ArrayList<>())
                 .build();
 
@@ -156,6 +155,7 @@ public final class CargaInicial {
             // 8. Autorização ambiental
             AutorizacaoAmbiental autorizacao =
                 AutorizacaoAmbiental.builder()
+                    .numAutoriz(4562)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now())
                     .validade(LocalDate.now().plusYears(1))
@@ -294,7 +294,7 @@ public final class CargaInicial {
                     .registroInst((short) 5678)
                     .areaPesquisa("Geologia")
                     .titulacao("Doutorado")
-                    .valor_diario_bolsa(BigInteger.valueOf(400))
+                    .valor_diario_bolsa(new BigDecimal("400"))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -310,7 +310,7 @@ public final class CargaInicial {
                     .registroInst((short) 9101)
                     .areaPesquisa("Arqueologia")
                     .titulacao("Doutorado")
-                    .valor_diario_bolsa(BigInteger.valueOf(350))
+                    .valor_diario_bolsa(new BigDecimal(350))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -438,6 +438,7 @@ public final class CargaInicial {
                     .mapa(new byte[]{7, 8, 9})
                     .build();
                 AutorizacaoAmbiental autorizacao2 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(15)
                     .orgaoEmissor("IBAMA")
                     .dataEmissao(LocalDate.now().minusDays(10))
                     .validade(LocalDate.now().plusMonths(6))
@@ -446,6 +447,7 @@ public final class CargaInicial {
                     .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 2})
                     .build();
                 AutorizacaoAmbiental autorizacao3 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(9)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now().minusMonths(2))
                     .validade(LocalDate.now().plusYears(2))

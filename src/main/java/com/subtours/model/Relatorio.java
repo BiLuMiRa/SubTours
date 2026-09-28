@@ -21,8 +21,8 @@ import lombok.Setter;
 public class Relatorio {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_relatorio")
-    private Integer id;
+    @Column(name = "id_rel")
+    private Long id;
 
     @Column(name = "titulo", length = 70, nullable = false)
     private String titulo;
@@ -33,16 +33,15 @@ public class Relatorio {
     @Column(name = "data_submissao")
     private LocalDate dataSubmissao;
 
-    @Column(name = "numero_paginas")
+    @Column(name = "num_paginas")
     private Integer numeroPaginas;
 
     // @Lob 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "arquivo_completo", columnDefinition = "bytea")
+    @Column(name = "arq_completo", columnDefinition = "bytea")
     private byte[] arqCompleto;
 
-    @Column(name = "publicacao_aprovada", columnDefinition = "char(1)")
-    @Convert(converter = TrueFalseConverter.class)
+    @Column(name = "publicacao_aprovada")
     private Boolean publicacaoAprovada;
 
     @OneToOne(mappedBy = "relatorio")

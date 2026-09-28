@@ -27,8 +27,8 @@ import lombok.Setter;
 public class PlanoSeguranca {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "cod_plan_seg")
-    private Integer id;
+    @Column (name = "id_plan_seg")
+    private Long id;
 
     @Column(name = "proceds_evac", nullable = false, length = 300)
     private String procedsEvacuacao;

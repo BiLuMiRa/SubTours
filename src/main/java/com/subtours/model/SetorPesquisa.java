@@ -36,8 +36,8 @@ import lombok.Setter;
 public class SetorPesquisa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "num_setor")
-    private Integer numSetor;
+    @Column(name = "id_setor")
+    private Long idSetor;
 
     @Column(name = "denominacao", nullable = false)
     private String denominacao;
@@ -64,7 +64,7 @@ public class SetorPesquisa {
     private condicaoCorrenteEnum condicao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_caverna", nullable = false,
+    @JoinColumn(name = "caverna_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_caverna"))
     private Caverna caverna;
 

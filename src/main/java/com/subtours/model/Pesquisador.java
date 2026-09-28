@@ -1,6 +1,6 @@
 package com.subtours.model;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class Pesquisador extends Pessoa{
 
     @Column(name = "valorDiarioBolsa", nullable = false)
     //não tenho certeza desse tipo
-    private BigInteger valor_diario_bolsa;
+    private BigDecimal valor_diario_bolsa;
 
     @OneToMany(mappedBy = "pesquisador")
     private List<ColetaCientifica>coletas = new ArrayList<>();

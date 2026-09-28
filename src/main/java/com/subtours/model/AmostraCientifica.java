@@ -38,7 +38,7 @@ public class AmostraCientifica {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_amostra")
-    private Integer id;
+    private Long idAmostra;
 
     @Column(name = "cod_amostra", unique = true, nullable = false, length = 6)
     private String codAmostra;

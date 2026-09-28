@@ -9,6 +9,7 @@ import java.util.List;
 import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
 import com.subtours.infra.JpaUtil;
 import com.subtours.model.AmostraCientifica;
+import com.subtours.model.AutorizacaoAmbiental;
 import com.subtours.model.ColetaCientifica;
 import com.subtours.model.Equipamento;
 
@@ -53,17 +54,20 @@ public class Main {
             //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
             // }
 
-            LocalDate dataInicio = LocalDate.of(2026, 10, 1);
-            LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
-            List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
-                .setParameter("situacao", situacaoOperacionalEquipamentoEnum.disponivel)
-                .setParameter("dataInicio", dataInicio)
-                .setParameter("dataFim", dataFim)
-                .getResultList();
+            AutorizacaoAmbiental as = em.find(AutorizacaoAmbiental.class, 1);
+            System.out.println(as.getOrgaoEmissor());
+
+            // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
+            // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
+            // List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
+            //     .setParameter("situacao", situacaoOperacionalEquipamentoEnum.disponivel)
+            //     .setParameter("dataInicio", dataInicio)
+            //     .setParameter("dataFim", dataFim)
+            //     .getResultList();
             
-            for (Equipamento e : equipamentos){
-                System.out.println(e.getNome());
-            }
+            // for (Equipamento e : equipamentos){
+            //     System.out.println(e.getNome());
+            // }
 
 
         } catch (Exception e) {

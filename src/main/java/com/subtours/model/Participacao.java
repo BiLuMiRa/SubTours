@@ -33,15 +33,15 @@ import lombok.Setter;
 @Table(name = "participacao",
     uniqueConstraints = {
         @UniqueConstraint(name = "uk_participacao_pessoa_expedicap",
-        columnNames = {"cod_pessoa", "cod_exped"}
+        columnNames = {"pessoa_id", "exped_id"}
         )
     }
 ) 
 public class Participacao {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_participacao")
-    private Integer codParticipacao;
+    @Column(name = "id_participacao")
+    private Long idParticipacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "papel_expedicap", nullable = false)
@@ -63,7 +63,7 @@ public class Participacao {
     private String observacoes;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_pessoa", nullable = false,
+    @JoinColumn(name = "pessoa_id", nullable = false,
         foreignKey = @ForeignKey(
             name = "fk_participacao_pessoa"
         )
@@ -71,7 +71,7 @@ public class Participacao {
     private Pessoa pessoa;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_exped", nullable = false,
+    @JoinColumn(name = "exped_id", nullable = false,
         foreignKey = @ForeignKey(
             name = "fk_participacao_expedicao"
         )

@@ -34,7 +34,7 @@ import lombok.Setter;
 public class UtilizacaoEquipamento {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_utilizacao_equipamento")
+    @Column(name = "id_utlz_equipamento")
     private Integer id;
 
     @ManyToOne
@@ -43,16 +43,16 @@ public class UtilizacaoEquipamento {
     private Pessoa responsavel;
 
     @ManyToOne
-    @JoinColumn(name = "equipamento_expedicao_id", nullable = false,
+    @JoinColumn(name = "equip_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_usa_equipamento_expedicao"))
     private Equipamento equipamento;
 
     @ManyToOne 
-    @JoinColumn(name = "expedicao_equipamento_id", nullable = false,
+    @JoinColumn(name = "exped_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_expedicao_usa_equipamento"))
     private Expedicao expedicao;
 
-    @Column(name = "data_hora_retirada", nullable = false)
+    @Column(name = "datahora_retirada", nullable = false)
     private LocalDateTime dataHoraRetirada;
 
     @Column(name = "previsao_devolucao", nullable = false)

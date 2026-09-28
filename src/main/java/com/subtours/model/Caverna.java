@@ -32,8 +32,8 @@ import lombok.Setter;
 public class Caverna {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "num_caverna")
-    private Integer numCaverna;
+    @Column(name = "id_caverna")
+    private Long idCaverna;
 
     @Column(name = "nome_caverna", nullable = false)
     private String nomeCaverna;

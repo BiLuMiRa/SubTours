@@ -36,7 +36,7 @@ public class Pessoa {
     @Id 
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_pessoa", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "cpf", nullable = false, length = 14, unique = true)
     private String cpf;
@@ -71,7 +71,7 @@ public class Pessoa {
         return false;
     }
     
-    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "responsavel")
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
 
     public boolean addRetirada(UtilizacaoEquipamento ue){
