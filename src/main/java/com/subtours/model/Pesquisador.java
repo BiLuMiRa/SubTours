@@ -1,6 +1,6 @@
 package com.subtours.model;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +25,7 @@ import lombok.experimental.SuperBuilder;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class Pesquisador extends Pessoa{
     
-    @Column(name = "registro_inst", nullable = false)
+    @Column(name = "registro_inst", nullable = false, length = 4)
     private short registroInst;
 
     @Column(name = "area_pesq", nullable = false, length = 30)
@@ -34,9 +34,8 @@ public class Pesquisador extends Pessoa{
     @Column(name = "titulacao", nullable = false, length = 30)
     private String titulacao;
 
-    @Column(name = "valorDiarioBolsa", nullable = false)
-    //não tenho certeza desse tipo
-    private BigInteger valor_diario_bolsa;
+    @Column(name = "valorDiarioBolsa", nullable = false, precision = 15, scale = 2)
+    private BigDecimal valor_diario_bolsa;
 
     @OneToMany(mappedBy = "pesquisador")
     private List<ColetaCientifica>coletas = new ArrayList<>();

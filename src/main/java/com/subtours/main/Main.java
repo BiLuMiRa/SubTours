@@ -6,17 +6,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.subtours.enums.situacaoExpedicaoEnum;
-import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
+import com.subtours.controller.GenericController;
+import com.subtours.enums.*;
 import com.subtours.infra.JpaUtil;
-import com.subtours.model.AmostraCientifica;
-import com.subtours.model.ColetaCientifica;
-import com.subtours.model.Equipamento;
+import com.subtours.model.*;
 import com.subtours.repository.ColetaCientificaRepository;
 import com.subtours.repository.EquipamentoRepository;
 import com.subtours.repository.ExpedicaoRepository;
-import com.subtours.model.Expedicao;
-import com.subtours.model.Participacao;
+
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -60,6 +57,10 @@ public class Main {
             //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
             // }
 
+            GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
+            Pessoa p = pessoaController.buscarReferencia(em, 1);
+            System.out.println(p.getNome());
+
             // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
             // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
             // List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
@@ -69,6 +70,8 @@ public class Main {
             //     .getResultList();
             
             // for (Equipamento e : equipamentos){
+            //     System.out.println(e.getNome());
+            // }
             //  yste   Sm.out.println(e.getNome());
             // }
 
@@ -86,14 +89,14 @@ public class Main {
             List<AmostraCientifica> acPorIdColetaCientifica = coletaRepo.acPorIdColetaCientifica(1);
 
             for (AmostraCientifica ac : acPorIdColetaCientifica) {
-                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getId());
+                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getIdColeta());
             }
 
             //Equipamento
             EquipamentoRepository equipamentoRep = new EquipamentoRepository(em);
 
             //Busca equipamentos por situação e um intervalo de data
-            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.disponivel, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
+            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.DISPONIVEL, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
 
             for(Equipamento e : equipamentosBuscarSituacaoPorData) {
                 System.out.println(e.getNome());
@@ -105,7 +108,7 @@ public class Main {
             //Consulta Expedições por período e situação
             LocalDateTime inicio = LocalDateTime.of(2026, 9, 28, 0, 0, 0);
             LocalDateTime termino = LocalDateTime.of(2026, 9, 28, 23, 59, 59);
-            situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.planejada;
+            situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.PLANEJADA;
             
             er.expedicoesporPeriodoSituacao(inicio, termino, situacao);
 
@@ -118,6 +121,9 @@ public class Main {
             e.printStackTrace();
 
         } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
             if (emf != null && emf.isOpen()) {
                 emf.close();
             }

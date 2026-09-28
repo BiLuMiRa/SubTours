@@ -32,16 +32,16 @@ import lombok.Setter;
 public class Caverna {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "num_caverna")
-    private Integer numCaverna;
+    @Column(name = "id_caverna")
+    private Long idCaverna;
 
     @Column(name = "nome_caverna", nullable = false)
     private String nomeCaverna;
 
-    @Column(name = "cod_cadAmbiental", nullable = false, unique = true)
+    @Column(name = "cod_cadAmbiental", nullable = false, unique = true, length = 6)
     private String codCadAmbiental;
 
-    @Column(name = "municipio", nullable = false)
+    @Column(name = "municipio", nullable = false, length = 25)
     private String municipio;
 
     @Column(name = "uf", length = 2, nullable = false)

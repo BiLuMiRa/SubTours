@@ -25,7 +25,8 @@ public class ExpedicaoRepository {
 
         Expedicao expedicao = queryExpedicaoParticipantes.getSingleResult();
         System.out.println("=== EXPEDIÇÃO E PARTICIPANTES ===");
-        System.out.println("ID: " + expedicao.getId());
+        System.out.println("ID: " + expedicao.getIdExped());
+        System.out.println("Cod Expedição: " + expedicao.getCodExped());
         System.out.println("Título: " + expedicao.getTitulo());
         System.out.println("Objetivo: " + expedicao.getObjetivo());
         System.out.println("Início: " + expedicao.getInicio());

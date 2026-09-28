@@ -14,11 +14,11 @@ public class GenericController<T> {
         em.persist(entidade);
     }
 
-    public T buscaPorId(EntityManager em, Long id){
+    public T buscaPorId(EntityManager em, int id){
         return em.find(classe, id);
     }
 
-    public T buscarReferencia(EntityManager em, Long id){
+    public T buscarReferencia(EntityManager em, int id){
         return em.getReference(classe, id);
     }
 
@@ -26,7 +26,7 @@ public class GenericController<T> {
         return em.merge(entidade);
     }
 
-    public void apagar(EntityManager em, Long id){
+    public void apagar(EntityManager em, int id){
         T entidade = em.find(classe, id);
 
         if(entidade != null){
