@@ -71,7 +71,7 @@ public class Equipamento {
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;
 
-    @OneToMany(mappedBy = "equipamento", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipamento", fetch = FetchType.LAZY)
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 
     public boolean addEquipamento(UtilizacaoEquipamento ue){

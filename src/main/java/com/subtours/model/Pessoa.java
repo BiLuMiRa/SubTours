@@ -71,7 +71,7 @@ public class Pessoa {
         return false;
     }
     
-    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "responsavel")
     private List<UtilizacaoEquipamento> retiradas = new ArrayList<>();
 
     public boolean addRetirada(UtilizacaoEquipamento ue){
