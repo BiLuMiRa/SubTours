@@ -47,10 +47,10 @@ public class AmostraCientifica {
     @Column(name = "categoria", nullable = false)
     private categoriaAmostraEnum categoria;
 
-    @Column(name = "massa")
+    @Column(name = "massa", precision = 15, scale = 6)
     private BigDecimal massa;
 
-    @Column(name = "volume")
+    @Column(name = "volume", precision = 15, scale = 2)
     private BigDecimal volume;
 
     @Enumerated(EnumType.STRING)

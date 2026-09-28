@@ -38,10 +38,10 @@ public class Caverna {
     @Column(name = "nome_caverna", nullable = false)
     private String nomeCaverna;
 
-    @Column(name = "cod_cadAmbiental", nullable = false, unique = true)
+    @Column(name = "cod_cadAmbiental", nullable = false, unique = true, length = 6)
     private String codCadAmbiental;
 
-    @Column(name = "municipio", nullable = false)
+    @Column(name = "municipio", nullable = false, length = 25)
     private String municipio;
 
     @Column(name = "uf", length = 2, nullable = false)

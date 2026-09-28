@@ -41,7 +41,7 @@ public class Expedicao {
     @Column(name = "id_expedicao")
     private Long idExped;
 
-    @Column(name = "cod_exped", unique = true, nullable = false)
+    @Column(name = "cod_exped", unique = true, nullable = false, length = 14)
     private String codExped;
 
     @Column(name = "titulo", nullable = false, length = 50)

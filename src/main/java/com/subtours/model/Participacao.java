@@ -50,7 +50,7 @@ public class Participacao {
     @Column(name = "data_confirmacao", nullable = false)
     private LocalDate dataConfirmacao;
 
-    @Column(name = "valor_diaria", nullable = false)
+    @Column(name = "valor_diaria", nullable = false, precision = 15, scale = 2)
     private BigDecimal valorDiaria;
 
     @Column(name = "quantidade_dias", nullable = false)

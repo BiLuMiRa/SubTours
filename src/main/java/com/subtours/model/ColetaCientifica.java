@@ -45,7 +45,7 @@ public class ColetaCientifica {
     @Column(name = "metodoEmpregado", nullable = false, length = 50)
     private String metodoEmpregado;
 
-    @Column(name = "descricaoPonto", nullable = false)
+    @Column(name = "descricaoPonto", nullable = false, length = 70)
     private String descricaoPonto;
 
     @Column(name = "temperatura", nullable = false)

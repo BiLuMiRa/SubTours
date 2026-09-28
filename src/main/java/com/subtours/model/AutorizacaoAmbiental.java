@@ -34,7 +34,7 @@ public class AutorizacaoAmbiental {
     @Column(name = "id_autoriz_amb")
     private Long idAutoAmbiental;
 
-    @Column(name = "num_autoriz", nullable = false)
+    @Column(name = "num_autoriz", nullable = false, length = 3)
     private Integer numAutoriz;
 
     @Column(name = "orgao_emissor", nullable = false, length = 30)

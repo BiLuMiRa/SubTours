@@ -155,7 +155,7 @@ public final class CargaInicial {
             // 8. Autorização ambiental
             AutorizacaoAmbiental autorizacao =
                 AutorizacaoAmbiental.builder()
-                    .numAutoriz(4562)
+                    .numAutoriz(462)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now())
                     .validade(LocalDate.now().plusYears(1))
@@ -171,7 +171,8 @@ public final class CargaInicial {
                 .dataSubmissao(LocalDate.now())
                 .numeroPaginas(5)
                 .arqCompleto(null)
-                .publicacaoAprovada(false)
+                .situacaoAprovacao(situacaoAprovacaoRelEnum.APROVADO)
+                .publicacaoAprovada(true)
                 .build();
 
             // 10. Expedição
@@ -462,7 +463,8 @@ public final class CargaInicial {
                     .dataSubmissao(LocalDate.now().minusDays(2))
                     .numeroPaginas(30)
                     .arqCompleto(new byte[]{40, 50, 60})
-                    .publicacaoAprovada(true)
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.REPROVADO)
+                    .publicacaoAprovada(false)
                     .build();
                 Relatorio relatorio3 = Relatorio.builder()
                     .titulo("Catalogo de fosseis da Toca")
@@ -470,7 +472,8 @@ public final class CargaInicial {
                     .dataSubmissao(LocalDate.now().minusDays(5))
                     .numeroPaginas(45)
                     .arqCompleto(new byte[]{70, 80, 90})
-                    .publicacaoAprovada(true)
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.PENDENTE)
+                    .publicacaoAprovada(false)
                     .build();
 
                 Expedicao expedicao2 = Expedicao.builder()

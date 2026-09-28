@@ -6,12 +6,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.subtours.controller.GenericController;
 import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
 import com.subtours.infra.JpaUtil;
-import com.subtours.model.AmostraCientifica;
-import com.subtours.model.AutorizacaoAmbiental;
-import com.subtours.model.ColetaCientifica;
-import com.subtours.model.Equipamento;
+import com.subtours.model.*;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -54,8 +52,9 @@ public class Main {
             //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
             // }
 
-            AutorizacaoAmbiental as = em.find(AutorizacaoAmbiental.class, 1);
-            System.out.println(as.getOrgaoEmissor());
+            GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
+            Pessoa p = pessoaController.buscarReferencia(em, 1);
+            System.out.println(p.getNome());
 
             // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
             // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
@@ -75,6 +74,9 @@ public class Main {
             e.printStackTrace();
 
         } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
             if (emf != null && emf.isOpen()) {
                 emf.close();
             }

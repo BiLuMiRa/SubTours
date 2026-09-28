@@ -69,6 +69,6 @@ public class UtilizacaoEquipamento {
     @Column(name = "estado_retorno", length = 10)
     private estadoEquipamentoEnum estadoRetorno;
 
-    @Column(name = "custo_avaria")
+    @Column(name = "custo_avaria", precision = 15, scale = 2)
     private BigDecimal custoAvaria;
 }

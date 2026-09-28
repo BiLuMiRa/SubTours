@@ -39,7 +39,7 @@ public class SetorPesquisa {
     @Column(name = "id_setor")
     private Long idSetor;
 
-    @Column(name = "denominacao", nullable = false)
+    @Column(name = "denominacao", nullable = false, length = 30)
     private String denominacao;
 
     @Enumerated(EnumType.STRING)
@@ -52,7 +52,7 @@ public class SetorPesquisa {
     @Column(name = "extensao", nullable = false)
     private BigDecimal extensao;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", length = 70)
     private String descricao;
 
     @Enumerated(EnumType.STRING)
