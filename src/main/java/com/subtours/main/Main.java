@@ -64,24 +64,24 @@ public class Main {
             //     .getResultList();
             
             // for (Equipamento e : equipamentos){
-            //     System.out.println(e.getNome());
+            //  yste   Sm.out.println(e.getNome());
             // }
-            
+
             //Coleta Científica
             ColetaCientificaRepository coletaRepo = new ColetaCientificaRepository(em);
 
             //Lista as coletas de uam expedição com setor e pesquisador reponsável
             List<ColetaCientifica> ccPorIdExpedicao = coletaRepo.ccPorIdExpedicao(2);
 
-            for(ColetaCientifica c : ccPorIdExpedicao) {
-                System.out.println(c);
+            for(ColetaCientifica cc : ccPorIdExpedicao) {
+                System.out.println(cc.getDescricaoPonto() + "\nSetor:" + cc.getSetor().getDenominacao() + "\nPesquisador: " + cc.getPesquisador().getNome());
             }
             
             //Consulta as amostras pelo id da coleta cientifica 
             List<AmostraCientifica> acPorIdColetaCientifica = coletaRepo.acPorIdColetaCientifica(1);
 
             for (AmostraCientifica ac : acPorIdColetaCientifica) {
-                System.out.println(ac);
+                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getId());
             }
 
             //Equipamento
@@ -91,7 +91,7 @@ public class Main {
             List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.disponivel, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
 
             for(Equipamento e : equipamentosBuscarSituacaoPorData) {
-                System.out.println(e);
+                System.out.println(e.getNome());
             }
 
 

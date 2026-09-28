@@ -27,7 +27,7 @@ public class ColetaCientificaRepository {
 
     //Consulta as amostras pelo id da coleta cientifica 
     public List<AmostraCientifica> acPorIdColetaCientifica(Integer id){
-        TypedQuery<AmostraCientifica> typedQueryAc = em.createQuery("Select ac From AmostraCientifica ac Where ac.coleta.id = :id", AmostraCientifica.class);
+        TypedQuery<AmostraCientifica> typedQueryAc = em.createQuery("Select ac From AmostraCientifica ac Where ac.coleta.id = :id", AmostraCientifica.class).setParameter("id", id);
 
         return typedQueryAc.getResultList();
     }
