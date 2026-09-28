@@ -92,7 +92,7 @@ public class Main {
             EquipamentoRepository equipamentoRep = new EquipamentoRepository(em);
 
             //Busca equipamentos por situação e um intervalo de data
-            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.disponivel, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
+            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.DISPONIVEL, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
 
             for(Equipamento e : equipamentosBuscarSituacaoPorData) {
                 System.out.println(e.getNome());
@@ -101,7 +101,7 @@ public class Main {
 //---------------- Consulta Expedições por período e situação
             LocalDateTime inicio = LocalDateTime.of(2026, 9, 28, 0, 0, 0);
             LocalDateTime termino = LocalDateTime.of(2026, 9, 28, 23, 59, 59);
-            situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.planejada;
+            situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.PLANEJADA;
             TypedQuery<Object[]> queryExpedicaoPeriodoSituacao =
                 em.createNamedQuery("Expedicoes.porPeriodoSituacao", Object[].class);
             queryExpedicaoPeriodoSituacao.setParameter("inicio", inicio);
