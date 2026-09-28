@@ -37,7 +37,7 @@ public class Main {
             // }
 
             // List <ColetaCientifica> coletas = em.createNamedQuery("ColetaCientifica.PorIdExpedicao", ColetaCientifica.class)
-            //     .setParameter("id", 1)
+            //     .setParameter("id", 2)
             //     .getResultList();
 
             // for (ColetaCientifica cc : coletas){

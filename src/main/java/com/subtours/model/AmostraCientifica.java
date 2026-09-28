@@ -1,5 +1,6 @@
 package com.subtours.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.subtours.enums.categoriaAmostraEnum;
@@ -47,10 +48,10 @@ public class AmostraCientifica {
     private categoriaAmostraEnum categoria;
 
     @Column(name = "massa")
-    private Double massa;
+    private BigDecimal massa;
 
     @Column(name = "volume")
-    private Double volume;
+    private BigDecimal volume;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "unidade_medida", nullable = false)
