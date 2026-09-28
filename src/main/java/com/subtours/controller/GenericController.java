@@ -26,6 +26,10 @@ public class GenericController<T> {
         return em.merge(entidade);
     }
 
+    public void desvincular(EntityManager em, T entidade){
+        em.detach(entidade);
+    }
+
     public void apagar(EntityManager em, int id){
         T entidade = em.find(classe, id);
 
