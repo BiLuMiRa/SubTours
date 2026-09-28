@@ -48,13 +48,13 @@ public class ColetaCientifica {
     @Column(name = "descricaoPonto", nullable = false, length = 70)
     private String descricaoPonto;
 
-    @Column(name = "temperatura", nullable = false)
+    @Column(name = "temperatura", nullable = false, precision = 6, scale = 2)
     private BigDecimal temperatura;
 
-    @Column(name = "umidadeRelativa", nullable = false)
+    @Column(name = "umidadeRelativa", nullable = false, precision = 6, scale = 3)
     private BigDecimal umidadeRelativa;
 
-    @Column(name = "profundidade", nullable = false)
+    @Column(name = "profundidade", nullable = false, precision = 10, scale = 3)
     private BigDecimal profundidade;
 
     @Column(name = "obs", length = 150)
@@ -69,7 +69,7 @@ public class ColetaCientifica {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expedicao_id", 
-        foreignKey = @ForeignKey(name = "FK_coleta_expedicao"))
+        foreignKey = @ForeignKey(name = "FK_coleta_expedicao"), nullable = false)
     private Expedicao expedicao;
 
     public boolean addAmostra(AmostraCientifica a){

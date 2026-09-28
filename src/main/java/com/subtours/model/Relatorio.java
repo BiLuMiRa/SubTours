@@ -2,8 +2,6 @@ package com.subtours.model;
 
 import java.time.LocalDate;
 
-import org.hibernate.type.TrueFalseConverter;
-
 import com.subtours.enums.situacaoAprovacaoRelEnum;
 
 import jakarta.persistence.*;
@@ -50,9 +48,6 @@ public class Relatorio {
     @Column(name = "publicacao_aprovada")
     private Boolean publicacaoAprovada;
 
-    @OneToOne(mappedBy = "relatorio")
-    // @JoinColumn(name = "expedicao_id", nullable = false, 
-    //     foreignKey = @ForeignKey(name = "fk_expedicao")
-    // )
+    @OneToOne(mappedBy = "relatorio", fetch = FetchType.LAZY)
     private Expedicao expedicao;
 }
