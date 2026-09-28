@@ -4,6 +4,6 @@ public enum situacaoExpedicaoEnum {
     planejada, 
     autorizada, 
     em_andamento, 
-    concluída, 
+    concluida, 
     cancelada
 }

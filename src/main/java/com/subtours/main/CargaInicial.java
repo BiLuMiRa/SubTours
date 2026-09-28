@@ -94,6 +94,7 @@ public final class CargaInicial {
                 .codCadAmbiental("PB0001")
                 .municipio("João Pessoa")
                 .uf("PB")
+                .altitude(new BigDecimal("46"))
                 .ultimaInsp(LocalDate.now())
                 .indAcesso(true)
                 .extensao(new BigDecimal("350.50"))
@@ -113,7 +114,7 @@ public final class CargaInicial {
                 .extensao(new BigDecimal("120.0"))
                 .descricao("Setor de acesso para estudos.")
                 .riscoInundacao(nivelDificuldadeEnum.baixo)
-                .condicao(condicaoAmostraEnum.boa)
+                .condicao(condicaoCorrenteEnum.excelente)
                 .caverna(caverna)
                 .build();
 
@@ -229,7 +230,7 @@ public final class CargaInicial {
                 .unidadeMedida(unidadeMedidaAmostraEnum.G)
                 .dataAcondicionamento(LocalDate.now())
                 .condicaoConservacao(condicaoAmostraEnum.boa)
-                .materialPerigoso(null)
+                .materialPerigoso(false)
                 .fotografiaBinaria(null)
                 .obsorvacoes("Amostra inicial.")
                 .coleta(coleta)
@@ -251,19 +252,391 @@ public final class CargaInicial {
                     .custoAvaria(null)
                     .build();
 
+                Pessoa pessoa2 = Pessoa.builder()
+                    .cpf("09876543210")
+                    .nome("Roberto Santos")
+                    .datanasc(LocalDate.of(1982, 10, 12))
+                    .email("roberto.santos@email.com")
+                    .telefone("83911112222")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Rua das Trincheiras").numero(45).bairro("Centro").cidade("Joao Pessoa").unidadeFed("PB").cep("58010000").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .build();
+                Pessoa pessoa3 = Pessoa.builder()
+                    .cpf("55544433322")
+                    .nome("Juliana Medeiros")
+                    .datanasc(LocalDate.of(1991, 2, 25))
+                    .email("juliana.medeiros@email.com")
+                    .telefone("83944445555")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Av. Epitacio P.").numero(1500).bairro("Torre").cidade("Joao Pessoa").unidadeFed("PB").cep("58040000").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .build();
+
+                Pesquisador pesquisador2 = Pesquisador.builder()
+                    .cpf("11122233344")
+                    .nome("Beatriz Lins")
+                    .datanasc(LocalDate.of(1985, 7, 30))
+                    .email("beatriz.lins@email.com")
+                    .telefone("83966667777")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Rua Bancario").numero(320).bairro("Bancarios").cidade("Joao Pessoa").unidadeFed("PB").cep("58051000").build())
+                    .registroInst((short) 5678)
+                    .areaPesquisa("Geologia")
+                    .titulacao("Doutorado")
+                    .valor_diario_bolsa(BigInteger.valueOf(400))
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .coletas(new ArrayList<>())
+                    .build();
+                Pesquisador pesquisador3 = Pesquisador.builder()
+                    .cpf("99988877766")
+                    .nome("Fernando Castro")
+                    .datanasc(LocalDate.of(1978, 12, 5))
+                    .email("fernando.castro@email.com")
+                    .telefone("83933334444")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Praca Independencia").numero(12).bairro("Tambia").cidade("Joao Pessoa").unidadeFed("PB").cep("58020000").build())
+                    .registroInst((short) 9101)
+                    .areaPesquisa("Arqueologia")
+                    .titulacao("Doutorado")
+                    .valor_diario_bolsa(BigInteger.valueOf(350))
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .coletas(new ArrayList<>())
+                    .build();
+
+                GuiaEspeleologia guia2 = GuiaEspeleologia.builder()
+                    .cpf("44455566677")
+                    .nome("Lucas Mendes")
+                    .datanasc(LocalDate.of(1995, 4, 14))
+                    .email("lucas.mendes@email.com")
+                    .telefone("83922223333")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Rua dos Pescadores").numero(80).bairro("Cabo Branco").cidade("Joao Pessoa").unidadeFed("PB").cep("58045000").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .num_credenc(789)
+                    .nivel_certif(1)
+                    .validade_certif(LocalDate.of(2027, 6, 15))
+                    .qntd_expedicoes(2)
+                    .build();
+                GuiaEspeleologia guia3 = GuiaEspeleologia.builder()
+                    .cpf("12312312312")
+                    .nome("Jonas Almeida")
+                    .datanasc(LocalDate.of(1970, 1, 10))
+                    .email("jonas.almeida@email.com")
+                    .telefone("83900001111")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Estrada Rural").numero(5).bairro("Zona Rural").cidade("Areia").unidadeFed("PB").cep("58397000").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .num_credenc(101)
+                    .nivel_certif(5)
+                    .validade_certif(LocalDate.of(2030, 1, 1))
+                    .qntd_expedicoes(150)
+                    .build();
+
+                Caverna caverna2 = Caverna.builder()
+                    .nomeCaverna("Gruta do Rio Subterraneo")
+                    .codCadAmbiental("PB0002")
+                    .municipio("Santa Luzia")
+                    .uf("PB")
+                    .altitude(new BigDecimal("275"))
+                    .ultimaInsp(LocalDate.now().minusMonths(6))
+                    .indAcesso(false)
+                    .extensao(new BigDecimal("1200.00"))
+                    .localizacao(Localizacao.builder().latitude(new BigDecimal("-6.8710")).longitude(new BigDecimal("-36.9189")).datum(datumGeodesicoEnum.SIRGAS2000).build())
+                    .setores(new ArrayList<>())
+                    .build();
+                Caverna caverna3 = Caverna.builder()
+                    .nomeCaverna("Toca dos Fosseis")
+                    .codCadAmbiental("PB0003")
+                    .municipio("Sousa")
+                    .uf("PB")
+                    .altitude(new BigDecimal("240"))
+                    .ultimaInsp(LocalDate.now().minusYears(1))
+                    .indAcesso(true)
+                    .extensao(new BigDecimal("500.25"))
+                    .localizacao(Localizacao.builder().latitude(new BigDecimal("-6.7629")).longitude(new BigDecimal("-38.2255")).datum(datumGeodesicoEnum.SIRGAS2000).build())
+                    .setores(new ArrayList<>())
+                    .build();
+                SetorPesquisa setor2 = SetorPesquisa.builder()
+                    .denominacao("Salao Submerso")
+                    .dificuldade(nivelDificuldadeEnum.extremo)
+                    .profuncidadeMaxima(new BigDecimal("80.0"))
+                    .extensao(new BigDecimal("300.0"))
+                    .descricao("Area alagada que exige mergulho especializado.")
+                    .riscoInundacao(nivelDificuldadeEnum.alto)
+                    .condicao(condicaoCorrenteEnum.inundado)
+                    .caverna(caverna2)
+                    .coletas(new ArrayList<>())
+                    .build();
+                SetorPesquisa setor3 = SetorPesquisa.builder()
+                    .denominacao("Fosso dos Ossos")
+                    .dificuldade(nivelDificuldadeEnum.alto)
+                    .profuncidadeMaxima(new BigDecimal("45.0"))
+                    .extensao(new BigDecimal("150.0"))
+                    .descricao("Sitio de escavacao paleontologica.")
+                    .riscoInundacao(nivelDificuldadeEnum.baixo)
+                    .condicao(condicaoCorrenteEnum.excelente)
+                    .caverna(caverna3)
+                    .coletas(new ArrayList<>())
+                    .build();
+                caverna2.getSetores().add(setor2);
+                caverna3.getSetores().add(setor3);
+
+                Equipamento equipamento2 = Equipamento.builder()
+                    .codPatrimonial("EQ0002")
+                    .nome("Medidor multigas")
+                    .tipo(tipoEquipamentoEnum.monitoramento_ambiental)
+                    .fabricante("SafetyCorp")
+                    .valor(new BigDecimal("3500.00"))
+                    .dataCompra(LocalDate.of(2024, 5, 20))
+                    .dataUltimaManutencao(LocalDate.of(2026, 2, 10))
+                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.em_uso)
+                    .exigeCalibracao(true)
+                    .utilizacoes(new ArrayList<>())
+                    .build();
+                Equipamento equipamento3 = Equipamento.builder()
+                    .codPatrimonial("EQ0003")
+                    .nome("Corda dinamica 100m")
+                    .tipo(tipoEquipamentoEnum.seguranca)
+                    .fabricante("ClimbPro")
+                    .valor(new BigDecimal("800.00"))
+                    .dataCompra(LocalDate.of(2026, 2, 10))
+                    .dataUltimaManutencao(LocalDate.of(2026, 3, 1))
+                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.disponivel)
+                    .exigeCalibracao(false)
+                    .utilizacoes(new ArrayList<>())
+                    .build();
+
+                PlanoSeguranca plano2 = PlanoSeguranca.builder()
+                    .procedsEvacuacao("Retornar em dupla pela corda-guia e acionar a equipe de superficie.")
+                    .pontoEncontro("Acampamento Base 1")
+                    .tempoSemComunic(LocalTime.of(1, 0))
+                    .telefoneEmerg("83988887777")
+                    .precisaMedico(true)
+                    .mapa(new byte[]{4, 5, 6})
+                    .build();
+                PlanoSeguranca plano3 = PlanoSeguranca.builder()
+                    .procedsEvacuacao("Icar a equipe pela entrada superior em caso de bloqueio.")
+                    .pontoEncontro("Plato da Pedra")
+                    .tempoSemComunic(LocalTime.of(2, 0))
+                    .telefoneEmerg("83966665555")
+                    .precisaMedico(true)
+                    .mapa(new byte[]{7, 8, 9})
+                    .build();
+                AutorizacaoAmbiental autorizacao2 = AutorizacaoAmbiental.builder()
+                    .orgaoEmissor("IBAMA")
+                    .dataEmissao(LocalDate.now().minusDays(10))
+                    .validade(LocalDate.now().plusMonths(6))
+                    .situacao(situacaoAutorizacaoAmbientalEnum.ativo)
+                    .observacoes("Levantamento hidrologico com mergulho cientifico.")
+                    .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 2})
+                    .build();
+                AutorizacaoAmbiental autorizacao3 = AutorizacaoAmbiental.builder()
+                    .orgaoEmissor("SUDEMA")
+                    .dataEmissao(LocalDate.now().minusMonths(2))
+                    .validade(LocalDate.now().plusYears(2))
+                    .situacao(situacaoAutorizacaoAmbientalEnum.ativo)
+                    .observacoes("Escavacao paleontologica controlada.")
+                    .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 3})
+                    .build();
+                Relatorio relatorio2 = Relatorio.builder()
+                    .titulo("Analise do Rio Subterraneo")
+                    .Resumo("Resultados da coleta hidrologica e do mapeamento do lencol.")
+                    .dataSubmissao(LocalDate.now().minusDays(2))
+                    .numeroPaginas(30)
+                    .arqCompleto(new byte[]{40, 50, 60})
+                    .publicacaoAprovada(true)
+                    .build();
+                Relatorio relatorio3 = Relatorio.builder()
+                    .titulo("Catalogo de fosseis da Toca")
+                    .Resumo("Catalogacao preliminar dos achados paleontologicos.")
+                    .dataSubmissao(LocalDate.now().minusDays(5))
+                    .numeroPaginas(45)
+                    .arqCompleto(new byte[]{70, 80, 90})
+                    .publicacaoAprovada(true)
+                    .build();
+
+                Expedicao expedicao2 = Expedicao.builder()
+                    .titulo("Mergulho no Rio Subterraneo")
+                    .objetivo("Mapear e coletar agua do aquifero.")
+                    .inicio(LocalDateTime.now().minusHours(1))
+                    .termino(LocalDateTime.now().plusHours(5))
+                    .orcamento(new BigDecimal("15000.00"))
+                    .custo(new BigDecimal("7500.00"))
+                    .qntdParticip(5)
+                    .situacao(situacaoExpedicaoEnum.em_andamento)
+                    .cancelEmerg(false)
+                    .caverna(caverna2)
+                    .planoSeguranca(plano2)
+                    .autorizAmbiental(autorizacao2)
+                    .relatorio(relatorio2)
+                    .participacoes(new ArrayList<>())
+                    .coletasCientificas(new ArrayList<>())
+                    .utilizacoes(new ArrayList<>())
+                    .build();
+                Expedicao expedicao3 = Expedicao.builder()
+                    .titulo("Busca Paleontologica na Toca")
+                    .objetivo("Localizar e documentar fosseis subterraneos.")
+                    .inicio(LocalDateTime.now().minusMonths(1))
+                    .termino(LocalDateTime.now().minusMonths(1).plusDays(5))
+                    .orcamento(new BigDecimal("8000.00"))
+                    .custo(new BigDecimal("8200.00"))
+                    .qntdParticip(8)
+                    .situacao(situacaoExpedicaoEnum.concluida)
+                    .cancelEmerg(false)
+                    .caverna(caverna3)
+                    .planoSeguranca(plano3)
+                    .autorizAmbiental(autorizacao3)
+                    .relatorio(relatorio3)
+                    .participacoes(new ArrayList<>())
+                    .coletasCientificas(new ArrayList<>())
+                    .utilizacoes(new ArrayList<>())
+                    .build();
+
+                Participacao participacao2 = Participacao.builder()
+                    .papelExpedicao(papelExpedicaoEnum.Pesquisador)
+                    .dataConfirmacao(LocalDate.now().minusDays(5))
+                    .valorDiaria(new BigDecimal("400.00"))
+                    .quantidadeDias((short) 4)
+                    .presenca(true)
+                    .observacoes("Especialista responsavel pela geologia.")
+                    .pessoa(pesquisador2)
+                    .expedicao(expedicao2)
+                    .build();
+                Participacao participacao3 = Participacao.builder()
+                    .papelExpedicao(papelExpedicaoEnum.Guia)
+                    .dataConfirmacao(LocalDate.now().minusMonths(2))
+                    .valorDiaria(new BigDecimal("300.00"))
+                    .quantidadeDias((short) 5)
+                    .presenca(true)
+                    .observacoes("Lider de seguranca da equipe.")
+                    .pessoa(guia3)
+                    .expedicao(expedicao3)
+                    .build();
+                expedicao2.addParticipacao(participacao2);
+                expedicao3.addParticipacao(participacao3);
+                pesquisador2.getParticipacoes().add(participacao2);
+                guia3.getParticipacoes().add(participacao3);
+
+                ColetaCientifica coleta2 = ColetaCientifica.builder()
+                    .setor(setor2)
+                    .pesquisador(pesquisador2)
+                    .dataHora(LocalDateTime.now().minusHours(2))
+                    .metodoEmpregado("Mergulho autonomo")
+                    .descricaoPonto("Fundo do lago subterraneo.")
+                    .temperatura(new BigDecimal("18.0"))
+                    .umidadeRelativa(new BigDecimal("100.0"))
+                    .profundidade(new BigDecimal("80.0"))
+                    .observacoes("Amostra de agua coletada em profundidade.")
+                    .situacaoValidacao(situacaoValidacaoColetaEnum.concluido)
+                    .amostras(new ArrayList<>())
+                    .build();
+                ColetaCientifica coleta3 = ColetaCientifica.builder()
+                    .setor(setor3)
+                    .pesquisador(pesquisador3)
+                    .dataHora(LocalDateTime.now().minusMonths(1).plusDays(2))
+                    .metodoEmpregado("Escavacao fina")
+                    .descricaoPonto("Solo argiloso junto a parede norte.")
+                    .temperatura(new BigDecimal("26.5"))
+                    .umidadeRelativa(new BigDecimal("60.0"))
+                    .profundidade(new BigDecimal("15.0"))
+                    .observacoes("Fragmento osseo localizado e catalogado.")
+                    .situacaoValidacao(situacaoValidacaoColetaEnum.concluido)
+                    .amostras(new ArrayList<>())
+                    .build();
+                expedicao2.addColeta(coleta2);
+                expedicao3.addColeta(coleta3);
+                pesquisador2.getColetas().add(coleta2);
+                pesquisador3.getColetas().add(coleta3);
+                setor2.getColetas().add(coleta2);
+                setor3.getColetas().add(coleta3);
+
+                AmostraCientifica amostra2 = AmostraCientifica.builder()
+                    .codAmostra("AM0002")
+                    .categoria(categoriaAmostraEnum.hidrologica)
+                    .massa(0.0)
+                    .volume(500.0)
+                    .unidadeMedida(unidadeMedidaAmostraEnum.ML)
+                    .dataAcondicionamento(LocalDate.now())
+                    .condicaoConservacao(condicaoAmostraEnum.boa)
+                    .materialPerigoso(false)
+                    .fotografiaBinaria(new byte[]{21, 22, 23})
+                    .obsorvacoes("Agua coletada no fundo do lago subterraneo.")
+                    .coleta(coleta2)
+                    .build();
+                AmostraCientifica amostra3 = AmostraCientifica.builder()
+                    .codAmostra("AM0003")
+                    .categoria(categoriaAmostraEnum.paleontologica)
+                    .massa(150.5)
+                    .volume(0.0)
+                    .unidadeMedida(unidadeMedidaAmostraEnum.G)
+                    .dataAcondicionamento(LocalDate.now().minusMonths(1).plusDays(2))
+                    .condicaoConservacao(condicaoAmostraEnum.regular)
+                    .materialPerigoso(true)
+                    .fotografiaBinaria(new byte[]{31, 32, 33})
+                    .obsorvacoes("Fragmento fossil com sedimento aderido.")
+                    .coleta(coleta3)
+                    .build();
+                coleta2.addAmostra(amostra2);
+                coleta3.addAmostra(amostra3);
+
+                UtilizacaoEquipamento utilizacao2 = UtilizacaoEquipamento.builder()
+                    .responsavel(pesquisador2)
+                    .equipamento(equipamento2)
+                    .expedicao(expedicao2)
+                    .dataHoraRetirada(LocalDateTime.now().minusHours(5))
+                    .previsaoDevolucao(LocalDate.now().plusDays(2))
+                    .estadoSaida(estadoEquipamentoEnum.bom)
+                    .build();
+                UtilizacaoEquipamento utilizacao3 = UtilizacaoEquipamento.builder()
+                    .responsavel(guia3)
+                    .equipamento(equipamento3)
+                    .expedicao(expedicao3)
+                    .dataHoraRetirada(LocalDateTime.now().minusMonths(1))
+                    .previsaoDevolucao(LocalDate.now().minusMonths(1).plusDays(5))
+                    .dataDevolucao(LocalDate.now().minusMonths(1).plusDays(6))
+                    .estadoSaida(estadoEquipamentoEnum.bom)
+                    .estadoRetorno(estadoEquipamentoEnum.danificado)
+                    .custoAvaria(new BigDecimal("150.00"))
+                    .build();
+                expedicao2.addUtilizacao(utilizacao2);
+                expedicao3.addUtilizacao(utilizacao3);
+
             em.persist(pessoa);
+            em.persist(pessoa2);
+            em.persist(pessoa3);
             em.persist(pesquisador);
+            em.persist(pesquisador2);
+            em.persist(pesquisador3);
             em.persist(guia);
+            em.persist(guia2);
+            em.persist(guia3);
             em.persist(caverna);
+            em.persist(caverna2);
+            em.persist(caverna3);
             em.persist(equipamento);
+            em.persist(equipamento2);
+            em.persist(equipamento3);
 
             // Persistir a expedição e suas dependências em cascade
             em.persist(expedicao);
+            em.persist(expedicao2);
+            em.persist(expedicao3);
 
             // associar a utilização aos relacionamentos
             expedicao.addUtilizacao(utilizacao);
             equipamento.addEquipamento(utilizacao);
             pessoa.addRetirada(utilizacao);
+            equipamento2.addEquipamento(utilizacao2);
+            pesquisador2.addRetirada(utilizacao2);
+            equipamento3.addEquipamento(utilizacao3);
+            guia3.addRetirada(utilizacao3);
 
             // Persistir a utilização explicitamente
             em.persist(utilizacao);

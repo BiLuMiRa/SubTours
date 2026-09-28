@@ -64,7 +64,7 @@ public class AmostraCientifica {
     private condicaoAmostraEnum condicaoConservacao;
 
     @Column(name = "material_perigoso")
-    private String materialPerigoso;
+    private Boolean materialPerigoso = false;
 
     // @Lob 
     @Basic(fetch = FetchType.LAZY)
