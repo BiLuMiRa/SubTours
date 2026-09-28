@@ -5,8 +5,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.subtours.enums.situacaoExpedicaoEnum;
+import com.subtours.model.AutorizacaoAmbiental;
 import com.subtours.model.Expedicao;
 import com.subtours.model.Participacao;
+import com.subtours.model.PlanoSeguranca;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -43,24 +45,46 @@ public class ExpedicaoRepository {
                 + " | Papel: " + participacao.getPapelExpedicao()
             );
         }
+        System.out.println();
     }
 
 //---------------- Consulta Expedições por período e situação
     public void expedicoesporPeriodoSituacao(LocalDateTime inicio, LocalDateTime termino, situacaoExpedicaoEnum situacao){
         TypedQuery<Object[]> queryExpedicaoPeriodoSituacao =
-            em.createNamedQuery("Select ex.id, ex.titulo, ex.caverna.numCaverna, ex.caverna.nomeCaverna, ex.inicio, ex.termino, ex.situacao From Expedicao ex Where ex.inicio >= :inicio And ex.termino &lt;= :termino And ex.situacao = :situacao Order by ex.inicio", Object[].class).setParameter("inicio", inicio).setParameter("termino", termino).setParameter("situacao", situacao);
+            em.createQuery("Select ex.codExped, ex.titulo, ex.caverna.idCaverna, ex.caverna.nomeCaverna, ex.inicio, ex.termino, ex.situacao From Expedicao ex Where ex.inicio >= :inicio And ex.termino <= :termino And ex.situacao = :situacao Order by ex.inicio", Object[].class).setParameter("inicio", inicio).setParameter("termino", termino).setParameter("situacao", situacao);
 
         List<Object[]> resultados = queryExpedicaoPeriodoSituacao.getResultList();
         System.out.println("=== DETALHES DAS EXPEDIÇÕES ===");
+        System.out.println("Quantidade de resultados: " + resultados.size());
         for (Object[] resultado : resultados) {
-            System.out.println("ID: " + resultado[0]);
+            System.out.println("COD: " + resultado[0]);
             System.out.println("Título: " + resultado[1]);
             System.out.println("ID Caverna: " + resultado[2]);
             System.out.println("Nome Caverna: " + resultado[3]);
             System.out.println("Início: " + resultado[4]);
             System.out.println("Término: " + resultado[5]);
             System.out.println("Situação: " + resultado[6]);
+            System.out.println();
         }
+        System.out.println();
+    }
+
+//---------------- Busca PDF da autorização ambiental da expedição
+    public void buscarPdfAutorizacaoExpedicao(Integer idExpedicao){
+        TypedQuery<Object> queryPdfAutorizacao = em.createQuery("Select e.autorizAmbiental.pdfAssinado From Expedicao e Where e.id = :id", Object.class).setParameter("id", idExpedicao);
+        Object resultado = queryPdfAutorizacao.getSingleResult();
+        System.out.println("=== PDF AUTORIZAÇÃO AMBIENTAL ===");
+        System.out.println("PDF: " + resultado);
+        System.out.println();
+    }
+
+//---------------- Busca mapa do plano de segurança da expedição
+    public void buscarMapaPlanoExpedicao(Integer idExpedicao){
+        TypedQuery<PlanoSeguranca> queryMapaPlano = em.createQuery("Select e.planoSeguranca.mapa From Expedicao e Where e.id = :id", PlanoSeguranca.class).setParameter("id", idExpedicao);
+        PlanoSeguranca resultado = queryMapaPlano.getSingleResult();
+        System.out.println("=== MAPA PLANO DE SEGURANÇA ===");
+        System.out.println("Mapa: " + resultado);
+        System.out.println();
     }
         
 }
