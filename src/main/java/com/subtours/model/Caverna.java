@@ -47,6 +47,9 @@ public class Caverna {
     @Column(name = "uf", length = 2, nullable = false)
     private String uf;
 
+    @Column(name = "altitude", length = 4)
+    private BigDecimal altitude;
+
     @Column(name = "ultima_insp", nullable = false)
     private LocalDate ultimaInsp;
 

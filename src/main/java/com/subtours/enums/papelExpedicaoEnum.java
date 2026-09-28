@@ -10,6 +10,7 @@ public enum papelExpedicaoEnum {
     Socorrista, 
     Fotografo, 
     Apoio_logistico, 
-    Visitante
+    Visitante, 
+    Pesquisador
 
 }
