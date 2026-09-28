@@ -26,7 +26,7 @@ import lombok.experimental.SuperBuilder;
 public class Pesquisador extends Pessoa{
     
     @Column(name = "registro_inst", nullable = false)
-    private short registroInst;
+    private String registroInst;
 
     @Column(name = "area_pesq", nullable = false, length = 30)
     private String areaPesquisa;
