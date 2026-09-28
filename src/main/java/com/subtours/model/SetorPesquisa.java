@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.subtours.enums.condicaoAmostraEnum;
+import com.subtours.enums.condicaoCorrenteEnum;
 import com.subtours.enums.nivelDificuldadeEnum;
 
 import jakarta.persistence.Column;
@@ -60,7 +60,7 @@ public class SetorPesquisa {
     private nivelDificuldadeEnum riscoInundacao;
 
     @Column(name = "condicao_corrente", nullable = false)
-    private condicaoAmostraEnum condicao;
+    private condicaoCorrenteEnum condicao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_caverna", nullable = false,
