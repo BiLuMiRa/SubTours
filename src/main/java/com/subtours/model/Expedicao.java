@@ -38,8 +38,11 @@ import lombok.Setter;
 public class Expedicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_exped")
-    private Integer id;
+    @Column(name = "id_expedicao")
+    private Long idExped;
+
+    @Column(name = "cod_exped", unique = true, nullable = false, length = 14)
+    private String codExped;
 
     @Column(name = "titulo", nullable = false, length = 50)
     private String titulo;
@@ -70,20 +73,20 @@ public class Expedicao {
     private boolean cancelEmerg;
 
     @ManyToOne
-    @JoinColumn(name = "num_carvena", nullable = false,
+    @JoinColumn(name = "carvena_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
     private Caverna caverna;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cod_plan_seg", foreignKey = @ForeignKey(name = "fk_plano_expedicao"))
+    @JoinColumn(name = "plan_seg_id", foreignKey = @ForeignKey(name = "fk_plano_expedicao"))
     private PlanoSeguranca planoSeguranca;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cod_autoriz", foreignKey = @ForeignKey(name = "fk_autorizacao_expedicao"))
+    @JoinColumn(name = "autoriz_id", foreignKey = @ForeignKey(name = "fk_autorizacao_expedicao"))
     private AutorizacaoAmbiental autorizAmbiental;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cod_rel", foreignKey = @ForeignKey(name = "fk_relatorio_expedicao"))
+    @JoinColumn(name = "relat_id", foreignKey = @ForeignKey(name = "fk_relatorio_expedicao"))
     private Relatorio relatorio;
 
     @OneToMany(mappedBy = "expedicao", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

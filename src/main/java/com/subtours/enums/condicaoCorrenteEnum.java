@@ -1,11 +1,11 @@
 package com.subtours.enums;
 
 public enum condicaoCorrenteEnum {
-    umido_escorregadio,
-    alerta_de_cheia,
-    inundado,
-    inacessivel,
-    retricao_biologica,
-    risco_estrutural,
-    excelente
+    UMIDO_ESCORREGADIO,
+    ALERTA_DE_CHEIA,
+    INUNDADO,
+    INACESSIVEL,
+    RETRICAO_BIOLOGICA,
+    RISCO_ESTRUTURAL,
+    EXCELENTE
 }

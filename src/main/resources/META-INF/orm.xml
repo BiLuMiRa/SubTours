@@ -50,26 +50,19 @@
         </query>
     </named-query>
 
-    <!-- Consulta expedições port período e situação -->
-    <named-query name="Expedicoes.porPeriodoSituacao">
+    <named-query name="Expedicao.buscarPlano">
         <query>
-            Select ex.id, ex.titulo, ex.caverna.numCaverna, ex.caverna.nomeCaverna, ex.inicio, ex.termino, ex.situacao
-            From Expedicao ex
-            Where ex.inicio >= :inicio
-            And ex.termino &lt;= :termino
-            And ex.situacao = :situacao
-            Order by ex.inicio
+            SELECT e.planoSeguranca
+            FROM Expedicao e
+            WHERE e.id = :id
         </query>
     </named-query>
 
-    <!-- Consulta dados de uma expedição selecionada, incluindo participantes e seus papéis -->
-    <named-query name="Expedicao.selecionada">
+    <named-query name="Expedicao.buscarAutorizacao">
         <query>
-            Select ex
-            From Expedicao ex
-            Left Join Fetch ex.participacoes p
-            Left Join Fetch p.pessoa
-            Where ex.id = :id
+            SELECT e.autorizAmbiental
+            FROM Expedicao e
+            WHERE e.id = :id
         </query>
     </named-query>
 

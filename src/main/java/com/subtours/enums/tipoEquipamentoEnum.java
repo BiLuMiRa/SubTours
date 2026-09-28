@@ -1,12 +1,12 @@
 package com.subtours.enums;
 
 public enum tipoEquipamentoEnum {
-    topografia,
-    iluminacao,
-    seguranca,
-    navegacao,
-    comunicacao,
-    documentacao,
-    coleta,
-    monitoramento_ambiental
+    TOPOGRAFIA,
+    ILUMINACAO,
+    SEGURANCA,
+    NAVEGACAO,
+    COMUNICACAO,
+    DOCUMENTACAO,
+    COLETA,
+    MONITORAMENTO_AMBIENTAL
 }

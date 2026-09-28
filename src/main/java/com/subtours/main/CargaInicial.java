@@ -1,7 +1,6 @@
 package com.subtours.main;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -70,7 +69,7 @@ public final class CargaInicial {
                 .registroInst((short) 1234)
                 .areaPesquisa("Biologia")
                 .titulacao("Mestrado")
-                .valor_diario_bolsa(BigInteger.valueOf(250))
+                .valor_diario_bolsa(new BigDecimal(250))
                 .coletas(new ArrayList<>())
                 .build();
 
@@ -117,12 +116,12 @@ public final class CargaInicial {
             // 5. Setor de pesquisa
             SetorPesquisa setor = SetorPesquisa.builder()
                 .denominacao("Galeria Principal")
-                .dificuldade(nivelDificuldadeEnum.moderado)
+                .dificuldade(nivelDificuldadeEnum.MODERADO)
                 .profuncidadeMaxima(new BigDecimal("15.5"))
                 .extensao(new BigDecimal("120.0"))
                 .descricao("Setor de acesso para estudos.")
-                .riscoInundacao(nivelDificuldadeEnum.baixo)
-                .condicao(condicaoCorrenteEnum.excelente)
+                .riscoInundacao(nivelDificuldadeEnum.BAIXO)
+                .condicao(condicaoCorrenteEnum.EXCELENTE)
                 .caverna(caverna)
                 .build();
 
@@ -132,12 +131,12 @@ public final class CargaInicial {
             Equipamento equipamento = Equipamento.builder()
                 .codPatrimonial("EQ0001")
                 .nome("Lanterna")
-                .tipo(tipoEquipamentoEnum.iluminacao)
+                .tipo(tipoEquipamentoEnum.ILUMINACAO)
                 .fabricante("Marca Exemplo")
                 .valor(new BigDecimal("250.00"))
                 .dataCompra(LocalDate.of(2025, 1, 10))
                 .situacaoOperacional(
-                    situacaoOperacionalEquipamentoEnum.disponivel)
+                    situacaoOperacionalEquipamentoEnum.DISPONIVEL)
                 .exigeCalibracao(false)
                 .utilizacoes(new ArrayList<>())
                 .build();
@@ -156,10 +155,11 @@ public final class CargaInicial {
             // 8. Autorização ambiental
             AutorizacaoAmbiental autorizacao =
                 AutorizacaoAmbiental.builder()
+                    .numAutoriz(462)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now())
                     .validade(LocalDate.now().plusYears(1))
-                    .situacao(situacaoAutorizacaoAmbientalEnum.ativo)
+                    .situacao(situacaoAutorizacaoAmbientalEnum.ATIVO)
                     .observacoes("Autorização para pesquisa.")
                     .pdfAssinado(new byte[]{1})
                     .build();
@@ -171,11 +171,13 @@ public final class CargaInicial {
                 .dataSubmissao(LocalDate.now())
                 .numeroPaginas(5)
                 .arqCompleto(null)
-                .publicacaoAprovada(false)
+                .situacaoAprovacao(situacaoAprovacaoRelEnum.APROVADO)
+                .publicacaoAprovada(true)
                 .build();
 
             // 10. Expedição
             Expedicao expedicao = Expedicao.builder()
+                .codExped("exped_2025_003")
                 .titulo("Expedição de reconhecimento")
                 .objetivo("Reconhecer e documentar a caverna.")
                 .inicio(LocalDateTime.now())
@@ -183,7 +185,7 @@ public final class CargaInicial {
                 .orcamento(new BigDecimal("1500.00"))
                 .custo(new BigDecimal("500.00"))
                 .qntdParticip(3)
-                .situacao(situacaoExpedicaoEnum.planejada)
+                .situacao(situacaoExpedicaoEnum.PLANEJADA)
                 .cancelEmerg(false)
                 .caverna(caverna)
                 .planoSeguranca(plano)
@@ -196,7 +198,7 @@ public final class CargaInicial {
 
             // 11. Participação
             Participacao participacao = Participacao.builder()
-                .papelExpedicao(papelExpedicaoEnum.Coordenador)
+                .papelExpedicao(papelExpedicaoEnum.COORDENADOR)
                 .dataConfirmacao(LocalDate.now())
                 .valorDiaria(new BigDecimal("200.00"))
                 .quantidadeDias((short) 1)
@@ -221,7 +223,7 @@ public final class CargaInicial {
                 .profundidade(new BigDecimal("2.0"))
                 .observacoes("Coleta para análise.")
                 .situacaoValidacao(
-                    situacaoValidacaoColetaEnum.em_aberto)
+                    situacaoValidacaoColetaEnum.EM_ABERTO)
                 .expedicao(expedicao)
                 .amostras(new ArrayList<>())
                 .build();
@@ -232,12 +234,12 @@ public final class CargaInicial {
             // 13. Amostra científica
             AmostraCientifica amostra = AmostraCientifica.builder()
                 .codAmostra("AM0001")
-                .categoria(categoriaAmostraEnum.biologica)
+                .categoria(categoriaAmostraEnum.BIOLOGICA)
                 .massa(new BigDecimal("10.10"))
                 .volume(null)
                 .unidadeMedida(unidadeMedidaAmostraEnum.G)
                 .dataAcondicionamento(LocalDate.now())
-                .condicaoConservacao(condicaoAmostraEnum.boa)
+                .condicaoConservacao(condicaoAmostraEnum.BOA)
                 .materialPerigoso(false)
                 .fotografiaBinaria(null)
                 .obsorvacoes("Amostra inicial.")
@@ -255,7 +257,7 @@ public final class CargaInicial {
                     .dataHoraRetirada(LocalDateTime.now())
                     .previsaoDevolucao(LocalDate.now().plusDays(1))
                     .dataDevolucao(null)
-                    .estadoSaida(estadoEquipamentoEnum.bom)
+                    .estadoSaida(estadoEquipamentoEnum.BOM)
                     .estadoRetorno(null)
                     .custoAvaria(null)
                     .build();
@@ -294,7 +296,7 @@ public final class CargaInicial {
                     .registroInst((short) 5678)
                     .areaPesquisa("Geologia")
                     .titulacao("Doutorado")
-                    .valor_diario_bolsa(BigInteger.valueOf(400))
+                    .valor_diario_bolsa(new BigDecimal("400"))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -310,7 +312,7 @@ public final class CargaInicial {
                     .registroInst((short) 9101)
                     .areaPesquisa("Arqueologia")
                     .titulacao("Doutorado")
-                    .valor_diario_bolsa(BigInteger.valueOf(350))
+                    .valor_diario_bolsa(new BigDecimal(350))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -373,23 +375,23 @@ public final class CargaInicial {
                     .build();
                 SetorPesquisa setor2 = SetorPesquisa.builder()
                     .denominacao("Salao Submerso")
-                    .dificuldade(nivelDificuldadeEnum.extremo)
+                    .dificuldade(nivelDificuldadeEnum.EXTREMO)
                     .profuncidadeMaxima(new BigDecimal("80.0"))
                     .extensao(new BigDecimal("300.0"))
                     .descricao("Area alagada que exige mergulho especializado.")
-                    .riscoInundacao(nivelDificuldadeEnum.alto)
-                    .condicao(condicaoCorrenteEnum.inundado)
+                    .riscoInundacao(nivelDificuldadeEnum.ALTO)
+                    .condicao(condicaoCorrenteEnum.INUNDADO)
                     .caverna(caverna2)
                     .coletas(new ArrayList<>())
                     .build();
                 SetorPesquisa setor3 = SetorPesquisa.builder()
                     .denominacao("Fosso dos Ossos")
-                    .dificuldade(nivelDificuldadeEnum.alto)
+                    .dificuldade(nivelDificuldadeEnum.ALTO)
                     .profuncidadeMaxima(new BigDecimal("45.0"))
                     .extensao(new BigDecimal("150.0"))
                     .descricao("Sitio de escavacao paleontologica.")
-                    .riscoInundacao(nivelDificuldadeEnum.baixo)
-                    .condicao(condicaoCorrenteEnum.excelente)
+                    .riscoInundacao(nivelDificuldadeEnum.BAIXO)
+                    .condicao(condicaoCorrenteEnum.EXCELENTE)
                     .caverna(caverna3)
                     .coletas(new ArrayList<>())
                     .build();
@@ -399,24 +401,24 @@ public final class CargaInicial {
                 Equipamento equipamento2 = Equipamento.builder()
                     .codPatrimonial("EQ0002")
                     .nome("Medidor multigas")
-                    .tipo(tipoEquipamentoEnum.monitoramento_ambiental)
+                    .tipo(tipoEquipamentoEnum.MONITORAMENTO_AMBIENTAL)
                     .fabricante("SafetyCorp")
                     .valor(new BigDecimal("3500.00"))
                     .dataCompra(LocalDate.of(2024, 5, 20))
                     .dataUltimaManutencao(LocalDate.of(2026, 2, 10))
-                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.em_uso)
+                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.EM_USO)
                     .exigeCalibracao(true)
                     .utilizacoes(new ArrayList<>())
                     .build();
                 Equipamento equipamento3 = Equipamento.builder()
                     .codPatrimonial("EQ0003")
                     .nome("Corda dinamica 100m")
-                    .tipo(tipoEquipamentoEnum.seguranca)
+                    .tipo(tipoEquipamentoEnum.SEGURANCA)
                     .fabricante("ClimbPro")
                     .valor(new BigDecimal("800.00"))
                     .dataCompra(LocalDate.of(2026, 2, 10))
                     .dataUltimaManutencao(LocalDate.of(2026, 3, 1))
-                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.disponivel)
+                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.DISPONIVEL)
                     .exigeCalibracao(false)
                     .utilizacoes(new ArrayList<>())
                     .build();
@@ -438,18 +440,20 @@ public final class CargaInicial {
                     .mapa(new byte[]{7, 8, 9})
                     .build();
                 AutorizacaoAmbiental autorizacao2 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(15)
                     .orgaoEmissor("IBAMA")
                     .dataEmissao(LocalDate.now().minusDays(10))
                     .validade(LocalDate.now().plusMonths(6))
-                    .situacao(situacaoAutorizacaoAmbientalEnum.ativo)
+                    .situacao(situacaoAutorizacaoAmbientalEnum.ATIVO)
                     .observacoes("Levantamento hidrologico com mergulho cientifico.")
                     .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 2})
                     .build();
                 AutorizacaoAmbiental autorizacao3 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(9)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now().minusMonths(2))
                     .validade(LocalDate.now().plusYears(2))
-                    .situacao(situacaoAutorizacaoAmbientalEnum.ativo)
+                    .situacao(situacaoAutorizacaoAmbientalEnum.ATIVO)
                     .observacoes("Escavacao paleontologica controlada.")
                     .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 3})
                     .build();
@@ -459,7 +463,8 @@ public final class CargaInicial {
                     .dataSubmissao(LocalDate.now().minusDays(2))
                     .numeroPaginas(30)
                     .arqCompleto(new byte[]{40, 50, 60})
-                    .publicacaoAprovada(true)
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.REPROVADO)
+                    .publicacaoAprovada(false)
                     .build();
                 Relatorio relatorio3 = Relatorio.builder()
                     .titulo("Catalogo de fosseis da Toca")
@@ -467,10 +472,12 @@ public final class CargaInicial {
                     .dataSubmissao(LocalDate.now().minusDays(5))
                     .numeroPaginas(45)
                     .arqCompleto(new byte[]{70, 80, 90})
-                    .publicacaoAprovada(true)
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.PENDENTE)
+                    .publicacaoAprovada(false)
                     .build();
 
                 Expedicao expedicao2 = Expedicao.builder()
+                    .codExped("exped_2026_001")
                     .titulo("Mergulho no Rio Subterraneo")
                     .objetivo("Mapear e coletar agua do aquifero.")
                     .inicio(LocalDateTime.now().minusHours(1))
@@ -478,7 +485,7 @@ public final class CargaInicial {
                     .orcamento(new BigDecimal("15000.00"))
                     .custo(new BigDecimal("7500.00"))
                     .qntdParticip(5)
-                    .situacao(situacaoExpedicaoEnum.em_andamento)
+                    .situacao(situacaoExpedicaoEnum.EM_ANDAMENTO)
                     .cancelEmerg(false)
                     .caverna(caverna2)
                     .planoSeguranca(plano2)
@@ -489,6 +496,7 @@ public final class CargaInicial {
                     .utilizacoes(new ArrayList<>())
                     .build();
                 Expedicao expedicao3 = Expedicao.builder()
+                    .codExped("exped_2026_002")
                     .titulo("Busca Paleontologica na Toca")
                     .objetivo("Localizar e documentar fosseis subterraneos.")
                     .inicio(LocalDateTime.now().minusMonths(1))
@@ -496,7 +504,7 @@ public final class CargaInicial {
                     .orcamento(new BigDecimal("8000.00"))
                     .custo(new BigDecimal("8200.00"))
                     .qntdParticip(8)
-                    .situacao(situacaoExpedicaoEnum.concluida)
+                    .situacao(situacaoExpedicaoEnum.CONCLUIDA)
                     .cancelEmerg(false)
                     .caverna(caverna3)
                     .planoSeguranca(plano3)
@@ -508,7 +516,7 @@ public final class CargaInicial {
                     .build();
 
                 Participacao participacao2 = Participacao.builder()
-                    .papelExpedicao(papelExpedicaoEnum.Pesquisador)
+                    .papelExpedicao(papelExpedicaoEnum.PESQUISADOR)
                     .dataConfirmacao(LocalDate.now().minusDays(5))
                     .valorDiaria(new BigDecimal("400.00"))
                     .quantidadeDias((short) 4)
@@ -518,7 +526,7 @@ public final class CargaInicial {
                     .expedicao(expedicao2)
                     .build();
                 Participacao participacao3 = Participacao.builder()
-                    .papelExpedicao(papelExpedicaoEnum.Guia)
+                    .papelExpedicao(papelExpedicaoEnum.GUIA)
                     .dataConfirmacao(LocalDate.now().minusMonths(2))
                     .valorDiaria(new BigDecimal("300.00"))
                     .quantidadeDias((short) 5)
@@ -542,7 +550,7 @@ public final class CargaInicial {
                     .umidadeRelativa(new BigDecimal("100.0"))
                     .profundidade(new BigDecimal("80.0"))
                     .observacoes("Amostra de agua coletada em profundidade.")
-                    .situacaoValidacao(situacaoValidacaoColetaEnum.concluido)
+                    .situacaoValidacao(situacaoValidacaoColetaEnum.CONCLUIDO)
                     .amostras(new ArrayList<>())
                     .build();
                 ColetaCientifica coleta3 = ColetaCientifica.builder()
@@ -555,7 +563,7 @@ public final class CargaInicial {
                     .umidadeRelativa(new BigDecimal("60.0"))
                     .profundidade(new BigDecimal("15.0"))
                     .observacoes("Fragmento osseo localizado e catalogado.")
-                    .situacaoValidacao(situacaoValidacaoColetaEnum.concluido)
+                    .situacaoValidacao(situacaoValidacaoColetaEnum.CONCLUIDO)
                     .amostras(new ArrayList<>())
                     .build();
                 expedicao2.addColeta(coleta2);
@@ -567,12 +575,12 @@ public final class CargaInicial {
 
                 AmostraCientifica amostra2 = AmostraCientifica.builder()
                     .codAmostra("AM0002")
-                    .categoria(categoriaAmostraEnum.hidrologica)
+                    .categoria(categoriaAmostraEnum.HIDROLOGICA)
                     .massa(null)
                     .volume(new BigDecimal("500.0"))
                     .unidadeMedida(unidadeMedidaAmostraEnum.ML)
                     .dataAcondicionamento(LocalDate.now())
-                    .condicaoConservacao(condicaoAmostraEnum.boa)
+                    .condicaoConservacao(condicaoAmostraEnum.BOA)
                     .materialPerigoso(false)
                     .fotografiaBinaria(new byte[]{21, 22, 23})
                     .obsorvacoes("Agua coletada no fundo do lago subterraneo.")
@@ -580,12 +588,12 @@ public final class CargaInicial {
                     .build();
                 AmostraCientifica amostra3 = AmostraCientifica.builder()
                     .codAmostra("AM0003")
-                    .categoria(categoriaAmostraEnum.paleontologica)
+                    .categoria(categoriaAmostraEnum.PALEONTOLOGICA)
                     .massa(new BigDecimal("150.5"))
                     .volume(null)
                     .unidadeMedida(unidadeMedidaAmostraEnum.G)
                     .dataAcondicionamento(LocalDate.now().minusMonths(1).plusDays(2))
-                    .condicaoConservacao(condicaoAmostraEnum.regular)
+                    .condicaoConservacao(condicaoAmostraEnum.REGULAR)
                     .materialPerigoso(true)
                     .fotografiaBinaria(new byte[]{31, 32, 33})
                     .obsorvacoes("Fragmento fossil com sedimento aderido.")
@@ -600,7 +608,7 @@ public final class CargaInicial {
                     .expedicao(expedicao2)
                     .dataHoraRetirada(LocalDateTime.now().minusHours(5))
                     .previsaoDevolucao(LocalDate.now().plusDays(2))
-                    .estadoSaida(estadoEquipamentoEnum.bom)
+                    .estadoSaida(estadoEquipamentoEnum.BOM)
                     .build();
                 UtilizacaoEquipamento utilizacao3 = UtilizacaoEquipamento.builder()
                     .responsavel(guia3)
@@ -609,8 +617,8 @@ public final class CargaInicial {
                     .dataHoraRetirada(LocalDateTime.now().minusMonths(1))
                     .previsaoDevolucao(LocalDate.now().minusMonths(1).plusDays(5))
                     .dataDevolucao(LocalDate.now().minusMonths(1).plusDays(6))
-                    .estadoSaida(estadoEquipamentoEnum.bom)
-                    .estadoRetorno(estadoEquipamentoEnum.danificado)
+                    .estadoSaida(estadoEquipamentoEnum.BOM)
+                    .estadoRetorno(estadoEquipamentoEnum.DANIFICADO)
                     .custoAvaria(new BigDecimal("150.00"))
                     .build();
                 expedicao2.addUtilizacao(utilizacao2);

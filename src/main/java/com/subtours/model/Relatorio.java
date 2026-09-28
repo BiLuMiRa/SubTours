@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.hibernate.type.TrueFalseConverter;
 
+import com.subtours.enums.situacaoAprovacaoRelEnum;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,28 +23,31 @@ import lombok.Setter;
 public class Relatorio {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_relatorio")
-    private Integer id;
+    @Column(name = "id_rel")
+    private Long id;
 
-    @Column(name = "titulo", length = 70, nullable = false)
+    @Column(name = "titulo", length = 40, nullable = false)
     private String titulo;
 
     @Column(name = "resumo", length = 250)
     private String Resumo;
 
-    @Column(name = "data_submissao")
+    @Column(name = "data_submissao", nullable = false)
     private LocalDate dataSubmissao;
 
-    @Column(name = "numero_paginas")
+    @Column(name = "num_paginas", nullable = false, length = 3)
     private Integer numeroPaginas;
 
     // @Lob 
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "arquivo_completo", columnDefinition = "bytea")
+    @Column(name = "arq_completo", columnDefinition = "bytea")
     private byte[] arqCompleto;
 
-    @Column(name = "publicacao_aprovada", columnDefinition = "char(1)")
-    @Convert(converter = TrueFalseConverter.class)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private situacaoAprovacaoRelEnum situacaoAprovacao;
+
+    @Column(name = "publicacao_aprovada")
     private Boolean publicacaoAprovada;
 
     @OneToOne(mappedBy = "relatorio")
