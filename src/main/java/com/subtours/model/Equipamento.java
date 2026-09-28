@@ -64,8 +64,9 @@ public class Equipamento {
     @Enumerated(EnumType.STRING)
     private situacaoOperacionalEquipamentoEnum situacaoOperacional;
    
-    @Column(name = "exige_calibracao", nullable = false)
-    private Boolean exigeCalibracao;
+    @Column(name = "exige_calibracao", nullable = false, columnDefinition = "char(1)")
+    @Convert(converter = TrueFalseConverter.class)
+    private Boolean exigeCalibracao = false;
     
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;

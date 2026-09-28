@@ -70,7 +70,7 @@ public class Expedicao {
     private situacaoExpedicaoEnum situacao;
 
     @Column(name = "canclmnt_emerg", nullable = false)
-    private boolean cancelEmerg;
+    private boolean cancelEmerg = false;
 
     @ManyToOne
     @JoinColumn(name = "carvena_id", nullable = false,
