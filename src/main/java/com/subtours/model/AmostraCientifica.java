@@ -74,7 +74,7 @@ public class AmostraCientifica {
     @Column(name = "observacoes", length = 100)
     private String obsorvacoes;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coleta_id", 
         foreignKey = @ForeignKey(name = "FK_coleta_amostra"))
     private ColetaCientifica coleta;
