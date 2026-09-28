@@ -7,12 +7,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.subtours.controller.GenericController;
-import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
+import com.subtours.enums.*;
 import com.subtours.infra.JpaUtil;
 import com.subtours.model.*;
+import com.subtours.repository.ColetaCientificaRepository;
+import com.subtours.repository.EquipamentoRepository;
+import com.subtours.repository.ExpedicaoRepository;
+
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 
 public class Main {
     public static void main(String[] args) {
@@ -67,6 +72,48 @@ public class Main {
             // for (Equipamento e : equipamentos){
             //     System.out.println(e.getNome());
             // }
+            //  yste   Sm.out.println(e.getNome());
+            // }
+
+            //Coleta Científica
+            ColetaCientificaRepository coletaRepo = new ColetaCientificaRepository(em);
+
+            //Lista as coletas de uam expedição com setor e pesquisador reponsável
+            List<ColetaCientifica> ccPorIdExpedicao = coletaRepo.ccPorIdExpedicao(2);
+
+            for(ColetaCientifica cc : ccPorIdExpedicao) {
+                System.out.println(cc.getDescricaoPonto() + "\nSetor:" + cc.getSetor().getDenominacao() + "\nPesquisador: " + cc.getPesquisador().getNome());
+            }
+            
+            //Consulta as amostras pelo id da coleta cientifica 
+            List<AmostraCientifica> acPorIdColetaCientifica = coletaRepo.acPorIdColetaCientifica(1);
+
+            for (AmostraCientifica ac : acPorIdColetaCientifica) {
+                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getIdColeta());
+            }
+
+            //Equipamento
+            EquipamentoRepository equipamentoRep = new EquipamentoRepository(em);
+
+            //Busca equipamentos por situação e um intervalo de data
+            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.DISPONIVEL, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
+
+            for(Equipamento e : equipamentosBuscarSituacaoPorData) {
+                System.out.println(e.getNome());
+            }
+
+//------------------- Consultas de Expedição-------------------------
+            ExpedicaoRepository er = new ExpedicaoRepository(em);
+
+            //Consulta Expedições por período e situação
+            LocalDateTime inicio = LocalDateTime.of(2026, 9, 28, 0, 0, 0);
+            LocalDateTime termino = LocalDateTime.of(2026, 9, 28, 23, 59, 59);
+            situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.PLANEJADA;
+            
+            er.expedicoesporPeriodoSituacao(inicio, termino, situacao);
+
+            //Consulta expedição selecionada, incluindo participantes e seus papéis
+            er.expedicaoSelecionada(1);            
 
 
         } catch (Exception e) {
