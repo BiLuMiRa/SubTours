@@ -12,5 +12,4 @@ public enum papelExpedicaoEnum {
     APOIO_LOGISTICO, 
     VISITANTE, 
     PESQUISADOR
-
 }

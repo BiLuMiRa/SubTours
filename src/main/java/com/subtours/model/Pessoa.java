@@ -34,9 +34,9 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "pessoa")
 public class Pessoa {
     @Id 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pessoa", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "cpf", nullable = false, length = 14, unique = true)
     private String cpf;
@@ -47,7 +47,7 @@ public class Pessoa {
     @Column(name = "dt_nasc", nullable = false)
     private LocalDate datanasc;
     
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, length = 30)
     private String email;
 
     @Column(name = "fone", nullable = false, length = 13)

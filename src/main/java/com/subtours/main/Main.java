@@ -6,20 +6,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.subtours.enums.situacaoExpedicaoEnum;
-import com.subtours.enums.situacaoOperacionalEquipamentoEnum;
+import com.subtours.controller.GenericController;
+import com.subtours.enums.*;
 import com.subtours.infra.JpaUtil;
-import com.subtours.model.AmostraCientifica;
-import com.subtours.model.ColetaCientifica;
-import com.subtours.model.Equipamento;
+import com.subtours.model.*;
 import com.subtours.repository.ColetaCientificaRepository;
 import com.subtours.repository.EquipamentoRepository;
-import com.subtours.model.Expedicao;
-import com.subtours.model.Participacao;
+import com.subtours.repository.ExpedicaoRepository;
+
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.TypedQuery;
 
 public class Main {
     public static void main(String[] args) {
@@ -59,6 +56,10 @@ public class Main {
             //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
             // }
 
+            GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
+            Pessoa p = pessoaController.buscarReferencia(em, 1);
+            System.out.println(p.getNome());
+
             // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
             // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
             // List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
@@ -68,6 +69,8 @@ public class Main {
             //     .getResultList();
             
             // for (Equipamento e : equipamentos){
+            //     System.out.println(e.getNome());
+            // }
             //  yste   Sm.out.println(e.getNome());
             // }
 
@@ -85,7 +88,7 @@ public class Main {
             List<AmostraCientifica> acPorIdColetaCientifica = coletaRepo.acPorIdColetaCientifica(1);
 
             for (AmostraCientifica ac : acPorIdColetaCientifica) {
-                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getId());
+                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getIdColeta());
             }
 
             //Equipamento
@@ -98,52 +101,18 @@ public class Main {
                 System.out.println(e.getNome());
             }
 
-//---------------- Consulta Expedições por período e situação
+//------------------- Consultas de Expedição-------------------------
+            ExpedicaoRepository er = new ExpedicaoRepository(em);
+
+            //Consulta Expedições por período e situação
             LocalDateTime inicio = LocalDateTime.of(2026, 9, 28, 0, 0, 0);
             LocalDateTime termino = LocalDateTime.of(2026, 9, 28, 23, 59, 59);
             situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.PLANEJADA;
-            TypedQuery<Object[]> queryExpedicaoPeriodoSituacao =
-                em.createNamedQuery("Expedicoes.porPeriodoSituacao", Object[].class);
-            queryExpedicaoPeriodoSituacao.setParameter("inicio", inicio);
-            queryExpedicaoPeriodoSituacao.setParameter("termino", termino);
-            queryExpedicaoPeriodoSituacao.setParameter("situacao", situacao);
+            
+            er.expedicoesporPeriodoSituacao(inicio, termino, situacao);
 
-            List<Object[]> resultados = queryExpedicaoPeriodoSituacao.getResultList();
-            System.out.println("=== DETALHES DAS EXPEDIÇÕES ===");
-            for (Object[] resultado : resultados) {
-                System.out.println("ID: " + resultado[0]);
-                System.out.println("Título: " + resultado[1]);
-                System.out.println("ID Caverna: " + resultado[2]);
-                System.out.println("Nome Caverna: " + resultado[3]);
-                System.out.println("Início: " + resultado[4]);
-                System.out.println("Término: " + resultado[5]);
-                System.out.println("Situação: " + resultado[6]);
-            }
-
-// --------------- Consulta expedição selecionada, incluindo participantes e seus papéis
-            TypedQuery<Expedicao> queryExpedicaoParticipantes = 
-                em.createNamedQuery("Expedicao.selecionada", Expedicao.class);
-            queryExpedicaoParticipantes.setParameter("id", 1);
-
-            Expedicao expedicao = queryExpedicaoParticipantes.getSingleResult();
-            System.out.println("=== EXPEDIÇÃO E PARTICIPANTES ===");
-            System.out.println("ID: " + expedicao.getId());
-            System.out.println("Título: " + expedicao.getTitulo());
-            System.out.println("Objetivo: " + expedicao.getObjetivo());
-            System.out.println("Início: " + expedicao.getInicio());
-            System.out.println("Término: " + expedicao.getTermino());
-            System.out.println("Orçamento: " + expedicao.getOrcamento());
-            System.out.println("Custo: " + expedicao.getCusto());
-            System.out.println("Quantidade de participantes: " + expedicao.getQntdParticip());
-            System.out.println("Situação: " + expedicao.getSituacao());
-            System.out.println("Cancelamento emergencial: " + expedicao.isCancelEmerg());
-
-            for (Participacao participacao : expedicao.getParticipacoes()) {
-                System.out.println(
-                    "Participante: " + participacao.getPessoa().getNome()
-                    + " | Papel: " + participacao.getPapelExpedicao()
-                );
-            }
+            //Consulta expedição selecionada, incluindo participantes e seus papéis
+            er.expedicaoSelecionada(1);            
 
 
         } catch (Exception e) {
@@ -151,6 +120,9 @@ public class Main {
             e.printStackTrace();
 
         } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
             if (emf != null && emf.isOpen()) {
                 emf.close();
             }

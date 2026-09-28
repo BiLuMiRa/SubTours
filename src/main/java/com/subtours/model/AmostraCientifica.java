@@ -38,7 +38,7 @@ public class AmostraCientifica {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_amostra")
-    private Integer id;
+    private Long idAmostra;
 
     @Column(name = "cod_amostra", unique = true, nullable = false, length = 6)
     private String codAmostra;
@@ -47,10 +47,10 @@ public class AmostraCientifica {
     @Column(name = "categoria", nullable = false)
     private categoriaAmostraEnum categoria;
 
-    @Column(name = "massa")
+    @Column(name = "massa", precision = 15, scale = 6)
     private BigDecimal massa;
 
-    @Column(name = "volume")
+    @Column(name = "volume", precision = 15, scale = 2)
     private BigDecimal volume;
 
     @Enumerated(EnumType.STRING)

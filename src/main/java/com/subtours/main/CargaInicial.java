@@ -1,7 +1,6 @@
 package com.subtours.main;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -70,7 +69,7 @@ public final class CargaInicial {
                 .registroInst((short) 1234)
                 .areaPesquisa("Biologia")
                 .titulacao("Mestrado")
-                .valor_diario_bolsa(BigInteger.valueOf(250))
+                .valor_diario_bolsa(new BigDecimal(250))
                 .coletas(new ArrayList<>())
                 .build();
 
@@ -156,6 +155,7 @@ public final class CargaInicial {
             // 8. Autorização ambiental
             AutorizacaoAmbiental autorizacao =
                 AutorizacaoAmbiental.builder()
+                    .numAutoriz(462)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now())
                     .validade(LocalDate.now().plusYears(1))
@@ -171,11 +171,13 @@ public final class CargaInicial {
                 .dataSubmissao(LocalDate.now())
                 .numeroPaginas(5)
                 .arqCompleto(null)
-                .publicacaoAprovada(false)
+                .situacaoAprovacao(situacaoAprovacaoRelEnum.APROVADO)
+                .publicacaoAprovada(true)
                 .build();
 
             // 10. Expedição
             Expedicao expedicao = Expedicao.builder()
+                .codExped("exped_2025_003")
                 .titulo("Expedição de reconhecimento")
                 .objetivo("Reconhecer e documentar a caverna.")
                 .inicio(LocalDateTime.now())
@@ -294,7 +296,7 @@ public final class CargaInicial {
                     .registroInst((short) 5678)
                     .areaPesquisa("Geologia")
                     .titulacao("Doutorado")
-                    .valor_diario_bolsa(BigInteger.valueOf(400))
+                    .valor_diario_bolsa(new BigDecimal("400"))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -310,7 +312,7 @@ public final class CargaInicial {
                     .registroInst((short) 9101)
                     .areaPesquisa("Arqueologia")
                     .titulacao("Doutorado")
-                    .valor_diario_bolsa(BigInteger.valueOf(350))
+                    .valor_diario_bolsa(new BigDecimal(350))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -438,6 +440,7 @@ public final class CargaInicial {
                     .mapa(new byte[]{7, 8, 9})
                     .build();
                 AutorizacaoAmbiental autorizacao2 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(15)
                     .orgaoEmissor("IBAMA")
                     .dataEmissao(LocalDate.now().minusDays(10))
                     .validade(LocalDate.now().plusMonths(6))
@@ -446,6 +449,7 @@ public final class CargaInicial {
                     .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 2})
                     .build();
                 AutorizacaoAmbiental autorizacao3 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(9)
                     .orgaoEmissor("SUDEMA")
                     .dataEmissao(LocalDate.now().minusMonths(2))
                     .validade(LocalDate.now().plusYears(2))
@@ -459,7 +463,8 @@ public final class CargaInicial {
                     .dataSubmissao(LocalDate.now().minusDays(2))
                     .numeroPaginas(30)
                     .arqCompleto(new byte[]{40, 50, 60})
-                    .publicacaoAprovada(true)
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.REPROVADO)
+                    .publicacaoAprovada(false)
                     .build();
                 Relatorio relatorio3 = Relatorio.builder()
                     .titulo("Catalogo de fosseis da Toca")
@@ -467,10 +472,12 @@ public final class CargaInicial {
                     .dataSubmissao(LocalDate.now().minusDays(5))
                     .numeroPaginas(45)
                     .arqCompleto(new byte[]{70, 80, 90})
-                    .publicacaoAprovada(true)
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.PENDENTE)
+                    .publicacaoAprovada(false)
                     .build();
 
                 Expedicao expedicao2 = Expedicao.builder()
+                    .codExped("exped_2026_001")
                     .titulo("Mergulho no Rio Subterraneo")
                     .objetivo("Mapear e coletar agua do aquifero.")
                     .inicio(LocalDateTime.now().minusHours(1))
@@ -489,6 +496,7 @@ public final class CargaInicial {
                     .utilizacoes(new ArrayList<>())
                     .build();
                 Expedicao expedicao3 = Expedicao.builder()
+                    .codExped("exped_2026_002")
                     .titulo("Busca Paleontologica na Toca")
                     .objetivo("Localizar e documentar fosseis subterraneos.")
                     .inicio(LocalDateTime.now().minusMonths(1))

@@ -39,7 +39,7 @@ public class Equipamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_equipamento")
-    private Integer id;
+    private Long idEquipamento;
 
     @Column(name = "cod_patrimonial", unique = true, nullable = false, length = 6)
     private String codPatrimonial;
@@ -60,7 +60,7 @@ public class Equipamento {
     @Column(name = "data_compra", nullable = false)
     private LocalDate dataCompra;
 
-    @Column (name = "situacao_operacional", nullable = false, length = 15)
+    @Column (name = "situ_operacional", nullable = false, length = 15)
     @Enumerated(EnumType.STRING)
     private situacaoOperacionalEquipamentoEnum situacaoOperacional;
    
