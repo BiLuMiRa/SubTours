@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import com.subtours.controller.GenericController;
 import com.subtours.embeddable.*;
 import com.subtours.enums.*;
 import com.subtours.model.*;
@@ -18,9 +19,16 @@ public final class CargaInicial {
     private CargaInicial(){}
 
     public static void carregar(UserTransaction tx, EntityManager em){
-
+        
         try{
             tx.begin();
+
+            GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
+            GenericController<Pesquisador> pesquisadorController = new GenericController<>(Pesquisador.class);
+            GenericController<GuiaEspeleologia> guiaController = new GenericController<>(GuiaEspeleologia.class);
+            GenericController<Caverna> cavernaController = new GenericController<>(Caverna.class);
+            GenericController<Equipamento> equipamentoController = new GenericController<>(Equipamento.class);
+            GenericController<Expedicao> expedicaoController = new GenericController<>(Expedicao.class);
 
             // 1. Pessoa
             Pessoa pessoa = Pessoa.builder()
@@ -118,7 +126,7 @@ public final class CargaInicial {
                 .caverna(caverna)
                 .build();
 
-            caverna.getSetores().add(setor);
+            caverna.addSetor(setor);
 
             // 6. Equipamento
             Equipamento equipamento = Equipamento.builder()
@@ -198,8 +206,8 @@ public final class CargaInicial {
                 .expedicao(expedicao)
                 .build();
 
-            expedicao.getParticipacoes().add(participacao);
-            pessoa.getParticipacoes().add(participacao);
+            expedicao.addParticipacao(participacao);
+            pessoa.addParticipacao(participacao);
 
             // 12. Coleta científica
             ColetaCientifica coleta = ColetaCientifica.builder()
@@ -219,14 +227,14 @@ public final class CargaInicial {
                 .build();
 
             expedicao.addColeta(coleta);
-            pesquisador.getColetas().add(coleta);
+            pesquisador.addColeta(coleta);
 
             // 13. Amostra científica
             AmostraCientifica amostra = AmostraCientifica.builder()
                 .codAmostra("AM0001")
                 .categoria(categoriaAmostraEnum.biologica)
-                .massa(10.0)
-                .volume(5.0)
+                .massa(new BigDecimal("10.10"))
+                .volume(null)
                 .unidadeMedida(unidadeMedidaAmostraEnum.G)
                 .dataAcondicionamento(LocalDate.now())
                 .condicaoConservacao(condicaoAmostraEnum.boa)
@@ -236,7 +244,7 @@ public final class CargaInicial {
                 .coleta(coleta)
                 .build();
 
-            coleta.getAmostras().add(amostra);
+            coleta.addAmostra(amostra);
 
             // 14. Utilização de equipamento
             UtilizacaoEquipamento utilizacao =
@@ -385,8 +393,8 @@ public final class CargaInicial {
                     .caverna(caverna3)
                     .coletas(new ArrayList<>())
                     .build();
-                caverna2.getSetores().add(setor2);
-                caverna3.getSetores().add(setor3);
+                caverna2.addSetor(setor2);
+                caverna3.addSetor(setor3);
 
                 Equipamento equipamento2 = Equipamento.builder()
                     .codPatrimonial("EQ0002")
@@ -521,8 +529,8 @@ public final class CargaInicial {
                     .build();
                 expedicao2.addParticipacao(participacao2);
                 expedicao3.addParticipacao(participacao3);
-                pesquisador2.getParticipacoes().add(participacao2);
-                guia3.getParticipacoes().add(participacao3);
+                pesquisador2.addParticipacao(participacao2);
+                guia3.addParticipacao(participacao3);
 
                 ColetaCientifica coleta2 = ColetaCientifica.builder()
                     .setor(setor2)
@@ -552,16 +560,16 @@ public final class CargaInicial {
                     .build();
                 expedicao2.addColeta(coleta2);
                 expedicao3.addColeta(coleta3);
-                pesquisador2.getColetas().add(coleta2);
-                pesquisador3.getColetas().add(coleta3);
-                setor2.getColetas().add(coleta2);
-                setor3.getColetas().add(coleta3);
+                pesquisador2.addColeta(coleta2);
+                pesquisador3.addColeta(coleta3);
+                setor2.addColeta(coleta2);
+                setor3.addColeta(coleta3);
 
                 AmostraCientifica amostra2 = AmostraCientifica.builder()
                     .codAmostra("AM0002")
                     .categoria(categoriaAmostraEnum.hidrologica)
-                    .massa(0.0)
-                    .volume(500.0)
+                    .massa(null)
+                    .volume(new BigDecimal("500.0"))
                     .unidadeMedida(unidadeMedidaAmostraEnum.ML)
                     .dataAcondicionamento(LocalDate.now())
                     .condicaoConservacao(condicaoAmostraEnum.boa)
@@ -573,8 +581,8 @@ public final class CargaInicial {
                 AmostraCientifica amostra3 = AmostraCientifica.builder()
                     .codAmostra("AM0003")
                     .categoria(categoriaAmostraEnum.paleontologica)
-                    .massa(150.5)
-                    .volume(0.0)
+                    .massa(new BigDecimal("150.5"))
+                    .volume(null)
                     .unidadeMedida(unidadeMedidaAmostraEnum.G)
                     .dataAcondicionamento(LocalDate.now().minusMonths(1).plusDays(2))
                     .condicaoConservacao(condicaoAmostraEnum.regular)
@@ -608,27 +616,6 @@ public final class CargaInicial {
                 expedicao2.addUtilizacao(utilizacao2);
                 expedicao3.addUtilizacao(utilizacao3);
 
-            em.persist(pessoa);
-            em.persist(pessoa2);
-            em.persist(pessoa3);
-            em.persist(pesquisador);
-            em.persist(pesquisador2);
-            em.persist(pesquisador3);
-            em.persist(guia);
-            em.persist(guia2);
-            em.persist(guia3);
-            em.persist(caverna);
-            em.persist(caverna2);
-            em.persist(caverna3);
-            em.persist(equipamento);
-            em.persist(equipamento2);
-            em.persist(equipamento3);
-
-            // Persistir a expedição e suas dependências em cascade
-            em.persist(expedicao);
-            em.persist(expedicao2);
-            em.persist(expedicao3);
-
             // associar a utilização aos relacionamentos
             expedicao.addUtilizacao(utilizacao);
             equipamento.addEquipamento(utilizacao);
@@ -637,21 +624,38 @@ public final class CargaInicial {
             pesquisador2.addRetirada(utilizacao2);
             equipamento3.addEquipamento(utilizacao3);
             guia3.addRetirada(utilizacao3);
+            
+            pessoaController.criar(em, pessoa);
+            pessoaController.criar(em, pessoa2);
+            pessoaController.criar(em, pessoa3);
+           
+            pesquisadorController.criar(em, pesquisador);
+            pesquisadorController.criar(em, pesquisador2);
+            pesquisadorController.criar(em, pesquisador3);
+            
+            guiaController.criar(em, guia);
+            guiaController.criar(em, guia2);
+            guiaController.criar(em, guia3);
+            
+            cavernaController.criar(em, caverna);
+            cavernaController.criar(em, caverna2);
+            cavernaController.criar(em, caverna3);
+           
+            equipamentoController.criar(em, equipamento);
+            equipamentoController.criar(em, equipamento2);
+            equipamentoController.criar(em, equipamento3);
 
-            // Persistir a utilização explicitamente
-            em.persist(utilizacao);
+            expedicaoController.criar(em, expedicao);
+            expedicaoController.criar(em, expedicao2);
+            expedicaoController.criar(em, expedicao3);            
 
             tx.commit();
-        }catch (Exception e) {
+        } catch (Exception e) {
             try {
                 tx.rollback();
             } catch (Exception rollbackError) {
-                rollbackError.printStackTrace();
+                e.addSuppressed(rollbackError);
             }
-            e.printStackTrace();
-        } finally {
-            em.close();
         }
-
     }
 }

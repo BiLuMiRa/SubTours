@@ -10,4 +10,44 @@
         </query>
     </named-query>
 
+    <!-- Consulta as coletas pelo id da expedicao  -->
+    <named-query name="ColetaCientifica.PorIdExpedicao">
+        <query>
+        Select cc
+        From ColetaCientifica cc 
+        Join Fetch cc.setor
+        Join Fetch cc.pesquisador
+        Where cc.expedicao.id = :id
+        </query>
+    </named-query>
+
+    <!-- Consulta as amostras pelo id da coleta cientifica  -->
+    <named-query name="Amostras.PorIdColeta">
+        <query>
+        Select ac
+        From AmostraCientifica ac 
+        Where ac.coleta.id = :id
+        </query>
+    </named-query>
+
+    <!-- Consulta equipamentos por situacao em um intervalo de data  -->
+    <named-query name="Equipamentos.buscaSituacaoPorData">
+        <query> 
+        <!-- Sem esse CDATA da problema com o > e < -->
+            <![CDATA[
+            Select e
+            From Equipamento e
+            Where e.situacaoOperacional like :situacao AND NOT EXISTS (
+                Select ue
+                From UtilizacaoEquipamento ue
+                where ue.equipamento = e AND ue.dataHoraRetirada < :dataFim
+                AND (ue.dataDevolucao IS NULL AND ue.previsaoDevolucao > :dataInicio
+                    OR 
+                    ue.dataDevolucao > :dataInicio
+                )
+            )
+            ]]>
+        </query>
+    </named-query>
+
 </entity-mappings>

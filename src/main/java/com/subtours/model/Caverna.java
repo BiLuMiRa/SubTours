@@ -64,4 +64,13 @@ public class Caverna {
 
     @OneToMany(mappedBy = "caverna", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SetorPesquisa> setores = new ArrayList<>();
+
+    public boolean addSetor(SetorPesquisa sp){
+        if(this.setores != null && sp != null){
+            this.setores.add(sp);
+            sp.setCaverna(this);
+            return true;
+        }
+        return false;
+    }
 }

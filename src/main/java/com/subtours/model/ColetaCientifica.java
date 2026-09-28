@@ -27,14 +27,13 @@ public class ColetaCientifica {
     @Column(name = "id_coletaCientifica")
     private Integer id;
 
-    // FAZER O RELACIONAMENTO COM SETOR 
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "setor_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_setor_coleta")
     )
     private SetorPesquisa setor;
 
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pesquisador_id", nullable = false,
         foreignKey = @ForeignKey(name = "FK_pesquisador")
     )
@@ -55,7 +54,7 @@ public class ColetaCientifica {
     @Column(name = "umidadeRelativa", nullable = false)
     private BigDecimal umidadeRelativa;
 
-    @Column(name = "profundidade")
+    @Column(name = "profundidade", nullable = false)
     private BigDecimal profundidade;
 
     @Column(name = "observacoes", length = 150)
@@ -68,7 +67,7 @@ public class ColetaCientifica {
     @OneToMany(mappedBy = "coleta", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AmostraCientifica> amostras = new ArrayList<>();
 
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expedicao_id", 
         foreignKey = @ForeignKey(name = "FK_coleta_expedicao"))
     private Expedicao expedicao;

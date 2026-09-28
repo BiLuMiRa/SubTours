@@ -40,4 +40,13 @@ public class Pesquisador extends Pessoa{
 
     @OneToMany(mappedBy = "pesquisador")
     private List<ColetaCientifica>coletas = new ArrayList<>();
+
+    public boolean addColeta(ColetaCientifica cc){
+        if(this.coletas != null && cc != null){
+            this.coletas.add(cc);
+            cc.setPesquisador(this);
+            return true;
+        }
+        return false;
+    }
 }
