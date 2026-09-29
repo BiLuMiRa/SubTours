@@ -48,7 +48,7 @@ public class ExpedicaoRepository {
 //---------------- Consulta Expedições por período e situação
     public void expedicoesporPeriodoSituacao(LocalDateTime inicio, LocalDateTime termino, situacaoExpedicaoEnum situacao){
         TypedQuery<Object[]> queryExpedicaoPeriodoSituacao =
-            em.createNamedQuery("Select ex.id, ex.titulo, ex.caverna.numCaverna, ex.caverna.nomeCaverna, ex.inicio, ex.termino, ex.situacao From Expedicao ex Where ex.inicio >= :inicio And ex.termino &lt;= :termino And ex.situacao = :situacao Order by ex.inicio", Object[].class).setParameter("inicio", inicio).setParameter("termino", termino).setParameter("situacao", situacao);
+            em.createQuery("Select ex.idExped, ex.titulo, ex.caverna.idCaverna, ex.caverna.nomeCaverna, ex.inicio, ex.termino, ex.situacao From Expedicao ex Where ex.inicio >= :inicio And ex.termino <= :termino And ex.situacao = :situacao Order by ex.inicio", Object[].class).setParameter("inicio", inicio).setParameter("termino", termino).setParameter("situacao", situacao);
 
         List<Object[]> resultados = queryExpedicaoPeriodoSituacao.getResultList();
         System.out.println("=== DETALHES DAS EXPEDIÇÕES ===");
