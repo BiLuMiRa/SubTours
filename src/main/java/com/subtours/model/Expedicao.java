@@ -72,7 +72,7 @@ public class Expedicao {
     @Column(name = "canclmnt_emerg", nullable = false)
     private boolean cancelEmerg;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carvena_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_caverna_expedicao"))
     private Caverna caverna;

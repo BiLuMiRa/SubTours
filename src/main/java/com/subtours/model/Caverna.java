@@ -47,7 +47,7 @@ public class Caverna {
     @Column(name = "uf", length = 2, nullable = false)
     private String uf;
 
-    @Column(name = "altitude", length = 4)
+    @Column(name = "altitude", length = 4, precision = 8, scale = 2)
     private BigDecimal altitude;
 
     @Column(name = "ultima_insp", nullable = false)
@@ -56,7 +56,7 @@ public class Caverna {
     @Column(name = "ind_acesso", nullable = false)
     private Boolean indAcesso = true;
 
-    @Column(name = "extensao")
+    @Column(name = "extensao", precision = 12, scale = 3)
     private BigDecimal extensao;
 
     @Embedded 

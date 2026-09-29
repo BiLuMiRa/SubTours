@@ -9,6 +9,7 @@ import com.subtours.model.AutorizacaoAmbiental;
 import com.subtours.model.Expedicao;
 import com.subtours.model.Participacao;
 import com.subtours.model.PlanoSeguranca;
+import com.subtours.model.Relatorio;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -71,7 +72,7 @@ public class ExpedicaoRepository {
 
 //---------------- Busca PDF da autorização ambiental da expedição
     public void buscarPdfAutorizacaoExpedicao(Integer idExpedicao){
-        TypedQuery<Object> queryPdfAutorizacao = em.createQuery("Select e.autorizAmbiental.pdfAssinado From Expedicao e Where e.id = :id", Object.class).setParameter("id", idExpedicao);
+        TypedQuery<Object> queryPdfAutorizacao = em.createQuery("Select e.autorizAmbiental.pdfAssinado From Expedicao e Where e.idExped = :id", Object.class).setParameter("id", idExpedicao);
         Object resultado = queryPdfAutorizacao.getSingleResult();
         System.out.println("=== PDF AUTORIZAÇÃO AMBIENTAL ===");
         System.out.println("PDF: " + resultado);
@@ -80,11 +81,19 @@ public class ExpedicaoRepository {
 
 //---------------- Busca mapa do plano de segurança da expedição
     public void buscarMapaPlanoExpedicao(Integer idExpedicao){
-        TypedQuery<PlanoSeguranca> queryMapaPlano = em.createQuery("Select e.planoSeguranca.mapa From Expedicao e Where e.id = :id", PlanoSeguranca.class).setParameter("id", idExpedicao);
+        TypedQuery<PlanoSeguranca> queryMapaPlano = em.createQuery("Select e.planoSeguranca.mapa From Expedicao e Where e.idExped = :id", PlanoSeguranca.class).setParameter("id", idExpedicao);
         PlanoSeguranca resultado = queryMapaPlano.getSingleResult();
         System.out.println("=== MAPA PLANO DE SEGURANÇA ===");
         System.out.println("Mapa: " + resultado);
         System.out.println();
     }
-        
+
+//---------------- Busca arquivo completo do relatório da expedição
+    public void buscarArqRelatorioExpedicao(Integer idExpedicao){
+        TypedQuery<byte[]> queryArqRelatorio = em.createQuery("Select e.relatorio.arqCompleto From Expedicao e Where e.idExped = :id", byte[].class).setParameter("id", idExpedicao);
+        byte[] resultado = queryArqRelatorio.getSingleResult();
+        System.out.println("=== ARQUIVO COMPLETO DO RELATÓRIO ===");
+        System.out.println("Arquivo: " + (resultado != null));
+        System.out.println();
+    }
 }

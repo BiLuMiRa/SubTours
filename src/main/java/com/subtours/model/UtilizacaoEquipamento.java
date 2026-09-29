@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,17 +38,17 @@ public class UtilizacaoEquipamento {
     @Column(name = "id_utlz_equipamento")
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "responsavel_id", nullable = false, 
         foreignKey = @ForeignKey(name = "fk_responsavel"))
     private Pessoa responsavel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equip_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_usa_equipamento_expedicao"))
     private Equipamento equipamento;
 
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exped_id", nullable = false,
         foreignKey = @ForeignKey(name = "fk_expedicao_usa_equipamento"))
     private Expedicao expedicao;

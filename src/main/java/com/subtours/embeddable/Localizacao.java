@@ -21,10 +21,10 @@ import lombok.Setter;
 @Embeddable 
 public class Localizacao {
     
-        @Column(name = "latitude", nullable = false)
+        @Column(name = "latitude", nullable = false, precision = 9, scale = 6)
         private BigDecimal latitude;
 
-        @Column(name = "longitude", nullable = false)
+        @Column(name = "longitude", nullable = false, precision = 10, scale = 6)
         private BigDecimal longitude;
 
         @Enumerated(EnumType.STRING)

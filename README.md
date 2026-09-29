@@ -12,6 +12,13 @@
 - Expedicao --> Caverna : Uma expedição acontece em apenas uma caverna, enquanto uma caverna pode receber várias expedições. Nesse caso, expedição é o lado ManyToOne, portanto é o que recebe a chave estrangeira
 - Expedicao <--> Relatorio : Expedicao é owner da FK física.
 - SetorPesquisa --> Caverna: SetorPesquisa é o owner da relação, pois cada setor possui apenas uma caverna.
+- ColetaCientifica --> SetorPesquisa: ColetaCientifica é o owner da relação, pois cada coleta é realizada em um setor específico. 
+- ColetaCientifica --> Pesquisador: ColetaCientifica é o owner, pois cada coleta possui um pesquisador responsável.
+- ColetaCientifica --> Expedicao: Uma expedição pode possuir várias coletas. Então, ColetaCientifica é o owner, pois possui ManyToOne e é quem recebe a chave estrangeira.
+- AmostraCientifica --> ColetaCientifica: Uma coleta pode ter várias amostras e várias amostras podem ser feitas em uma única coleta. Nesse caso, AmostraCientifica é o owner, pois possui o lado ManyToOne, que recebe a chave estrangeira.
+- UtilizacaoEquipamento --> Expedicao: UtilizacaoEquipamento é o owner da relação, pois cada utilização está vinculada a uma única expedição, enquanto uma expedição pode registrar várias utilizações de equipamentos. Portanto, faz sentido que UtilizacaoEquipamento tenha a chave estrangeira.
+- UtilizacaoEquipamento → Equipamento: UtilizacaoEquipamento é o owner da relação, pois cada utilização se refere a um único equipamento, enquanto um equipamento pode ser utilizado em várias expedições. Portanto, faz sentido que UtilizacaoEquipamento tenha a chave estrangeira.
+- UtilizacaoEquipamento → Pessoa: UtilizacaoEquipamento é o owner da relação, pois cada utilização possui uma única pessoa responsável, enquanto uma pessoa pode ser responsável por várias utilizações. Portanto, faz sentido que UtilizacaoEquipamento tenha a chave estrangeira.
 
 ### Cascatas
 - Expedição --> Coletas científicas (cascade = CascadeType.ALL): As coletas científicas têm ciclo de vida totalmente dependente da expedição onde foram efetuadas.
@@ -20,6 +27,7 @@
 - Expedicao --> AutorizacaoAmbiental (cascade = CascadeType.ALL) : Autorização Ambiental possue composição e ciclo de vida estreitamente atrelados à expedição
 - Expedicao --> Relatorio (cascade = CascadeType.ALL) : Relatório possue composição e ciclo de vida estreitamente atrelados à expedição
 - Caverna --> SetorPesquisa (cascade = CascadeType.ALL) : Um setor não possui significado ou utilidade sem estar atrelado a uma caverna.
+- ColetaCientifica --> AmostraCientifica (CascadeType.ALL): permite persistir, atualizar e remover amostras a partir da coleta à qual pertencem.
 
 ### OrphanRemoval
 - Expedicao --> PlanoSeguranca (orphanRemoval = true): Permite a substituição ou desvinculação do plano na expedição (expedicao.setPlanoSeguranca(null)), garantindo que o registro do plano antigo seja deletado fisicamente do PostgreSQL em vez de permanecer como dado órfão no banco.
@@ -28,6 +36,7 @@
 - Expedição --> Coletas científicas (orphanRemoval = true) : Garante que a remoção de um item de movimentação diretamente da coleção Java dispare a exclusão física da linha na respectiva tabela do banco de dados.
 - Expedição --> Utilizações (orphanRemoval = true) : Garante que a remoção de um item de movimentação diretamente da coleção Java dispare a exclusão física da linha na respectiva tabela do banco de dados.
 - Caverna --> SetorPesquisa (orphanRemoval = true) : Garante que se uma caverna for delatada todos os seus setores são apagados e se um setor for retirado da lista da caverna, ele seja removido fisicamente do banco de dados.
+- ColetaCientifica --> AmostraCientifica (orphanRemoval = true): Garante que ao remover uma amostra da coleção da coleta, seu registro seja excluído fisicamente do banco de dados.
 
 ## Fetch
 - Relacionamentos @OneToOne e @ManyToOne: Todos os relacionamentos de entidade única foram explicitamente definidos como FetchType.LAZY (ex: Caverna, PlanoSeguranca, Relatorio). Essa prática substitui o padrão default EAGER do JPA para esses mapeamentos, evitando o problema de consultas N+1 e carregamentos desnecessários em memória ao listar expedições.
