@@ -10,6 +10,7 @@ import com.subtours.controller.GenericController;
 import com.subtours.enums.*;
 import com.subtours.infra.JpaUtil;
 import com.subtours.model.*;
+import com.subtours.repository.CavernaRepository;
 import com.subtours.repository.ColetaCientificaRepository;
 import com.subtours.repository.EquipamentoRepository;
 import com.subtours.repository.ExpedicaoRepository;
@@ -123,6 +124,15 @@ public class Main {
 
             //Busca arquivo completo do relatório da expedição
             er.buscarArqRelatorioExpedicao(1);
+
+//------------------- Consultas de Cavernas-------------------------
+            CavernaRepository cr = new CavernaRepository(em);
+
+            //Busca cavernas que estão acessíveis atualmente
+            cr.cavernasAcessiveis();
+
+            //Busca cavernas com inspeção vencida
+            cr.cavernaInspVencida(LocalDate.of(2026, 04, 01));
 
 
         } catch (Exception e) {
