@@ -54,7 +54,7 @@ public class Equipamento {
     @Column(name = "fabricante", length = 50)
     private String fabricante;
 
-    @Column(name = "valor", nullable = false)
+    @Column(name = "valor", nullable = false, precision = 15, scale = 2)
     private BigDecimal valor;
 
     @Column(name = "data_compra", nullable = false)

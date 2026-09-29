@@ -170,7 +170,7 @@ public final class CargaInicial {
                 .Resumo("Registro inicial das atividades.")
                 .dataSubmissao(LocalDate.now())
                 .numeroPaginas(5)
-                .arqCompleto(null)
+                .arqCompleto(new byte[]{40, 50, 60})
                 .situacaoAprovacao(situacaoAprovacaoRelEnum.APROVADO)
                 .publicacaoAprovada(true)
                 .build();
@@ -471,7 +471,7 @@ public final class CargaInicial {
                     .Resumo("Catalogacao preliminar dos achados paleontologicos.")
                     .dataSubmissao(LocalDate.now().minusDays(5))
                     .numeroPaginas(45)
-                    .arqCompleto(new byte[]{70, 80, 90})
+                    .arqCompleto(null)
                     .situacaoAprovacao(situacaoAprovacaoRelEnum.PENDENTE)
                     .publicacaoAprovada(false)
                     .build();

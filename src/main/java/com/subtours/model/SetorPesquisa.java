@@ -46,10 +46,10 @@ public class SetorPesquisa {
     @Column(name = "nivel_dificuldade", nullable = false)
     private nivelDificuldadeEnum dificuldade;
 
-    @Column(name = "profuncidade_maxima", nullable = false)
+    @Column(name = "profuncidade_maxima", nullable = false, precision = 10, scale = 3)
     private BigDecimal profuncidadeMaxima;
 
-    @Column(name = "extensao", nullable = false)
+    @Column(name = "extensao", nullable = false, precision = 12, scale = 3)
     private BigDecimal extensao;
 
     @Column(name = "descricao", length = 70)
