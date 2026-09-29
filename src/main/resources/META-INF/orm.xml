@@ -4,49 +4,21 @@
                   xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm
                       https://jakarta.ee/xml/ns/persistence/orm/orm_3_1.xsd"
                   version="3.1">
-    <named-query name="Equipamento.todos">
+
+    <!-- Select completo por entidade -->
+
+    <named-query name="Caverna.buscarAcessiveis">
         <query>
-        Select e From Equipamento e
+        Select c From Caverna c where c.indAcesso = true
         </query>
     </named-query>
 
-    <!-- Consulta as coletas pelo id da expedicao  -->
-    <named-query name="ColetaCientifica.PorIdExpedicao">
+    <named-query name="Caverna.buscarInspecaoVencida">
         <query>
-        Select cc
-        From ColetaCientifica cc 
-        Join Fetch cc.setor
-        Join Fetch cc.pesquisador
-        Where cc.expedicao.id = :id
+        <![CDATA[
+            SELECT c FROM Caverna c WHERE c.ultimaInsp < :dataLimite
+        ]]>
         </query>
     </named-query>
 
-    <!-- Consulta as amostras pelo id da coleta cientifica  -->
-    <named-query name="Amostras.PorIdColeta">
-        <query>
-        Select ac
-        From AmostraCientifica ac 
-        Where ac.coleta.id = :id
-        </query>
-    </named-query>
-
-    <!-- Consulta equipamentos por situacao em um intervalo de data  -->
-    <named-query name="Equipamentos.buscaSituacaoPorData">
-        <query> 
-        <!-- Sem esse CDATA da problema com o > e < -->
-            <![CDATA[
-            Select e
-            From Equipamento e
-            Where e.situacaoOperacional like :situacao AND NOT EXISTS (
-                Select ue
-                From UtilizacaoEquipamento ue
-                where ue.equipamento = e AND ue.dataHoraRetirada < :dataFim
-                AND (ue.dataDevolucao IS NULL AND ue.previsaoDevolucao > :dataInicio
-                    OR 
-                    ue.dataDevolucao > :dataInicio
-                )
-            )
-            ]]>
-        </query>
-    </named-query>
 </entity-mappings>
