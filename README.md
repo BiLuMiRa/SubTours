@@ -42,3 +42,6 @@
 - Relacionamentos @OneToOne e @ManyToOne: Todos os relacionamentos de entidade única foram explicitamente definidos como FetchType.LAZY (ex: Caverna, PlanoSeguranca, Relatorio). Essa prática substitui o padrão default EAGER do JPA para esses mapeamentos, evitando o problema de consultas N+1 e carregamentos desnecessários em memória ao listar expedições.
 - Coleções @OneToMany: Mantidos com o padrão intrínseco LAZY.
 - Otimização Especial de Mídia/BLOB: Os campos binários e a lista de utilizações em Equipamento foram configurados como LAZY. Isso assegura que arquivos binários pesados e o histórico de movimentações dos equipamentos não sejam trazidos do banco durante buscas simples do sistema.
+
+## UniqueConstraint
+- Participação: Garante que não haja repetição dos valores de uma coluna específica ou combinação de colunas. No caso de participação, assegura que uma pessoa não possa ser cadastrada mais de uma vez na mesma expedição.
