@@ -107,13 +107,19 @@ public class Main {
 
             //Consulta Expedições por período e situação
             LocalDateTime inicio = LocalDateTime.of(2026, 9, 28, 0, 0, 0);
-            LocalDateTime termino = LocalDateTime.of(2026, 9, 28, 23, 59, 59);
+            LocalDateTime termino = LocalDateTime.of(2026, 9, 29, 23, 59, 59);
             situacaoExpedicaoEnum situacao = situacaoExpedicaoEnum.PLANEJADA;
             
             er.expedicoesporPeriodoSituacao(inicio, termino, situacao);
 
             //Consulta expedição selecionada, incluindo participantes e seus papéis
-            er.expedicaoSelecionada(1);            
+            er.expedicaoSelecionada(1);    
+            
+            //Busca PDF da autorização ambiental da expedição
+            er.buscarPdfAutorizacaoExpedicao(1);
+
+            //Busca mapa do plano de segurança da expedição
+            er.buscarMapaPlanoExpedicao(1);
 
 
         } catch (Exception e) {
