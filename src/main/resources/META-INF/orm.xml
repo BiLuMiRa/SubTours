@@ -49,21 +49,4 @@
             ]]>
         </query>
     </named-query>
-
-    <named-query name="Expedicao.buscarPlano">
-        <query>
-            SELECT e.planoSeguranca
-            FROM Expedicao e
-            WHERE e.id = :id
-        </query>
-    </named-query>
-
-    <named-query name="Expedicao.buscarAutorizacao">
-        <query>
-            SELECT e.autorizAmbiental
-            FROM Expedicao e
-            WHERE e.id = :id
-        </query>
-    </named-query>
-
 </entity-mappings>
