@@ -284,6 +284,35 @@ public final class CargaInicial {
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .build();
+                Pessoa pessoa4 = Pessoa.builder()
+                    .cpf("22233344455")
+                    .nome("Mariana Silva")
+                    .datanasc(LocalDate.of(1990, 3, 18))
+                    .email("mariana.silva@email.com")
+                    .telefone("83955556666")
+                    .ativo(true)
+                    .endereco(Endereco.builder()
+                        .logradouro("Rua da Areia").numero(210)
+                        .bairro("Centro").cidade("Joao Pessoa")
+                        .unidadeFed("PB").cep("58010010").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .build();
+
+                Pessoa pessoa5 = Pessoa.builder()
+                    .cpf("33344455566")
+                    .nome("Pedro Henrique")
+                    .datanasc(LocalDate.of(1988, 8, 9))
+                    .email("pedro.henrique@email.com")
+                    .telefone("83977778888")
+                    .ativo(true)
+                    .endereco(Endereco.builder()
+                        .logradouro("Rua das Flores").numero(75)
+                        .bairro("Manaira").cidade("Joao Pessoa")
+                        .unidadeFed("PB").cep("58038020").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .build();
 
                 Pesquisador pesquisador2 = Pesquisador.builder()
                     .cpf("11122233344")
@@ -313,6 +342,40 @@ public final class CargaInicial {
                     .areaPesquisa("Arqueologia")
                     .titulacao("Doutorado")
                     .valor_diario_bolsa(new BigDecimal(350))
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .coletas(new ArrayList<>())
+                    .build();
+
+                Pesquisador pesquisador4 = Pesquisador.builder()
+                    .cpf("44433322211")
+                    .nome("Camila Ferreira")
+                    .datanasc(LocalDate.of(1987, 6, 22))
+                    .email("camila.ferreira@email.com")
+                    .telefone("83912121212")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Rua dos Ipês").numero(90).bairro("Bancarios").cidade("Joao Pessoa").unidadeFed("PB").cep("58051020").build())
+                    .registroInst((short) 2345)
+                    .areaPesquisa("Biologia")
+                    .titulacao("Mestrado")
+                    .valor_diario_bolsa(new BigDecimal("320.00"))
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .coletas(new ArrayList<>())
+                    .build();
+
+                Pesquisador pesquisador5 = Pesquisador.builder()
+                    .cpf("55566677788")
+                    .nome("Rafael Nascimento")
+                    .datanasc(LocalDate.of(1983, 11, 3))
+                    .email("rafael.nascimento@email.com")
+                    .telefone("83913131313")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Av. Central").numero(430).bairro("Torre").cidade("Joao Pessoa").unidadeFed("PB").cep("58040030").build())
+                    .registroInst((short) 3456)
+                    .areaPesquisa("Geologia")
+                    .titulacao("Doutorado")
+                    .valor_diario_bolsa(new BigDecimal("450.00"))
                     .participacoes(new ArrayList<>())
                     .retiradas(new ArrayList<>())
                     .coletas(new ArrayList<>())
@@ -348,6 +411,36 @@ public final class CargaInicial {
                     .validade_certif(LocalDate.of(2030, 1, 1))
                     .qntd_expedicoes(150)
                     .build();
+                GuiaEspeleologia guia4 = GuiaEspeleologia.builder()
+                    .cpf("66677788899")
+                    .nome("Andre Oliveira")
+                    .datanasc(LocalDate.of(1992, 9, 12))
+                    .email("andre.oliveira@email.com")
+                    .telefone("83914141414")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Rua do Sol").numero(32).bairro("Cabo Branco").cidade("Joao Pessoa").unidadeFed("PB").cep("58045010").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .num_credenc(202)
+                    .nivel_certif(3)
+                    .validade_certif(LocalDate.of(2029, 12, 31))
+                    .qntd_expedicoes(35)
+                    .build();
+                GuiaEspeleologia guia5 = GuiaEspeleologia.builder()
+                    .cpf("77788899900")
+                    .nome("Isabela Moura")
+                    .datanasc(LocalDate.of(1996, 5, 27))
+                    .email("isabela.moura@email.com")
+                    .telefone("83915151515")
+                    .ativo(true)
+                    .endereco(Endereco.builder().logradouro("Estrada da Serra").numero(18).bairro("Zona Rural").cidade("Areia").unidadeFed("PB").cep("58397010").build())
+                    .participacoes(new ArrayList<>())
+                    .retiradas(new ArrayList<>())
+                    .num_credenc(303)
+                    .nivel_certif(2)
+                    .validade_certif(LocalDate.of(2028, 7, 20))
+                    .qntd_expedicoes(18)
+                    .build();
 
                 Caverna caverna2 = Caverna.builder()
                     .nomeCaverna("Gruta do Rio Subterraneo")
@@ -373,6 +466,31 @@ public final class CargaInicial {
                     .localizacao(Localizacao.builder().latitude(new BigDecimal("-6.7629")).longitude(new BigDecimal("-38.2255")).datum(datumGeodesicoEnum.SIRGAS2000).build())
                     .setores(new ArrayList<>())
                     .build();
+                Caverna caverna4 = Caverna.builder()
+                    .nomeCaverna("Gruta da Pedra Clara")
+                    .codCadAmbiental("PB0004")
+                    .municipio("Cabaceiras")
+                    .uf("PB")
+                    .altitude(new BigDecimal("310.00"))
+                    .ultimaInsp(LocalDate.now().minusMonths(3))
+                    .indAcesso(true)
+                    .extensao(new BigDecimal("850.500"))
+                    .localizacao(Localizacao.builder().latitude(new BigDecimal("-7.4880")).longitude(new BigDecimal("-36.2860")).datum(datumGeodesicoEnum.SIRGAS2000).build())
+                    .setores(new ArrayList<>())
+                    .build();
+                Caverna caverna5 = Caverna.builder()
+                    .nomeCaverna("Caverna do Vale Verde")
+                    .codCadAmbiental("PB0005")
+                    .municipio("Pocinhos")
+                    .uf("PB")
+                    .altitude(new BigDecimal("290.00"))
+                    .ultimaInsp(LocalDate.now().minusMonths(2))
+                    .indAcesso(true)
+                    .extensao(new BigDecimal("640.250"))
+                    .localizacao(Localizacao.builder().latitude(new BigDecimal("-7.0760")).longitude(new BigDecimal("-36.0630")).datum(datumGeodesicoEnum.SIRGAS2000).build())
+                    .setores(new ArrayList<>())
+                    .build();
+
                 SetorPesquisa setor2 = SetorPesquisa.builder()
                     .denominacao("Salao Submerso")
                     .dificuldade(nivelDificuldadeEnum.EXTREMO)
@@ -395,8 +513,32 @@ public final class CargaInicial {
                     .caverna(caverna3)
                     .coletas(new ArrayList<>())
                     .build();
+                SetorPesquisa setor4 = SetorPesquisa.builder()
+                    .denominacao("Galeria dos Cristais")
+                    .dificuldade(nivelDificuldadeEnum.MODERADO)
+                    .profuncidadeMaxima(new BigDecimal("22.0"))
+                    .extensao(new BigDecimal("180.0"))
+                    .descricao("Galeria com formações minerais e pontos de observação.")
+                    .riscoInundacao(nivelDificuldadeEnum.BAIXO)
+                    .condicao(condicaoCorrenteEnum.RISCO_ESTRUTURAL)
+                    .caverna(caverna4)
+                    .coletas(new ArrayList<>())
+                    .build();
+                SetorPesquisa setor5 = SetorPesquisa.builder()
+                    .denominacao("Conduto do Vale")
+                    .dificuldade(nivelDificuldadeEnum.ALTO)
+                    .profuncidadeMaxima(new BigDecimal("55.0"))
+                    .extensao(new BigDecimal("420.0"))
+                    .descricao("Conduto estreito com trechos de acesso técnico.")
+                    .riscoInundacao(nivelDificuldadeEnum.BAIXO)
+                    .condicao(condicaoCorrenteEnum.UMIDO_ESCORREGADIO)
+                    .caverna(caverna5)
+                    .coletas(new ArrayList<>())
+                    .build();
                 caverna2.addSetor(setor2);
                 caverna3.addSetor(setor3);
+                caverna4.addSetor(setor4);
+                caverna5.addSetor(setor5);
 
                 Equipamento equipamento2 = Equipamento.builder()
                     .codPatrimonial("EQ0002")
@@ -422,6 +564,30 @@ public final class CargaInicial {
                     .exigeCalibracao(false)
                     .utilizacoes(new ArrayList<>())
                     .build();
+                Equipamento equipamento4 = Equipamento.builder()
+                    .codPatrimonial("EQ0004")
+                    .nome("Receptor GPS")
+                    .tipo(tipoEquipamentoEnum.MONITORAMENTO_AMBIENTAL)
+                    .fabricante("GeoTech")
+                    .valor(new BigDecimal("2200.00"))
+                    .dataCompra(LocalDate.of(2025, 3, 12))
+                    .dataUltimaManutencao(LocalDate.of(2026, 6, 10))
+                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.EM_MANUNTENCAO)
+                    .exigeCalibracao(false)
+                    .utilizacoes(new ArrayList<>())
+                    .build();
+                Equipamento equipamento5 = Equipamento.builder()
+                    .codPatrimonial("EQ0005")
+                    .nome("Capacete com iluminacao")
+                    .tipo(tipoEquipamentoEnum.SEGURANCA)
+                    .fabricante("CaveSafe")
+                    .valor(new BigDecimal("480.00"))
+                    .dataCompra(LocalDate.of(2025, 8, 5))
+                    .dataUltimaManutencao(LocalDate.of(2026, 5, 15))
+                    .situacaoOperacional(situacaoOperacionalEquipamentoEnum.DISPONIVEL)
+                    .exigeCalibracao(false)
+                    .utilizacoes(new ArrayList<>())
+                    .build();
 
                 PlanoSeguranca plano2 = PlanoSeguranca.builder()
                     .procedsEvacuacao("Retornar em dupla pela corda-guia e acionar a equipe de superficie.")
@@ -439,6 +605,23 @@ public final class CargaInicial {
                     .precisaMedico(true)
                     .mapa(new byte[]{7, 8, 9})
                     .build();
+                PlanoSeguranca plano4 = PlanoSeguranca.builder()
+                    .procedsEvacuacao("Retornar pela galeria principal em grupos acompanhados.")
+                    .pontoEncontro("Entrada da Gruta")
+                    .tempoSemComunic(LocalTime.of(0, 45))
+                    .telefoneEmerg("83988880004")
+                    .precisaMedico(false)
+                    .mapa(new byte[]{10, 11, 12})
+                    .build();
+                PlanoSeguranca plano5 = PlanoSeguranca.builder()
+                    .procedsEvacuacao("Interromper a atividade e seguir a rota sinalizada.")
+                    .pontoEncontro("Base do Vale")
+                    .tempoSemComunic(LocalTime.of(1, 30))
+                    .telefoneEmerg("83988880005")
+                    .precisaMedico(true)
+                    .mapa(new byte[]{13, 14, 15})
+                    .build();
+
                 AutorizacaoAmbiental autorizacao2 = AutorizacaoAmbiental.builder()
                     .numAutoriz(15)
                     .orgaoEmissor("IBAMA")
@@ -457,6 +640,25 @@ public final class CargaInicial {
                     .observacoes("Escavacao paleontologica controlada.")
                     .pdfAssinado(new byte[]{37, 80, 68, 70, 45, 49, 46, 52, 3})
                     .build();
+                AutorizacaoAmbiental autorizacao4 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(24)
+                    .orgaoEmissor("SUDEMA")
+                    .dataEmissao(LocalDate.now().minusDays(20))
+                    .validade(LocalDate.now().plusMonths(8))
+                    .situacao(situacaoAutorizacaoAmbientalEnum.INATIVO)
+                    .observacoes("Autorizacao para levantamento geologico.")
+                    .pdfAssinado(new byte[]{37, 80, 68, 70, 4})
+                    .build();
+                AutorizacaoAmbiental autorizacao5 = AutorizacaoAmbiental.builder()
+                    .numAutoriz(25)
+                    .orgaoEmissor("IBAMA")
+                    .dataEmissao(LocalDate.now().minusDays(12))
+                    .validade(LocalDate.now().plusYears(1))
+                    .situacao(situacaoAutorizacaoAmbientalEnum.ATIVO)
+                    .observacoes("Autorizacao para estudo de biodiversidade.")
+                    .pdfAssinado(new byte[]{37, 80, 68, 70, 5})
+                    .build();
+    
                 Relatorio relatorio2 = Relatorio.builder()
                     .titulo("Analise do Rio Subterraneo")
                     .Resumo("Resultados da coleta hidrologica e do mapeamento do lencol.")
@@ -474,6 +676,24 @@ public final class CargaInicial {
                     .arqCompleto(null)
                     .situacaoAprovacao(situacaoAprovacaoRelEnum.PENDENTE)
                     .publicacaoAprovada(false)
+                    .build();
+                Relatorio relatorio4 = Relatorio.builder()
+                    .titulo("Levantamento Geologico da Pedra Clara")
+                    .Resumo("Registro de observacoes geologicas e caracteristicas da gruta.")
+                    .dataSubmissao(LocalDate.now().minusDays(1))
+                    .numeroPaginas(22)
+                    .arqCompleto(new byte[]{40, 41, 42})
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.PENDENTE)
+                    .publicacaoAprovada(false)
+                    .build();
+                Relatorio relatorio5 = Relatorio.builder()
+                    .titulo("Estudo de Biodiversidade do Vale")
+                    .Resumo("Relatorio preliminar sobre especies observadas na caverna.")
+                    .dataSubmissao(LocalDate.now())
+                    .numeroPaginas(36)
+                    .arqCompleto(new byte[]{43, 44, 45})
+                    .situacaoAprovacao(situacaoAprovacaoRelEnum.APROVADO)
+                    .publicacaoAprovada(true)
                     .build();
 
                 Expedicao expedicao2 = Expedicao.builder()
@@ -514,6 +734,44 @@ public final class CargaInicial {
                     .coletasCientificas(new ArrayList<>())
                     .utilizacoes(new ArrayList<>())
                     .build();
+                Expedicao expedicao4 = Expedicao.builder()
+                    .codExped("exped_2026_003")
+                    .titulo("Levantamento da Pedra Clara")
+                    .objetivo("Mapear as galerias e registrar formacoes minerais.")
+                    .inicio(LocalDateTime.now().minusHours(2))
+                    .termino(LocalDateTime.now().plusHours(6))
+                    .orcamento(new BigDecimal("12000.00"))
+                    .custo(new BigDecimal("3500.00"))
+                    .qntdParticip(4)
+                    .situacao(situacaoExpedicaoEnum.EM_ANDAMENTO)
+                    .cancelEmerg(false)
+                    .caverna(caverna4)
+                    .planoSeguranca(plano4)
+                    .autorizAmbiental(autorizacao4)
+                    .relatorio(relatorio4)
+                    .participacoes(new ArrayList<>())
+                    .coletasCientificas(new ArrayList<>())
+                    .utilizacoes(new ArrayList<>())
+                    .build();
+                Expedicao expedicao5 = Expedicao.builder()
+                    .codExped("exped_2026_004")
+                    .titulo("Biodiversidade do Vale Verde")
+                    .objetivo("Registrar especies e condicoes ambientais.")
+                    .inicio(LocalDateTime.now().minusDays(10))
+                    .termino(LocalDateTime.now().minusDays(8))
+                    .orcamento(new BigDecimal("9000.00"))
+                    .custo(new BigDecimal("7200.00"))
+                    .qntdParticip(3)
+                    .situacao(situacaoExpedicaoEnum.CONCLUIDA)
+                    .cancelEmerg(false)
+                    .caverna(caverna5)
+                    .planoSeguranca(plano5)
+                    .autorizAmbiental(autorizacao5)
+                    .relatorio(relatorio5)
+                    .participacoes(new ArrayList<>())
+                    .coletasCientificas(new ArrayList<>())
+                    .utilizacoes(new ArrayList<>())
+                    .build();
 
                 Participacao participacao2 = Participacao.builder()
                     .papelExpedicao(papelExpedicaoEnum.PESQUISADOR)
@@ -535,10 +793,58 @@ public final class CargaInicial {
                     .pessoa(guia3)
                     .expedicao(expedicao3)
                     .build();
+                Participacao participacao4 = Participacao.builder()
+                    .papelExpedicao(papelExpedicaoEnum.PESQUISADOR)
+                    .dataConfirmacao(LocalDate.now().minusDays(3))
+                    .valorDiaria(new BigDecimal("350.00"))
+                    .quantidadeDias((short) 2)
+                    .presenca(true)
+                    .observacoes("Responsavel pelo levantamento geologico.")
+                    .pessoa(pesquisador4)
+                    .expedicao(expedicao4)
+                    .build();
+                Participacao participacao5 = Participacao.builder()
+                    .papelExpedicao(papelExpedicaoEnum.GUIA)
+                    .dataConfirmacao(LocalDate.now().minusDays(15))
+                    .valorDiaria(new BigDecimal("280.00"))
+                    .quantidadeDias((short) 2)
+                    .presenca(true)
+                    .observacoes("Guia responsavel pelo trajeto.")
+                    .pessoa(guia4)
+                    .expedicao(expedicao4)
+                    .build();
+                Participacao participacao6 = Participacao.builder()
+                    .papelExpedicao(papelExpedicaoEnum.PESQUISADOR)
+                    .dataConfirmacao(LocalDate.now().minusDays(12))
+                    .valorDiaria(new BigDecimal("450.00"))
+                    .quantidadeDias((short) 2)
+                    .presenca(true)
+                    .observacoes("Responsavel pelo estudo de biodiversidade.")
+                    .pessoa(pesquisador5)
+                    .expedicao(expedicao5)
+                    .build();
+                Participacao participacao7 = Participacao.builder()
+                    .papelExpedicao(papelExpedicaoEnum.GUIA)
+                    .dataConfirmacao(LocalDate.now().minusDays(12))
+                    .valorDiaria(new BigDecimal("300.00"))
+                    .quantidadeDias((short) 2)
+                    .presenca(true)
+                    .observacoes("Acompanhamento da equipe de campo.")
+                    .pessoa(guia5)
+                    .expedicao(expedicao5)
+                    .build();
                 expedicao2.addParticipacao(participacao2);
                 expedicao3.addParticipacao(participacao3);
+                expedicao4.addParticipacao(participacao4);
+                expedicao4.addParticipacao(participacao5);
+                expedicao5.addParticipacao(participacao6);
+                expedicao5.addParticipacao(participacao7);
                 pesquisador2.addParticipacao(participacao2);
                 guia3.addParticipacao(participacao3);
+                pesquisador4.addParticipacao(participacao4);
+                guia4.addParticipacao(participacao5);
+                pesquisador5.addParticipacao(participacao6);
+                guia5.addParticipacao(participacao7);
 
                 ColetaCientifica coleta2 = ColetaCientifica.builder()
                     .setor(setor2)
@@ -566,12 +872,44 @@ public final class CargaInicial {
                     .situacaoValidacao(situacaoValidacaoColetaEnum.CONCLUIDO)
                     .amostras(new ArrayList<>())
                     .build();
+                ColetaCientifica coleta4 = ColetaCientifica.builder()
+                    .setor(setor4)
+                    .pesquisador(pesquisador4)
+                    .dataHora(LocalDateTime.now().minusHours(1))
+                    .metodoEmpregado("Observacao e registro fotografico")
+                    .descricaoPonto("Parede leste da galeria.")
+                    .temperatura(new BigDecimal("21.5"))
+                    .umidadeRelativa(new BigDecimal("75.0"))
+                    .profundidade(new BigDecimal("12.0"))
+                    .observacoes("Registro de minerais na parede.")
+                    .situacaoValidacao(situacaoValidacaoColetaEnum.CONCLUIDO)
+                    .amostras(new ArrayList<>())
+                    .build();
+                ColetaCientifica coleta5 = ColetaCientifica.builder()
+                    .setor(setor5)
+                    .pesquisador(pesquisador5)
+                    .dataHora(LocalDateTime.now().minusDays(9))
+                    .metodoEmpregado("Observacao de campo")
+                    .descricaoPonto("Conduto lateral proximo a entrada.")
+                    .temperatura(new BigDecimal("19.8"))
+                    .umidadeRelativa(new BigDecimal("88.0"))
+                    .profundidade(new BigDecimal("30.0"))
+                    .observacoes("Registro de especies observadas.")
+                    .situacaoValidacao(situacaoValidacaoColetaEnum.CANCELADA)
+                    .amostras(new ArrayList<>())
+                    .build();
                 expedicao2.addColeta(coleta2);
                 expedicao3.addColeta(coleta3);
+                expedicao4.addColeta(coleta4);
+                expedicao5.addColeta(coleta5);
                 pesquisador2.addColeta(coleta2);
                 pesquisador3.addColeta(coleta3);
+                pesquisador4.addColeta(coleta4);
+                pesquisador5.addColeta(coleta5);
                 setor2.addColeta(coleta2);
                 setor3.addColeta(coleta3);
+                setor4.addColeta(coleta4);
+                setor5.addColeta(coleta5);
 
                 AmostraCientifica amostra2 = AmostraCientifica.builder()
                     .codAmostra("AM0002")
@@ -599,8 +937,50 @@ public final class CargaInicial {
                     .obsorvacoes("Fragmento fossil com sedimento aderido.")
                     .coleta(coleta3)
                     .build();
+                AmostraCientifica amostra4 = AmostraCientifica.builder()
+                    .codAmostra("AM0004")
+                    .categoria(categoriaAmostraEnum.GEOLOGICA)
+                    .massa(new BigDecimal("220.500"))
+                    .volume(null)
+                    .unidadeMedida(unidadeMedidaAmostraEnum.G)
+                    .dataAcondicionamento(LocalDate.now())
+                    .condicaoConservacao(condicaoAmostraEnum.BOA)
+                    .materialPerigoso(false)
+                    .fotografiaBinaria(new byte[]{51, 52, 53})
+                    .obsorvacoes("Fragmento mineral coletado na galeria.")
+                    .coleta(coleta4)
+                    .build();
+                AmostraCientifica amostra5 = AmostraCientifica.builder()
+                    .codAmostra("AM0005")
+                    .categoria(categoriaAmostraEnum.BIOLOGICA)
+                    .massa(null)
+                    .volume(new BigDecimal("125.00"))
+                    .unidadeMedida(unidadeMedidaAmostraEnum.ML)
+                    .dataAcondicionamento(LocalDate.now().minusDays(9))
+                    .condicaoConservacao(condicaoAmostraEnum.REGULAR)
+                    .materialPerigoso(false)
+                    .fotografiaBinaria(new byte[]{54, 55, 56})
+                    .obsorvacoes("Material coletado para analise biologica.")
+                    .coleta(coleta4)
+                    .build();
+                AmostraCientifica amostra6 = AmostraCientifica.builder()
+                    .codAmostra("AM0006")
+                    .categoria(categoriaAmostraEnum.GEOLOGICA)
+                    .massa(new BigDecimal("95.750"))
+                    .volume(null)
+                    .unidadeMedida(unidadeMedidaAmostraEnum.G)
+                    .dataAcondicionamento(LocalDate.now())
+                    .condicaoConservacao(condicaoAmostraEnum.REGULAR)
+                    .materialPerigoso(false)
+                    .fotografiaBinaria(new byte[]{57, 58, 59})
+                    .obsorvacoes("Pequena amostra de rocha para análise.")
+                    .coleta(coleta4)
+                    .build();
                 coleta2.addAmostra(amostra2);
                 coleta3.addAmostra(amostra3);
+                coleta4.addAmostra(amostra4);
+                coleta4.addAmostra(amostra5);
+                coleta4.addAmostra(amostra6);
 
                 UtilizacaoEquipamento utilizacao2 = UtilizacaoEquipamento.builder()
                     .responsavel(pesquisador2)
@@ -621,41 +1001,108 @@ public final class CargaInicial {
                     .estadoRetorno(estadoEquipamentoEnum.DANIFICADO)
                     .custoAvaria(new BigDecimal("150.00"))
                     .build();
-                expedicao2.addUtilizacao(utilizacao2);
-                expedicao3.addUtilizacao(utilizacao3);
+                UtilizacaoEquipamento utilizacao4 = UtilizacaoEquipamento.builder()
+                    .responsavel(pesquisador4)
+                    .equipamento(equipamento4)
+                    .expedicao(expedicao4)
+                    .dataHoraRetirada(LocalDateTime.now().minusHours(3))
+                    .previsaoDevolucao(LocalDate.now().plusDays(1))
+                    .estadoSaida(estadoEquipamentoEnum.REGULAR)
+                    .build();
+
+                UtilizacaoEquipamento utilizacao5 = UtilizacaoEquipamento.builder()
+                    .responsavel(guia4)
+                    .equipamento(equipamento5)
+                    .expedicao(expedicao4)
+                    .dataHoraRetirada(LocalDateTime.now().minusHours(2))
+                    .previsaoDevolucao(LocalDate.now().plusDays(1))
+                    .estadoSaida(estadoEquipamentoEnum.NOVO)
+                    .build();
+
+                UtilizacaoEquipamento utilizacao6 = UtilizacaoEquipamento.builder()
+                    .responsavel(pesquisador5)
+                    .equipamento(equipamento4)
+                    .expedicao(expedicao5)
+                    .dataHoraRetirada(LocalDate.now().atStartOfDay())
+                    .previsaoDevolucao(LocalDate.now().plusDays(1))
+                    .estadoSaida(estadoEquipamentoEnum.BOM)
+                    .build();
+
+                UtilizacaoEquipamento utilizacao7 = UtilizacaoEquipamento.builder()
+                    .responsavel(guia5)
+                    .equipamento(equipamento5)
+                    .expedicao(expedicao5)
+                    .dataHoraRetirada(LocalDate.now().atStartOfDay())
+                    .previsaoDevolucao(LocalDate.now().plusDays(1))
+                    .estadoSaida(estadoEquipamentoEnum.BOM)
+                    .build();
+                
 
             // associar a utilização aos relacionamentos
             expedicao.addUtilizacao(utilizacao);
+            expedicao2.addUtilizacao(utilizacao2);
+            expedicao3.addUtilizacao(utilizacao3);
+            expedicao4.addUtilizacao(utilizacao4);
+            expedicao4.addUtilizacao(utilizacao5);
+            expedicao5.addUtilizacao(utilizacao6);
+            expedicao5.addUtilizacao(utilizacao7);
+
             equipamento.addEquipamento(utilizacao);
             pessoa.addRetirada(utilizacao);
+
             equipamento2.addEquipamento(utilizacao2);
             pesquisador2.addRetirada(utilizacao2);
+
             equipamento3.addEquipamento(utilizacao3);
             guia3.addRetirada(utilizacao3);
+
+            equipamento4.addEquipamento(utilizacao6);
+            equipamento4.addEquipamento(utilizacao4);
+            guia4.addRetirada(utilizacao5);
+
+            pesquisador4.addRetirada(utilizacao4);
+            equipamento5.addEquipamento(utilizacao5);
             
+            pesquisador5.addRetirada(utilizacao6);
+            equipamento5.addEquipamento(utilizacao7);
+            guia5.addRetirada(utilizacao7);
+
+            // Controller
             pessoaController.criar(em, pessoa);
             pessoaController.criar(em, pessoa2);
             pessoaController.criar(em, pessoa3);
+            pessoaController.criar(em, pessoa4);
+            pessoaController.criar(em, pessoa5);
            
             pesquisadorController.criar(em, pesquisador);
             pesquisadorController.criar(em, pesquisador2);
             pesquisadorController.criar(em, pesquisador3);
+            pesquisadorController.criar(em, pesquisador4);
+            pesquisadorController.criar(em, pesquisador5);
             
             guiaController.criar(em, guia);
             guiaController.criar(em, guia2);
             guiaController.criar(em, guia3);
+            guiaController.criar(em, guia4);
+            guiaController.criar(em, guia5);
             
             cavernaController.criar(em, caverna);
             cavernaController.criar(em, caverna2);
             cavernaController.criar(em, caverna3);
+            cavernaController.criar(em, caverna4);
+            cavernaController.criar(em, caverna5);
            
             equipamentoController.criar(em, equipamento);
             equipamentoController.criar(em, equipamento2);
             equipamentoController.criar(em, equipamento3);
+            equipamentoController.criar(em, equipamento4);
+            equipamentoController.criar(em, equipamento5);
 
             expedicaoController.criar(em, expedicao);
             expedicaoController.criar(em, expedicao2);
-            expedicaoController.criar(em, expedicao3);            
+            expedicaoController.criar(em, expedicao3);
+            expedicaoController.criar(em, expedicao4);
+            expedicaoController.criar(em, expedicao5);             
 
             tx.commit();
         } catch (Exception e) {
