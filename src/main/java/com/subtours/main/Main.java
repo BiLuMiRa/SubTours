@@ -121,6 +121,9 @@ public class Main {
             //Busca mapa do plano de segurança da expedição
             er.buscarMapaPlanoExpedicao(1);
 
+            //Busca arquivo completo do relatório da expedição
+            er.buscarArqRelatorioExpedicao(1);
+
 
         } catch (Exception e) {
             System.out.println("Erro ao iniciar o JPA:");
