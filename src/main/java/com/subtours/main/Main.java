@@ -32,49 +32,7 @@ public class Main {
 
             CargaInicial.carregar(tx, em);
 
-            em = emf.createEntityManager();
-
-            // System.out.println("Conexão concluída!");
-            // List <Equipamento> equipamentos = em.createNamedQuery("Equipamento.todos", Equipamento.class).getResultList();
-
-            // for (Equipamento e : equipamentos){
-            //     System.out.println(e.getNome());
-            // }
-
-            // List <ColetaCientifica> coletas = em.createNamedQuery("ColetaCientifica.PorIdExpedicao", ColetaCientifica.class)
-            //     .setParameter("id", 2)
-            //     .getResultList();
-
-            // for (ColetaCientifica cc : coletas){
-            //     System.out.println(cc.getDescricaoPonto() + "setor:" + cc.getSetor().getDenominacao() + "pesquisador: " + cc.getPesquisador().getNome());
-            // }
-
-            // ColetaCientifica cc = em.getReference(ColetaCientifica.class, 1);
-            // List <AmostraCientifica> amostras = em.createNamedQuery("Amostras.PorIdColeta", AmostraCientifica.class)
-            //     .setParameter("id", cc.getId())
-            //     .getResultList();
-
-            // for (AmostraCientifica a : amostras){
-            //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
-            // }
-
-            // GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
-            // Pessoa p = pessoaController.buscarReferencia(em, 1);
-            // System.out.println(p.getNome());
-
-            // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
-            // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
-            // List <Equipamento> equipamentos = em.createNamedQuery("Equipamentos.buscaSituacaoPorData", Equipamento.class)
-            //     .setParameter("situacao", situacaoOperacionalEquipamentoEnum.disponivel)
-            //     .setParameter("dataInicio", dataInicio)
-            //     .setParameter("dataFim", dataFim)
-            //     .getResultList();
-            
-            // for (Equipamento e : equipamentos){
-            //     System.out.println(e.getNome());
-            // }
-            //  yste   Sm.out.println(e.getNome());
-            // }
+            em.clear();
 
             //Coleta Científica
             ColetaCientificaRepository coletaRepo = new ColetaCientificaRepository(em);
@@ -133,6 +91,44 @@ public class Main {
 
             //Busca cavernas com inspeção vencida
             cr.cavernaInspVencida(LocalDate.of(2026, 04, 01));
+
+//------------------- Estudo ---------------------------------
+            // List<Expedicao> qExpedicao = em.createQuery("Select e From Expedicao e", Expedicao.class).getResultList();
+
+            // for(Expedicao e: qExpedicao){
+            //     System.out.println(e.getCodExped());
+            //     System.out.println(e.getTitulo());
+            //     System.out.println(e.getSituacao());
+            // }
+
+            // List<Expedicao> qExpedicao = em.createQuery("Select e From Expedicao e Where inicio >= :dtInicio And termino <= :dtFim", Expedicao.class).setParameter("dtInicio",LocalDateTime.of(2026, 9, 28, 0, 0, 0)).setParameter("dtFim",LocalDateTime.of(2026, 9, 30, 0, 0, 0)).getResultList();
+            // for(Expedicao e : qExpedicao){
+            //     System.out.println(e.getCodExped());
+            //     System.out.println(e.getTitulo());
+            //     System.out.println(e.getSituacao());
+            // }
+
+            // List<Expedicao> expds = em.createQuery("Select e From Expedicao e join e.caverna", Expedicao.class).getResultList();
+            // for(Expedicao e : expds){
+            //     System.out.println(e.getCodExped());
+            //     System.out.println(e.getTitulo());
+            //     System.out.println(e.getCaverna().getNomeCaverna());
+            // }
+
+            // List<AmostraCientifica> as = em.createQuery("Select a From AmostraCientifica a Where a.coleta.id = :id", AmostraCientifica.class).setParameter("id", 1).getResultList();
+            // for(AmostraCientifica a : as){
+            //     System.out.println(a.getColeta().getIdColeta());
+            //     System.out.println(a.getCodAmostra());
+            //     System.out.println(a.getCategoria());
+            // }
+
+            tx.begin();
+            Pessoa p = em.find(Pessoa.class, 2);
+            System.out.println(p.getNome());
+            p.setNome("Roberto Santos");
+            em.persist(p);
+            System.out.println(p.getNome());
+            tx.commit();
 
 
         } catch (Exception e) {
