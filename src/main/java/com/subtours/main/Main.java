@@ -58,9 +58,9 @@ public class Main {
             //     System.out.println(a.getCodAmostra() + " : " + a.getColeta().getId());
             // }
 
-            GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
-            Pessoa p = pessoaController.buscarReferencia(em, 1);
-            System.out.println(p.getNome());
+            // GenericController<Pessoa> pessoaController = new GenericController<>(Pessoa.class);
+            // Pessoa p = pessoaController.buscarReferencia(em, 1);
+            // System.out.println(p.getNome());
 
             // LocalDate dataInicio = LocalDate.of(2026, 10, 1);
             // LocalDateTime dataFim = LocalDateTime.of(2026, 10, 10, 8, 0);
@@ -79,7 +79,7 @@ public class Main {
             //Coleta Científica
             ColetaCientificaRepository coletaRepo = new ColetaCientificaRepository(em);
 
-            //Lista as coletas de uam expedição com setor e pesquisador reponsável
+            //Lista as coletas de uma expedição com setor e pesquisador reponsável
             List<ColetaCientifica> ccPorIdExpedicao = coletaRepo.ccPorIdExpedicao(2);
 
             for(ColetaCientifica cc : ccPorIdExpedicao) {
@@ -122,7 +122,10 @@ public class Main {
             //Busca mapa do plano de segurança da expedição
             er.buscarMapaPlanoExpedicao(1);
 
-//------------------- Consultas de Expedição-------------------------
+            //Busca arquivo completo do relatório da expedição
+            er.buscarArqRelatorioExpedicao(1);
+
+//------------------- Consultas de Cavernas-------------------------
             CavernaRepository cr = new CavernaRepository(em);
 
             //Busca cavernas que estão acessíveis atualmente
