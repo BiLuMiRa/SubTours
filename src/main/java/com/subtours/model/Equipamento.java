@@ -64,8 +64,9 @@ public class Equipamento {
     @Enumerated(EnumType.STRING)
     private situacaoOperacionalEquipamentoEnum situacaoOperacional;
    
-    @Column(name = "exige_calibracao", nullable = false)
-    private Boolean exigeCalibracao;
+    @Column(name = "exige_calibracao", nullable = false, columnDefinition = "char(1)")
+    @Convert(converter = TrueFalseConverter.class)
+    private Boolean exigeCalibracao = false;
     
     @Column(name = "data_ultima_manuntencao")
     private LocalDate dataUltimaManutencao;
@@ -73,7 +74,7 @@ public class Equipamento {
     @OneToMany(mappedBy = "equipamento", fetch = FetchType.LAZY)
     private List<UtilizacaoEquipamento> utilizacoes = new ArrayList<>();
 
-    public boolean addEquipamento(UtilizacaoEquipamento ue){
+    public boolean addUso(UtilizacaoEquipamento ue){
         if( this.utilizacoes != null && ue != null){
             this.utilizacoes.add(ue);
             ue.setEquipamento(this);

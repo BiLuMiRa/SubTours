@@ -25,8 +25,8 @@ import lombok.experimental.SuperBuilder;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class Pesquisador extends Pessoa{
     
-    @Column(name = "registro_inst", nullable = false, length = 4)
-    private short registroInst;
+    @Column(name = "registro_inst", nullable = false)
+    private String registroInst;
 
     @Column(name = "area_pesq", nullable = false, length = 30)
     private String areaPesquisa;

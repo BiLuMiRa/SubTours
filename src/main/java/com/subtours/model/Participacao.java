@@ -53,8 +53,8 @@ public class Participacao {
     @Column(name = "valor_diaria", nullable = false, precision = 15, scale = 2)
     private BigDecimal valorDiaria;
 
-    @Column(name = "quantidade_dias", nullable = false)
-    private short quantidadeDias;
+    @Column(name = "quantidade_dias", nullable = false, length = 3)
+    private Integer quantidadeDias;
 
     @Column(name = "presenca", nullable = false)
     private Boolean presenca = false;

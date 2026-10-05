@@ -37,7 +37,7 @@ public class SetorPesquisa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_setor")
-    private Long idSetor;
+    private Long id;
 
     @Column(name = "denominacao", nullable = false, length = 30)
     private String denominacao;
