@@ -23,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class GuiaEspeleologia extends Pessoa{
     @Column(name = "numCredenc", nullable = false)
-    private Integer num_credenc;
+    private String num_credenc;
 
     @Column(name = "nivelCertif")
     private Integer nivel_certif;
