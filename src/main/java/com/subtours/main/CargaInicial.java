@@ -1047,24 +1047,24 @@ public final class CargaInicial {
             expedicao5.addUtilizacao(utilizacao6);
             expedicao5.addUtilizacao(utilizacao7);
 
-            equipamento.addEquipamento(utilizacao);
+            equipamento.addUso(utilizacao);
             pessoa.addRetirada(utilizacao);
 
-            equipamento2.addEquipamento(utilizacao2);
+            equipamento2.addUso(utilizacao2);
             pesquisador2.addRetirada(utilizacao2);
 
-            equipamento3.addEquipamento(utilizacao3);
+            equipamento3.addUso(utilizacao3);
             guia3.addRetirada(utilizacao3);
 
-            equipamento4.addEquipamento(utilizacao6);
-            equipamento4.addEquipamento(utilizacao4);
+            equipamento4.addUso(utilizacao6);
+            equipamento4.addUso(utilizacao4);
             guia4.addRetirada(utilizacao5);
 
             pesquisador4.addRetirada(utilizacao4);
-            equipamento5.addEquipamento(utilizacao5);
+            equipamento5.addUso(utilizacao5);
             
             pesquisador5.addRetirada(utilizacao6);
-            equipamento5.addEquipamento(utilizacao7);
+            equipamento5.addUso(utilizacao7);
             guia5.addRetirada(utilizacao7);
 
             // Controller
