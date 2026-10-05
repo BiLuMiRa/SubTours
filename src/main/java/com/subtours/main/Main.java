@@ -121,13 +121,13 @@ public class Main {
             //     System.out.println(a.getCategoria());
             // }
 
-            tx.begin();
-            Pessoa p = em.find(Pessoa.class, 2);
-            System.out.println(p.getNome());
-            p.setNome("Roberto Santos");
-            em.persist(p);
-            System.out.println(p.getNome());
-            tx.commit();
+            // tx.begin();
+            // Pessoa p = em.find(Pessoa.class, 2);
+            // System.out.println(p.getNome());
+            // p.setNome("Roberto Santos");
+            // em.persist(p);
+            // System.out.println(p.getNome());
+            // tx.commit();
 
 
         } catch (Exception e) {
