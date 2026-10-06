@@ -70,7 +70,7 @@ public class Expedicao {
     private situacaoExpedicaoEnum situacao;
 
     @Column(name = "canclmnt_emerg", nullable = false)
-    private boolean cancelEmerg = false;
+    private Boolean cancelEmerg = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carvena_id", nullable = false,

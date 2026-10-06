@@ -54,7 +54,7 @@ public class Pessoa {
     private String telefone;
 
     @Column(name = "ativo", nullable = false)
-    private boolean ativo = true;
+    private Boolean ativo = true;
 
     @Embedded 
     private Endereco endereco;
