@@ -1,5 +1,5 @@
 # Projeto para disciplina de Programação para Web 3 do curso de Bacharelado em Engenharia de Software
-
+[Diagrama de classes UML](https://lucid.app/lucidchart/a4eca017-bd3f-41ba-840d-09cd4d54c86d/edit?viewport_loc=-803%2C-350%2C3738%2C1969%2C0_0&invitationId=inv_f64f6de1-c8e5-4619-94f6-0b2fb15829d4)
 ## Justificativa das escolhas feitas para o projeto
 ### Herança
 - A herança dos tipos de Pessoa foram configuradas com JOINED, ou seja, Existe a superclasse Pessoa e suas subClasses. Essa decisão foi tomada a partir da regra de negócio que deixa claro que novos tipos de Pessoa podem ser incluídos a qualquer momento, então a estratégia JOINED é a que melhor se aplica nesse cenário, mesmo que exija consultas JOIN.
