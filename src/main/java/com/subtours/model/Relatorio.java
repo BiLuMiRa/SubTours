@@ -46,7 +46,7 @@ public class Relatorio {
     private situacaoAprovacaoRelEnum situacaoAprovacao;
 
     @Column(name = "publicacao_aprovada")
-    private Boolean publicacaoAprovada;
+    private Boolean publicacaoAprovada = false;
 
     @OneToOne(mappedBy = "relatorio", fetch = FetchType.LAZY)
     private Expedicao expedicao;
