@@ -38,7 +38,7 @@ public class ExpedicaoRepository {
         System.out.println("Custo: " + expedicao.getCusto());
         System.out.println("Quantidade de participantes: " + expedicao.getQntdParticip());
         System.out.println("Situação: " + expedicao.getSituacao());
-        System.out.println("Cancelamento emergencial: " + expedicao.isCancelEmerg());
+        System.out.println("Cancelamento emergencial: " + expedicao.getCancelEmerg());
 
         for (Participacao participacao : expedicao.getParticipacoes()) {
             System.out.println(
