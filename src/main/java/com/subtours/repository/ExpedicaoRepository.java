@@ -93,7 +93,7 @@ public class ExpedicaoRepository {
         TypedQuery<byte[]> queryArqRelatorio = em.createQuery("Select e.relatorio.arqCompleto From Expedicao e Where e.idExped = :id", byte[].class).setParameter("id", idExpedicao);
         byte[] resultado = queryArqRelatorio.getSingleResult();
         System.out.println("=== ARQUIVO COMPLETO DO RELATÓRIO ===");
-        System.out.println("Arquivo: " + (resultado != null));
+        System.out.println("Arquivo: " + resultado);
         System.out.println();
     }
 }
