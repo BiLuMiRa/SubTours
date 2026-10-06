@@ -43,7 +43,7 @@ public class PlanoSeguranca {
     private String telefoneEmerg;
 
     @Column(name = "precisa_med")
-    private boolean precisaMedico = false;
+    private Boolean precisaMedico = false;
 
     // @Lob 
     @Basic(fetch = FetchType.LAZY)
