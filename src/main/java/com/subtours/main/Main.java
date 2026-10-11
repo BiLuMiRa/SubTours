@@ -4,7 +4,6 @@ import jakarta.transaction.UserTransaction;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import com.subtours.enums.*;
 import com.subtours.infra.JpaUtil;
@@ -32,34 +31,22 @@ public class Main {
 
             em.clear();
 
-            //Coleta Científica
+//------------------- Consultas de Coletas -------------------------
             ColetaCientificaRepository coletaRepo = new ColetaCientificaRepository(em);
 
             //Lista as coletas de uma expedição com setor e pesquisador reponsável
-            List<ColetaCientifica> ccPorIdExpedicao = coletaRepo.ccPorIdExpedicao(2);
-
-            for(ColetaCientifica cc : ccPorIdExpedicao) {
-                System.out.println(cc.getDescricaoPonto() + "\nSetor:" + cc.getSetor().getDenominacao() + "\nPesquisador: " + cc.getPesquisador().getNome());
-            }
+            coletaRepo.ccPorIdExpedicao(2);
             
             //Consulta as amostras pelo id da coleta cientifica 
-            List<AmostraCientifica> acPorIdColetaCientifica = coletaRepo.acPorIdColetaCientifica(1);
+            coletaRepo.acPorIdColetaCientifica(1);
 
-            for (AmostraCientifica ac : acPorIdColetaCientifica) {
-                System.out.println(ac.getCodAmostra() + " : " + ac.getColeta().getIdColeta());
-            }
-
-            //Equipamento
+//------------------- Consultas de Equipamentos -------------------------
             EquipamentoRepository equipamentoRep = new EquipamentoRepository(em);
 
             //Busca equipamentos por situação e um intervalo de data
-            List<Equipamento> equipamentosBuscarSituacaoPorData = equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.DISPONIVEL, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
+            equipamentoRep.equipamentosBuscarSituacaoPorData(situacaoOperacionalEquipamentoEnum.DISPONIVEL, LocalDate.of(2026, 10, 1), LocalDateTime.of(2026, 10, 10, 8, 0));
 
-            for(Equipamento e : equipamentosBuscarSituacaoPorData) {
-                System.out.println(e.getNome());
-            }
-
-//------------------- Consultas de Expedição-------------------------
+//------------------- Consultas de Expedição -------------------------
             ExpedicaoRepository er = new ExpedicaoRepository(em);
 
             //Consulta Expedições por período e situação

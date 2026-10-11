@@ -69,3 +69,104 @@ Implementação utilizada (ColetaCientificaRepository):
 
     return typedQueryCc.getResultList();
     }
+
+## Resultado das Consultas
+=== Coletas com setor e pesquisador responsável ===
+
+    Descrição do ponto: Fundo do lago subterraneo.
+    Setor: Salao Submerso
+    Pesquisador: Beatriz Lins
+=== Amostras pelo id da coleta cientifica ===
+
+    Id da coleta cientifica 1
+    Cod da amostra: AM0001
+    Categoria da amostra: BIOLOGICA
+
+=== Equipamentos ===
+
+    Nome do equipamento: Capacete com iluminacao
+    Tipo do equipamento: SEGURANCA
+    Situação do equipamento: DISPONIVEL
+
+    Nome do equipamento: Lanterna
+    Tipo do equipamento: ILUMINACAO
+    Situação do equipamento: DISPONIVEL
+
+    Nome do equipamento: Corda dinamica 100m
+    Tipo do equipamento: SEGURANCA
+    Situação do equipamento: DISPONIVEL
+
+=== Detalhes das expedições ===
+
+    Quantidade de resultados: 1
+    COD: exped_2025_003
+    Título: Expedição de reconhecimento
+    ID Caverna: 1
+    Nome Caverna: Caverna da Esperança
+    Início: 2026-09-29T10:18:03.786574
+    Término: 2026-09-29T14:18:03.786574
+    Situação: PLANEJADA
+
+
+=== Expedição e participantes ===
+
+    ID: 1
+    Cod Expedição: exped_2025_003
+    Título: Expedição de reconhecimento
+    Objetivo: Reconhecer e documentar a caverna.
+    Início: 2026-09-29T10:18:03.786574
+    Término: 2026-09-29T14:18:03.786574
+    Orçamento: 1500.00
+    Custo: 500.00
+    Quantidade de participantes: 3
+    Situação: PLANEJADA
+    Cancelamento emergencial: false
+    Participante: Ana Oliveira | Papel: COORDENADOR
+
+=== PDF Autorização Ambiental ===
+
+    PDF: [B@42365c82
+
+=== Mapa do Plano de Segurança ===
+
+    Mapa: null
+
+=== Arquivo completo do Relatório ===
+
+    Arquivo: [B@2da3d7d3
+
+=== Cavernas Acessíveis ===
+
+    Codigo de cadastro amebiental: PB0001
+    Nome: Caverna da Esperança
+    Municipio: João Pessoa
+    Estado: PB
+
+    Codigo de cadastro amebiental: PB0003
+    Nome: Toca dos Fosseis
+    Municipio: Sousa
+    Estado: PB
+
+    Codigo de cadastro amebiental: PB0004
+    Nome: Gruta da Pedra Clara
+    Municipio: Cabaceiras
+    Estado: PB
+
+    Codigo de cadastro amebiental: PB0005
+    Nome: Caverna do Vale Verde
+    Municipio: Pocinhos
+    Estado: PB
+
+=== Cavernas com inspeção vencida ===
+
+    Codigo de cadastro amebiental: PB0002
+    Nome: Gruta do Rio Subterraneo
+    Municipio: Santa Luzia
+    Estado: PB
+    Data última inspeção: 2026-03-29
+
+    Codigo de cadastro amebiental: PB0003
+    Nome: Toca dos Fosseis
+    Municipio: Sousa
+    Estado: PB
+    Data última inspeção: 2025-09-29
