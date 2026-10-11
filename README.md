@@ -47,13 +47,16 @@
 - Participação: Garante que não haja repetição dos valores de uma coluna específica ou combinação de colunas. No caso de participação, assegura que uma pessoa não possa ser cadastrada mais de uma vez na mesma expedição.
 
 ## Problema N+1 e solução com JOIN FETCH
-O problema de N+1 ocorre ao listar as coletas científicas de uma determinada expedição e acessar os dados de seus respectivos setores e pesquisadores responsáveis. Se o mapeamento estiver configurado como EAGER ou se as consultas forem feitas de forma isolada sem controle de carregamento, o Hibernate executa inicialmente 1 consulta para buscar a lista de coletas 
-- (SELECT * FROM coleta_cientifica WHERE expedicao_id = ?) 
+O problema de N+1 ocorre ao listar as coletas científicas de uma determinada expedição e acessar os dados de seus respectivos setores e pesquisadores responsáveis. Se o mapeamento estiver configurado como EAGER ou se as consultas forem feitas de forma isolada sem controle de carregamento, o Hibernate executa inicialmente 1 consulta para buscar a lista de coletas
+
+    (SELECT * FROM coleta_cientifica WHERE expedicao_id = ?) 
+
 e, em seguida, executa N consultas adicionais individuais — uma para buscar o setor e outra para buscar o pesquisador de cada coleta retornada. Isso resulta em dezenas de acessos desnecessários ao banco de dados.
-## Solução aplicada: JOIN FETCH
+### Solução aplicada: JOIN FETCH
 A mitigação foi implementada no repositório de coletas utilizando o JOIN FETCH na instrução JPQL. Dessa forma, a consulta recupera a coleta científica, o setor e o pesquisador em uma única instrução SQL utilizando junções (JOIN).
 
 Implementação utilizada (ColetaCientificaRepository):
+
     public List<ColetaCientifica> ccPorIdExpedicao(Integer id) {
     TypedQuery<ColetaCientifica> typedQueryCc = 
         em.createQuery(
@@ -65,4 +68,4 @@ Implementação utilizada (ColetaCientificaRepository):
         ).setParameter("id", id);
 
     return typedQueryCc.getResultList();
-}
+    }
