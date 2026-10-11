@@ -17,7 +17,7 @@ public class ColetaCientificaRepository {
         this.em = em;
     }
 
-    //Lista as coletas de uam expedição com setor e pesquisador reponsável
+    //Lista as coletas de uma expedição com setor e pesquisador reponsável
     public List<ColetaCientifica> ccPorIdExpedicao(Integer id) {
         TypedQuery<ColetaCientifica> typedQueryCc = 
             em.createQuery("Select cc From ColetaCientifica cc Join Fetch cc.setor Join Fetch cc.pesquisador Where cc.expedicao.id = :id", ColetaCientifica.class).setParameter("id", id);
