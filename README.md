@@ -57,17 +57,13 @@ A mitigação foi implementada no repositório de coletas utilizando o JOIN FETC
 
 Implementação utilizada (ColetaCientificaRepository):
 
-    public List<ColetaCientifica> ccPorIdExpedicao(Integer id) {
-    TypedQuery<ColetaCientifica> typedQueryCc = 
-        em.createQuery(
-            "SELECT cc FROM ColetaCientifica cc " +
-            "JOIN FETCH cc.setor " +
-            "JOIN FETCH cc.pesquisador " +
-            "WHERE cc.expedicao.id = :id", 
-            ColetaCientifica.class
-        ).setParameter("id", id);
-
-    return typedQueryCc.getResultList();
+    public void ccPorIdExpedicao(Integer id) {
+        List<ColetaCientifica> QueryCc =  em.createQuery("
+            Select cc 
+            From ColetaCientifica cc Join Fetch cc.setor 
+            Join Fetch cc.pesquisador Where cc.expedicao.id = :id", ColetaCientifica.class)
+            .setParameter("id", id)
+            .getResultList();
     }
 
 ## Resultado das Consultas
